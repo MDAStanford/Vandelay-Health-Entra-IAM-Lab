@@ -56,7 +56,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 ```
 docs/
     Identity-Inventory.md
-    Organization-Chart.md
+    
 
 screenshots/
     01-Entra-Dashboard.png
