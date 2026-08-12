@@ -25,7 +25,7 @@ The **Vandelay Expense Management** enterprise application was configured in Mic
 
 A test user was assigned to the application through **Users and groups**, demonstrating direct application access assignment.
 
-![Enterprise Application User Assignment](screenshots/01-enterprise-app-user-assignment.png)
+![Enterprise Application User Assignment](01-Enterprise-App-User-Assignment.png)
 
 Direct assignment can be useful when access must be granted to a specific identity, although group-based assignment is generally more scalable for larger environments.
 
@@ -35,7 +35,7 @@ Direct assignment can be useful when access must be granted to a specific identi
 
 The application's **Assignment required?** setting was configured as **Yes**.
 
-![Assignment Required](screenshots/02-assignment-required.png)
+![Assignment Required](02-Assignment-Required.png)
 
 This restricts application access to identities that have been explicitly assigned to the enterprise application rather than allowing any user in the tenant to access it.
 
@@ -53,7 +53,7 @@ The basic SAML configuration included an:
 * Reply URL / Assertion Consumer Service (ACS) URL
 * Token signing certificate
 
-![SAML Configuration](screenshots/03-saml-configuration.png)
+![SAML Configuration](03-SAML-Configuration.png)
 
 In this configuration, Microsoft Entra ID acts as the **Identity Provider (IdP)** and provides authentication information to the application using SAML assertions.
 
@@ -74,7 +74,7 @@ A custom **department** claim was also configured and mapped to:
 
 `user.department`
 
-![SAML Department Claim](screenshots/04-saml-department-claim.png)
+![SAML Department Claim](04-SAML-Custom-Department-Claim.png)
 
 This demonstrates how directory attributes can be included in SAML assertions and made available to an application.
 
@@ -84,7 +84,7 @@ This demonstrates how directory attributes can be included in SAML assertions an
 
 The test user's Entra ID profile contains a populated **Department** attribute.
 
-![User Department Attribute](screenshots/05-user-department-attribute.png)
+![User Department Attribute](05-User-Department-Attribute.png)
 
 Because the SAML department claim references `user.department`, the value stored in the user's Entra ID identity record can be supplied to the application as part of the SAML assertion.
 
@@ -96,7 +96,7 @@ This demonstrates the relationship between **identity attributes stored in the d
 
 Rather than managing application access exclusively through individual user assignments, the **M365-FIN-Team** group was assigned to Vandelay Expense Management.
 
-![Group-Based Application Assignment](screenshots/06-group-based-app-assignment.png)
+![Group-Based Application Assignment](06-Group-Based-App-Assignment.png)
 
 Group-based assignment provides a more scalable method of managing access because application access can be tied to group membership.
 
@@ -108,7 +108,7 @@ Users who require the application can be managed through the appropriate access 
 
 The Finance group contains multiple test identities representing members of the organization's Finance team.
 
-![Finance Group Members](screenshots/07-finance-group-members.png)
+![Finance Group Members](07-Finance-Group-Members.png)
 
 This demonstrates the relationship:
 
