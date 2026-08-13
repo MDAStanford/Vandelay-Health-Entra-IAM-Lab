@@ -1,3 +1,4 @@
+<img width="2325" height="1283" alt="screenshot 1 - application registration overview" src="https://github.com/user-attachments/assets/d98332a2-3705-47a6-b763-785b16152611" />
 # Lab 04 – Application Registration and Role-Based Access
 
 ## Objective
@@ -49,16 +50,21 @@ Finally, verifying the assignment from both the application and user perspective
 ## Screenshots
 
 ### 1. Application Registration Overview
-![Application Registration Overview](screenshots/screenshot-1-application-registration-overview.png)
+
+![Application Registration Overview](screenshot%201%20-%20application%20registration%20overview.png)
 
 ### 2. Application Role Configuration
-![Application Role Configuration](screenshots/screenshot-2-application-role-configuration.png)
+
+![Application Role Configuration](screenshot%202%20-%20application%20role%20configuration.png)
 
 ### 3. Enterprise Application Service Principal
-![Enterprise Application Service Principal](screenshots/screenshot-3-enterprise-application-service-principal.png)
+
+![Enterprise Application Service Principal](screenshot%203%20-%20enterprise%20application%20service%20principal.png)
 
 ### 4. User Application Role Assignment
-![User Application Role Assignment](screenshots/screenshot-4-user-application-role-assignment.png)
+
+![User Application Role Assignment](screenshot%204%20-%20user%20application%20role%20assignment.png)
 
 ### 5. User Application Access Verification
-![User Application Access Verification](screenshots/screenshot-5-user-application-access-verification.png)
+
+![User Application Access Verification](screenshot%205%20-%20user%20application%20access%20verification.png)
