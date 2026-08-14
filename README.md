@@ -28,12 +28,10 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 | Component | Details |
 |-----------|---------|
 | Platform | Microsoft Entra ID |
-| Organization | Vandelay Health (fictional) |
-| Users | 39 |
-| Departments | Executive, IT, Finance, Human Resources, Information Security, Legal & Compliance, Procurement & Supply Chain |
+| Organization | Vandelay Health / Vandelay Worldwide (fictional) |
+| Identity Model | Workforce users, managers, departmental groups, security groups, Microsoft 365 groups |
+| Locations | Santa Monica and Toronto |
 | Break Glass Account | 1 |
-| Microsoft 365 Groups | 7 |
-| Security Groups | 8 |
 
 ---
 
@@ -48,42 +46,29 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Administrative account separation
 - Microsoft 365 collaboration groups
 - Security Groups for authorization
+- Joiner and mover lifecycle administration
+- Post-provisioning access validation
+
+---
+
+## Labs
+
+- **Lab 02** – Microsoft Entra ID identity and group administration
+- **Lab 03** – Enterprise Applications
+- **Lab 04** – [Application Registration and Role-Based Access](Lab04/README.md)
+- **Lab 05** – [Joiner & Mover Lifecycle Management: Organizational Change and Toronto Expansion](Lab05/README.md)
 
 ---
 
 ## Repository Structure
 
 ```
+Lab02/
+Lab03/
+Lab04/
+Lab05/
 docs/
-    Identity-Inventory.md
-    
-
-screenshots/
-    01-Entra-Dashboard.png
-    02-Active-Users-1.png
-    03-Active-Users-2.png
-    04-Security-Groups.png
-    05-M365-Groups.png
-    06-CEO-Profile.png
-    07-IAM-Administrator-Profile.png
-    08-BreakGlass-Account.png
-    09-Information-Security-Team.png
-
-diagrams/
 ```
-
----
-
-## Key Screenshots
-
-- Entra Dashboard
-- Active Users
-- Security Groups
-- Microsoft 365 Groups
-- CEO Profile
-- IAM Administrator Profile
-- Break Glass Account
-- Information Security Team
 
 ---
 
@@ -91,6 +76,7 @@ diagrams/
 
 - Microsoft Entra ID Administration
 - Identity Lifecycle Management
+- Joiner-Mover-Leaver (JML)
 - Role-Based Access Control (RBAC)
 - Microsoft 365 Administration
 - Microsoft 365 Groups
@@ -101,6 +87,8 @@ diagrams/
 - User Provisioning and Deprovisioning
 - Organizational Identity Design
 - Identity Documentation
+- Access Validation
+- Least Privilege
 
 ---
 
