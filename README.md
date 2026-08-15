@@ -5,7 +5,7 @@ Microsoft Entra ID lab modeling identity governance and RBAC for a fictional hea
 
 ## Project Overview
 
-This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, and emergency access (Break Glass) planning.
+This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, emergency access (Break Glass) planning, and access recertification.
 
 ---
 
@@ -18,6 +18,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Configure Microsoft 365 Groups
 - Configure Security Groups
 - Implement a Break Glass emergency administrator account
+- Execute access reviews and access recertification
 - Document identity governance decisions
 - Demonstrate IAM administration best practices
 
@@ -48,6 +49,9 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Security Groups for authorization
 - Joiner and mover lifecycle administration
 - Post-provisioning access validation
+- Access reviews and access recertification
+- Reviewer accountability and fallback reviewer configuration
+- Automated access remediation with audit evidence
 
 ---
 
@@ -57,6 +61,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - **Lab 03** – Enterprise Applications
 - **Lab 04** – [Application Registration and Role-Based Access](Lab04/README.md)
 - **Lab 05** – [Joiner & Mover Lifecycle Management: Organizational Change and Toronto Expansion](Lab05/README.md)
+- **Lab 06** – [Access Review & Access Recertification](Lab06/README.md)
 
 ---
 
@@ -67,6 +72,7 @@ Lab02/
 Lab03/
 Lab04/
 Lab05/
+Lab06/
 docs/
 ```
 
@@ -82,6 +88,9 @@ docs/
 - Microsoft 365 Groups
 - Security Group Administration
 - Identity Governance
+- Access Reviews and Access Recertification
+- Access Certification and Remediation
+- Audit Evidence and Governance Documentation
 - Break Glass Planning
 - Administrative Role Assignment
 - User Provisioning and Deprovisioning
@@ -97,7 +106,6 @@ docs/
 - Dynamic Security Groups
 - Conditional Access Policies
 - Privileged Identity Management (PIM)
-- Access Reviews
 - Entitlement Management
 - Lifecycle Workflows
 - Microsoft Entra Identity Protection
