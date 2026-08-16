@@ -12,7 +12,7 @@ This lab builds on the Toronto office onboarding scenario by introducing a forma
 
 Following the onboarding of the Toronto office, Vandelay Worldwide performs a post-onboarding access review of the Toronto user population.
 
-During the review, Lisa Brock is identified as being on an extended leave of absence to care for an aging family member. Her return date is undetermined.
+During the review, Lisa Brock is identified as being on an extended leave of absence. Her return date is undetermined.
 
 Lisa's Vandelay identity should remain active because she has not left the organization. However, her current Toronto group access is no longer required while she is on leave.
 
@@ -38,7 +38,7 @@ A resource-based access review was created to recertify membership in the Toront
 The review was configured with the following governance controls:
 
 - **Review scope:** All users
-- **Reviewer model:** Resource owner
+- **Reviewer model:** Resource owner, with fallback reviewer
 - **Fallback reviewer:** Configured
 - **Review duration:** 3 days
 - **Review recurrence:** One time
@@ -76,7 +76,7 @@ This established the pre-certification state against which the completed review 
 
 The access review was designed around resource-owner accountability, with the group owner responsible for certifying continued access.
 
-During implementation, the target group did not have an available resource owner assigned to perform the review.
+During implementation, the target group did not have a resource owner available to perform the review.
 
 Rather than changing the governance model, a fallback reviewer was configured to prevent the certification process from stalling.
 
@@ -266,3 +266,5 @@ The final membership verification demonstrated that the denied entitlement had a
 - Audit Logging
 - Governance Documentation
 - Microsoft My Access
+
+
