@@ -5,7 +5,7 @@ Microsoft Entra ID lab modeling identity governance and RBAC for a fictional hea
 
 ## Project Overview
 
-This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, emergency access (Break Glass) planning, and access recertification.
+This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, emergency access (Break Glass) planning, access recertification, and access-certification data validation.
 
 ---
 
@@ -19,6 +19,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Configure Security Groups
 - Implement a Break Glass emergency administrator account
 - Execute access reviews and access recertification
+- Validate identity and entitlement data used in access certifications
 - Document identity governance decisions
 - Demonstrate IAM administration best practices
 
@@ -52,6 +53,8 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Access reviews and access recertification
 - Reviewer accountability and fallback reviewer configuration
 - Automated access remediation with audit evidence
+- Pre-certification identity and entitlement data validation
+- Access exception identification and remediation verification
 
 ---
 
@@ -62,6 +65,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - **Lab 04** – [Application Registration and Role-Based Access](Lab04/README.md)
 - **Lab 05** – [Joiner & Mover Lifecycle Management: Organizational Change and Toronto Expansion](Lab05/README.md)
 - **Lab 06** – [Access Review & Access Recertification](Lab06/README.md)
+- **Lab 07** – [Access Certification Data Validation & Entitlement Remediation](Lab07/README.md)
 
 ---
 
@@ -73,6 +77,7 @@ Lab03/
 Lab04/
 Lab05/
 Lab06/
+Lab07/
 docs/
 ```
 
@@ -90,6 +95,8 @@ docs/
 - Identity Governance
 - Access Reviews and Access Recertification
 - Access Certification and Remediation
+- Identity and Entitlement Data Validation
+- Access Exception Analysis
 - Audit Evidence and Governance Documentation
 - Break Glass Planning
 - Administrative Role Assignment
