@@ -5,7 +5,7 @@ Microsoft Entra ID lab modeling identity governance and RBAC for a fictional hea
 
 ## Project Overview
 
-This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, emergency access (Break Glass) planning, access recertification, and access-certification data validation.
+This project demonstrates the design and implementation of a Microsoft Entra ID environment for a fictional healthcare organization. The lab simulates identity administration and identity governance responsibilities commonly performed by IAM Analysts, including user lifecycle management, RBAC, Microsoft 365 Groups, Security Groups, executive account management, emergency access (Break Glass) planning, access recertification, access-certification data validation, identity attribute administration, and dynamic group automation.
 
 ---
 
@@ -20,6 +20,8 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Implement a Break Glass emergency administrator account
 - Execute access reviews and access recertification
 - Validate identity and entitlement data used in access certifications
+- Standardize identity attributes through bulk administration
+- Implement attribute-driven dynamic security groups
 - Document identity governance decisions
 - Demonstrate IAM administration best practices
 
@@ -55,6 +57,9 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - Automated access remediation with audit evidence
 - Pre-certification identity and entitlement data validation
 - Access exception identification and remediation verification
+- Bulk identity attribute administration
+- Attribute-driven dynamic security groups
+- Automated group membership based on user attributes
 
 ---
 
@@ -66,6 +71,7 @@ This project demonstrates the design and implementation of a Microsoft Entra ID 
 - **Lab 05** – [Joiner & Mover Lifecycle Management: Organizational Change and Toronto Expansion](Lab05/README.md)
 - **Lab 06** – [Access Review & Access Recertification](Lab06/README.md)
 - **Lab 07** – [Access Certification Data Validation & Entitlement Remediation](Lab07/README.md)
+- **Lab 09** – [Identity Attributes & Dynamic Groups](Lab09/README.md)
 
 ---
 
@@ -78,6 +84,7 @@ Lab04/
 Lab05/
 Lab06/
 Lab07/
+Lab09/
 docs/
 ```
 
@@ -92,6 +99,10 @@ docs/
 - Microsoft 365 Administration
 - Microsoft 365 Groups
 - Security Group Administration
+- Dynamic Security Groups
+- Identity Attribute Management
+- Bulk User Administration
+- Attribute-Based Group Membership
 - Identity Governance
 - Access Reviews and Access Recertification
 - Access Certification and Remediation
@@ -110,7 +121,6 @@ docs/
 
 ## Future Enhancements
 
-- Dynamic Security Groups
 - Conditional Access Policies
 - Privileged Identity Management (PIM)
 - Entitlement Management
