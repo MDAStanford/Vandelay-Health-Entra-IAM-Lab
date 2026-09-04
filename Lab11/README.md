@@ -207,34 +207,37 @@ The administrator exclusion and Report-only deployment provide safeguards intend
 
 ## Screenshots
 
-The project screenshots document the creation, configuration, and validation of the geographic Conditional Access control.
+The project screenshots document the configuration and validation of the geographic Conditional Access control.
 
-### Screenshot 01
-Creation and configuration of the Switzerland named location.
+### Screenshot 01 — Switzerland Named Location
 
-### Screenshot 02
-Switzerland selected as the geographic location associated with the access restriction.
+![Switzerland Named Location](02-switzerland-named-location.png)
 
-### Screenshot 03
-Conditional Access policy configuration and assignment.
+Switzerland configured as the named geographic location used by the Conditional Access policy.
 
-### Screenshot 04
-Policy scope and access-control configuration.
+### Screenshot 02 — Conditional Access Policy in Report-Only Mode
 
-### Screenshot 05
-Completed **Lab 11 - Block Sign-ins from Switzerland** policy showing:
+![Conditional Access Policy Report Only](03-switzerland-conditional-access-policy-report-only.png)
 
-- Report-only status
-- All-user scope
-- All-resource scope
-- Geographic condition
-- Block-access control
+Organization-wide Conditional Access policy configured in Report-only mode for validation prior to enforcement.
 
-### Screenshot 06
-Administrator account exclusion demonstrating protection against accidental tenant lockout.
+### Screenshot 03 — Completed Policy Details
 
-### Screenshot 07
-Network assignment showing:
+![Conditional Access Policy Details](05-switzerland-conditional-access-policy-details.png)
+
+Completed **Lab 11 - Block Sign-ins from Switzerland** policy showing the all-user scope, all-resource scope, geographic condition, Block access control, and Report-only deployment.
+
+### Screenshot 04 — Administrator Safety Exclusion
+
+![Administrator Account Exclusion](06-admin-account-excluded-from-ca-policy.png)
+
+The Vandelay administrator account is explicitly excluded from the organization-wide policy to protect against accidental administrative lockout during testing.
+
+### Screenshot 05 — Switzerland Location Assignment
+
+![Switzerland Location Assignment](07-switzerland-blocked-location-assignment.png)
+
+The Conditional Access network assignment explicitly includes **Switzerland - Blocked Location**, connecting the geographic security requirement to the access-control policy.
 
 **Switzerland - Blocked Location**
 
