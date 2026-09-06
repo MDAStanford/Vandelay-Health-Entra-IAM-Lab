@@ -1,70 +1,115 @@
-<img width="2325" height="1283" alt="screenshot 1 - application registration overview" src="https://github.com/user-attachments/assets/d98332a2-3705-47a6-b763-785b16152611" />
-# Lab 04 – Application Registration and Role-Based Access
+# Lab 04 — Giving Users the Right Level of Application Access
 
-## Objective
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
 
-The objective of this lab was to explore how Microsoft Entra ID represents and manages applications and how users can be granted application access through role-based assignments.
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
-The lab demonstrates the relationship between an App Registration, its corresponding Enterprise Application (service principal), application roles, and user access assignments.
+---
 
-## Scenario
+## Business Scenario
 
-A custom internal application, `Lab04-IAM-App`, requires controlled access within the organization.
+As Vandelay Health introduces internal applications to support its growing business, simply determining whether an employee can access an application is not always sufficient. Different users may require different levels of authorization based on their responsibilities.
 
-A read-only application role was created so that users who need access to the application can be assigned a defined role rather than receiving unnecessary administrative privileges.
+Jarvis Miller, an executive assistant, needs access to a custom internal Vandelay application to support his business responsibilities. His work requires him to view information in the application, but he does not need administrative or elevated capabilities.
 
-For this scenario, Jarvis Miller, an executive assistant, requires read-only access to the application to support business responsibilities.
+IAM therefore needs to provide Jarvis with **read-only application access without granting unnecessary privilege**.
 
-## Steps Performed
+---
 
-1. Registered `Lab04-IAM-App` in Microsoft Entra ID as a single-tenant application.
-2. Reviewed the application registration and its unique application and object identifiers.
-3. Created a custom application role named `Lab Reader` for users requiring read-only access.
-4. Located the corresponding Enterprise Application created by Entra ID and reviewed its service principal information.
-5. Assigned Jarvis Miller to the Enterprise Application using the `Lab Reader` role.
-6. Reviewed the application's Users and Groups assignments to confirm that the role assignment was successfully created.
-7. Opened Jarvis Miller's user identity and independently verified that `Lab04-IAM-App` appeared under the user's assigned applications with the `Lab Reader` role.
+## IAM Requirements
 
-## Verification
+To provide Jarvis with appropriate access while maintaining least privilege, IAM needed to:
 
-The access assignment was verified from both sides of the identity relationship.
+- Register the internal application in Microsoft Entra ID.
+- Understand the relationship between the App Registration and its Enterprise Application.
+- Define a specific read-only application role.
+- Assign Jarvis only the role required for his business responsibilities.
+- Avoid granting broader application or administrative privilege.
+- Validate the resulting assignment from both the application and user perspectives.
 
-From the Enterprise Application, Jarvis Miller appeared as a directly assigned user with the `Lab Reader` role.
+---
 
-From the user's identity, `Lab04-IAM-App` appeared as an assigned application with the `Lab Reader` role.
+## Implementation
 
-This confirmed that the application role assignment had been successfully recorded in Microsoft Entra ID.
+### 1. Register the Internal Application
 
-## Key Takeaways
+The custom `Lab04-IAM-App` application was registered in Microsoft Entra ID as a single-tenant application.
 
-This lab helped demonstrate the distinction between an App Registration and an Enterprise Application.
-
-The App Registration represents the application's identity and configuration definition. Microsoft Entra ID also creates a service principal for the application within the tenant, which administrators manage through Enterprise Applications.
-
-Application roles provide a way to define authorization levels for an application. Users or groups can then be assigned those roles through the Enterprise Application.
-
-The lab also reinforced the principle of least privilege by assigning a user a specific read-only application role rather than broader administrative access.
-
-Finally, verifying the assignment from both the application and user perspectives demonstrated the importance of validating access changes rather than assuming that a configuration change was successfully applied.
-
-## Screenshots
-
-### 1. Application Registration Overview
+The App Registration establishes the application's identity and configuration within Microsoft Entra ID, including its unique application and object identifiers.
 
 ![Application Registration Overview](screenshot%201%20-%20application%20registration%20overview.png)
 
-### 2. Application Role Configuration
+---
+
+### 2. Define a Read-Only Application Role
+
+A custom application role named `Lab Reader` was created for users who require access to the application without elevated capabilities.
+
+Creating a defined role allows Vandelay to grant access according to the user's business responsibilities rather than providing unnecessarily broad permissions.
 
 ![Application Role Configuration](screenshot%202%20-%20application%20role%20configuration.png)
 
-### 3. Enterprise Application Service Principal
+---
+
+### 3. Identify the Enterprise Application
+
+The corresponding Enterprise Application created in the Vandelay tenant was reviewed.
+
+The **App Registration** represents the application's identity and configuration definition, while the **Enterprise Application** represents the service principal through which the application is managed within the tenant.
 
 ![Enterprise Application Service Principal](screenshot%203%20-%20enterprise%20application%20service%20principal.png)
 
-### 4. User Application Role Assignment
+---
+
+### 4. Assign the Appropriate Application Role
+
+Jarvis Miller was assigned to the Enterprise Application using the `Lab Reader` role.
+
+This gives Jarvis the application access required for his responsibilities while limiting his authorization to the defined read-only role.
 
 ![User Application Role Assignment](screenshot%204%20-%20user%20application%20role%20assignment.png)
 
-### 5. User Application Access Verification
+---
+
+### 5. Validate the Access Assignment
+
+The role assignment was validated from both sides of the identity relationship.
+
+Within the Enterprise Application, Jarvis appeared as an assigned user with the `Lab Reader` role.
+
+Jarvis's Microsoft Entra identity was then independently reviewed to confirm that `Lab04-IAM-App` appeared among his assigned applications with the same role.
 
 ![User Application Access Verification](screenshot%205%20-%20user%20application%20access%20verification.png)
+
+---
+
+## Validation
+
+The completed configuration was reviewed to confirm that:
+
+- `Lab04-IAM-App` was registered in Microsoft Entra ID.
+- A corresponding Enterprise Application/service principal existed in the tenant.
+- The `Lab Reader` application role was defined.
+- Jarvis Miller was assigned the `Lab Reader` role.
+- Jarvis did not require broader administrative privilege to perform his intended function.
+- The assignment could be independently verified from both the application and user perspectives.
+
+---
+
+## IAM Controls Demonstrated
+
+- **Application identity management** — represent a custom application within Microsoft Entra ID.
+- **Service principal administration** — manage the application's tenant-specific Enterprise Application.
+- **Application RBAC** — define different authorization levels through application roles.
+- **Least privilege** — provide only the level of application access required by the user's responsibilities.
+- **Role assignment** — connect a workforce identity to a defined application role.
+- **Separation of access and privilege** — application access does not require administrative authority.
+- **Access validation** — independently verify an entitlement from both the resource and identity perspectives.
+
+---
+
+## Key Takeaway
+
+Giving someone access to an application does not mean giving them unrestricted authority within it.
+
+This lab demonstrates how Vandelay Health can use **Microsoft Entra application roles and role-based access control to give an employee the specific level of application access required for the job while avoiding unnecessary privilege**.
