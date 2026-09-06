@@ -8,287 +8,176 @@ The technology behind the Ninja Sleeper began as a **federal government contract
 
 ## Business Scenario
 
-Vandelay Health has acquired a small design studio in **Toronto, Ontario, Canada**.
+Vandelay Health has acquired a small design studio in **Toronto, Canada**, bringing seven employees into the company's Active Directory environment.
 
-Unlike the employees hired directly into Vandelay's Toronto Innovation Center in earlier labs, these seven employees are joining the company through an **acquisition** and must now be incorporated into Vandelay's existing Active Directory environment.
+IAM needs to incorporate the acquired workforce efficiently while maintaining consistent identity data and ensuring that access reflects each employee's actual department.
 
-IAM needs to bring the acquired workforce into the corporate identity structure without simply creating seven disconnected user accounts.
+Rather than creating and configuring every account manually, the onboarding process uses **structured CSV data and PowerShell** for bulk administration, followed by Active Directory validation and remediation of incorrect group assignments.
 
-The acquired employees need:
+The workflow is:
 
-- A defined organizational location in Active Directory
-- Standardized identity attributes
-- Appropriate departmental placement
-- Consistent naming and account configuration
-- Department-based security-group access
-- A repeatable onboarding process
-- Validation that the resulting identities and access were created correctly
-
-Because multiple employees need to be incorporated at the same time, the acquisition also provides an opportunity to move beyond one-at-a-time account creation and use **CSV data and PowerShell to automate part of the onboarding process**.
-
-The resulting workflow is:
-
-**Acquisition → Organizational design → Identity source data → Bulk provisioning → Attribute configuration → Group-based access → Validation**
+**Acquisition → Bulk provisioning → Identity attributes → Department-based access → Validation → Remediation**
 
 ---
 
 ## IAM Requirements
 
-To integrate the acquired Toronto workforce, IAM needed to:
+IAM needed to:
 
-- Establish a Toronto organizational structure in Active Directory.
-- Separate Innovation Center and Operations identities using Organizational Units (OUs).
-- Create seven workforce identities for the acquired employees.
-- Place each identity in the appropriate OU.
-- Apply standardized user attributes.
-- Configure department, title, company, office, and geographic information.
-- Establish manager relationships where applicable.
-- Create department-based security groups.
-- Assign users only to groups appropriate for their business responsibilities.
-- Use structured CSV data to support repeatable bulk administration.
-- Use PowerShell to reduce repetitive manual account creation.
-- Validate the resulting identities, attributes, OU placement, and group memberships.
+- Establish a dedicated Toronto structure in Active Directory.
+- Provision seven acquired employee identities.
+- Standardize business and geographic identity attributes.
+- Use CSV and PowerShell to reduce repetitive administration.
+- Create department-based Toronto security groups.
+- Assign employees according to their business roles.
+- Identify and correct inaccurate group membership.
+- Validate the final identity and access configuration.
 
 ---
 
 ## Implementation
 
-### 1. Establish the Toronto Active Directory Structure
+### 1. Provision the Toronto Workforce
 
-A dedicated **Toronto** Organizational Unit was created within the `vandelay.local` Active Directory domain.
+A dedicated Toronto Organizational Unit was established in `vandelay.local` with separate containers for users, groups, and computers.
 
-Two child OUs were created beneath Toronto:
-
-- `IC` — Innovation Center
-- `OPS` — Operations
-
-This provides a logical directory structure for managing the acquired employees according to their organizational responsibilities.
-
-Rather than placing the new users into a generic user container, the directory structure reflects the business organization they are joining.
-
----
-
-### 2. Prepare the Acquired Workforce for Onboarding
-
-Seven Toronto employees needed to be incorporated into Vandelay's Active Directory environment.
-
-The acquired population consisted of:
-
-- **6 Innovation Center employees**
-- **1 Operations employee**
-
-The Operations employee, **Shawn Rudey**, was placed within the Toronto Operations structure, while the six Innovation Center employees were placed within the Toronto IC structure.
-
-The workforce included employees such as:
+Seven acquired employees were provisioned into the Toronto Users OU:
 
 - Eric Lund
 - Erik Wallace
 - Jay Martin
-- James Patel
+- Lisa Brock
+- Lori Van Meter
+- Paul Merson
 - Shawn Rudey
 
-Each identity required more than a username and password. The directory records needed enough business information to make the accounts understandable and usable for downstream identity and access administration.
+![Toronto Bulk Users](screenshots/01-Toronto-Bulk-Users-ADUC.png)
 
 ---
 
-### 3. Create the Initial Identities
+### 2. Standardize Identity Attributes
 
-Initial Toronto identities were created manually through **Active Directory Users and Computers (ADUC)**.
+A structured CSV file was used to populate workforce attributes including title, department, company, office, city, province, and country.
 
-Manual creation provided an opportunity to validate the intended account structure, naming conventions, OU placement, and required identity information before expanding the process to the rest of the acquired workforce.
+PowerShell imported the data and updated the corresponding Active Directory user objects.
 
-This established the expected provisioning model before introducing automation.
+The resulting attributes were then queried to verify that the bulk operation succeeded.
 
----
+![Bulk AD Attribute Update and PowerShell Verification](screenshots/02-Bulk-AD-Attribute-Update-PowerShell-Verification.png)
 
-### 4. Move from Manual Provisioning to Bulk Administration
+The same information was independently reviewed in Active Directory Users and Computers.
 
-Creating each acquired employee individually through the GUI would work technically, but it would require repeating the same administrative process for every account.
+For example, Eric Lund was configured as a **Systems Analyst** in **Information Technology**.
 
-A structured **CSV file** was therefore used as the identity source for bulk administration.
-
-The CSV provided consistent workforce information that could be processed programmatically rather than re-entered manually for every employee.
-
-PowerShell was then used to create and configure the remaining Active Directory identities.
-
-The operating model became:
-
-**Structured employee data → PowerShell → Active Directory identity**
-
-This reduces repetitive administration and creates a more repeatable process for onboarding multiple employees during events such as acquisitions or organizational expansion.
+![ADUC Attribute Verification](screenshots/03-ADUC-Attribute-Verification.png)
 
 ---
 
-### 5. Standardize Identity Attributes
+### 3. Create Department-Based Security Groups
 
-The Toronto identities were configured with business and organizational attributes including:
+Global Security Groups were created in the Toronto Groups OU for the departments represented by the acquired workforce:
 
-- First name
-- Last name
-- Display name
-- User Principal Name (UPN)
-- Job title
-- Department
-- Company
-- Office
-- City
-- State/Province
-- Country
-- Manager, where applicable
+- `SG-TOR-Finance`
+- `SG-TOR-HR`
+- `SG-TOR-IT`
+- `SG-TOR-Operations`
 
-The accounts used the `vandelay.local` Active Directory domain and were associated with **Vandelay Worldwide** in the underlying lab configuration.
+![Toronto Security Groups](screenshots/04-Toronto-Security-Groups-ADUC.png)
 
-The Toronto geographic attributes were standardized as:
-
-- **Office/City:** Toronto
-- **State/Province:** Ontario
-- **Country:** Canada
-
-Consistent identity information makes the accounts more useful for administration, reporting, access decisions, automation, and future governance processes.
+This separates the employee's directory location from the access structure associated with the employee's business function.
 
 ---
 
-### 6. Establish Department-Based Access
+### 4. Assign Access from Employee Attributes
 
-Security groups were used to provide a consistent access structure for the Toronto workforce.
+PowerShell was used to assign Toronto employees to security groups according to their department.
 
-Relevant groups included:
+The resulting memberships were queried to verify the initial access state.
 
-- `SG-IC-Users`
-- `SG-TR-Users`
+![Toronto Group Membership Verification](screenshots/05-Toronto-Group-Membership-Verification.png)
 
-Users were assigned according to their organizational requirements rather than receiving arbitrary individual access.
+The Toronto user population was also reviewed in ADUC to confirm that all seven acquired identities remained present within the expected organizational structure.
 
-This creates a basic role- and organization-oriented access model:
-
-**Employee responsibility → Department/organizational placement → Security-group membership**
-
-Group-based administration also makes access easier to understand and maintain than individually assigning permissions directly to each employee.
+![Toronto Users OU](screenshots/06-toronto-users-ou.png)
 
 ---
 
-### 7. Validate the Provisioned Identities
+### 5. Identify and Remediate an Access Exception
 
-After provisioning, the Toronto users were reviewed in **Active Directory Users and Computers**.
+Validation identified an incorrect access state in `SG-TOR-Operations`.
 
-Validation confirmed that:
+The group contained:
 
-- All seven acquired employees were present.
-- Users were placed within the intended Toronto organizational structure.
-- Innovation Center and Operations users were separated appropriately.
-- Identity attributes were populated.
-- Geographic information reflected the Toronto location.
-- Department and title information were present.
-- Manager relationships were configured where applicable.
+- Shawn Rudey
+- Jay Martin
+- Paul Merson
 
-The resulting directory state provided evidence that the acquisition population had been incorporated into the Vandelay Active Directory environment as intended.
+Jay Martin and Paul Merson did not require Operations membership and were removed with PowerShell.
 
----
+The group was then queried again, confirming that only Shawn Rudey remained.
 
-### 8. Validate Group Membership
+![Toronto Operations Membership Validation](screenshots/08-toronto-operations-membership-validation.png)
 
-Group memberships were reviewed after provisioning to confirm that the new identities received the expected access structure.
-
-The validation confirmed that the Toronto identities were associated with the appropriate security groups based on their organizational requirements.
-
-Reviewing the resulting membership is an important final step because successful account creation alone does not prove that the employee received the correct access.
-
-The onboarding process therefore ends with validation rather than provisioning:
-
-**Create identity → Configure identity → Assign access → Verify identity and access**
+This demonstrates an important part of bulk onboarding: **automation must still be validated**. A successful script execution does not necessarily mean that every resulting access assignment is correct.
 
 ---
 
-## Why This Matters Operationally
+### 6. Verify Final Group Membership
 
-Corporate acquisitions create a different IAM problem from ordinary one-at-a-time hiring.
+Final membership was reviewed directly in Active Directory Users and Computers.
 
-IAM may suddenly receive an entire population of employees who need to be incorporated into the organization's directory while preserving consistent naming, attributes, organizational structure, and access.
+The Innovation Center access population contained the six expected employees:
 
-A purely manual process can work for a small number of accounts, but it becomes increasingly repetitive and susceptible to inconsistent data entry as the population grows.
+![Innovation Center Group Membership](screenshots/09-sg-tor-ic-users-membership.png)
 
-This lab demonstrates a progression from:
+Toronto Operations contained only Shawn Rudey:
 
-**Manual account creation**
+![Operations Group Membership](screenshots/10-sg-tor-operations-membership.png)
 
-to:
-
-**Structured source data + PowerShell automation**
-
-The important control is not simply that PowerShell can create Active Directory users. The larger objective is to establish a **repeatable identity-provisioning process based on structured workforce information**.
-
-That same principle scales beyond seven employees. The size of the input population can change while the basic workflow remains:
-
-**Receive authoritative workforce data → Process identities consistently → Apply organizational attributes → Assign appropriate access → Validate the result**
+The final validation confirmed that inappropriate Operations access had been removed while legitimate access remained intact.
 
 ---
 
 ## Validation
 
-The completed acquisition-onboarding process confirmed that:
+The completed acquisition onboarding confirmed that:
 
-- A Toronto organizational structure existed in Active Directory.
-- Separate `IC` and `OPS` OUs were established.
-- Seven acquired employees were provisioned.
-- Six employees were associated with the Innovation Center population.
-- One employee was associated with Operations.
-- Initial account creation was validated manually.
-- Structured CSV data was used for bulk identity administration.
-- PowerShell was used to automate repetitive provisioning work.
-- Business and geographic attributes were populated.
-- Department and organizational information were represented in Active Directory.
-- Manager relationships were configured where applicable.
-- Department-based security groups were used for access administration.
-- User identities and group memberships were reviewed after provisioning.
+- Seven acquired employees were incorporated into Active Directory.
+- A dedicated Toronto OU structure was established.
+- Identity attributes were populated through CSV-driven PowerShell administration.
+- User attributes were verified through both PowerShell and ADUC.
+- Department-based Toronto security groups were created.
+- Group membership was assigned and reviewed.
+- Incorrect Operations access was identified and remediated.
+- Final access was independently validated in ADUC.
 
-The end-to-end process can be summarized as:
+The completed process can be summarized as:
 
-**Acquisition → Design directory structure → Prepare identity data → Provision accounts → Populate attributes → Assign group access → Validate**
+**Employee data → Identity provisioning → Standardized attributes → Group-based access → Validation → Remediation → Final verification**
 
 ---
 
 ## IAM Controls Demonstrated
 
-- **Active Directory Domain Services (AD DS)** — administer workforce identities in an on-premises directory environment.
-- **Organizational Units (OUs)** — organize identities according to business and administrative structure.
-- **Acquisition onboarding** — incorporate a population of employees joining through a corporate transaction.
-- **Identity provisioning** — create workforce identities based on defined business requirements.
-- **Bulk user administration** — process multiple identities through a structured onboarding workflow.
-- **CSV-based identity administration** — use structured source data to support consistent provisioning.
-- **PowerShell automation** — reduce repetitive manual account administration.
-- **Identity attribute management** — maintain organizational, geographic, and workforce information.
-- **Manager relationships** — represent organizational reporting relationships within the directory.
-- **Security-group administration** — provide group-based access rather than relying on individual permission assignment.
-- **Organizational access alignment** — associate group membership with employee business responsibilities.
-- **Post-provisioning validation** — verify identity configuration and access after account creation.
-- **Repeatable onboarding** — establish a process that can be reused for future workforce populations.
-
----
-
-## Relationship to Earlier Labs
-
-This lab extends Vandelay Health's identity environment into **Active Directory** while introducing a different workforce event from the company's earlier Toronto expansion.
-
-Earlier labs demonstrated the creation and administration of cloud identities in Microsoft Entra ID, including direct onboarding into Vandelay's Toronto Innovation Center.
-
-This lab addresses a separate business event:
-
-**Vandelay acquires an existing Toronto workforce and must integrate those employees into its corporate Active Directory environment.**
-
-It also advances the portfolio's automation story.
-
-Earlier labs demonstrated individual identity administration, lifecycle changes, governance, and attribute-driven automation. Here, structured CSV data and PowerShell are used to make the **provisioning process itself more repeatable**.
+- **Active Directory Domain Services (AD DS)**
+- **Organizational Unit design**
+- **Acquisition onboarding**
+- **Bulk identity provisioning**
+- **CSV-driven identity administration**
+- **PowerShell automation**
+- **Identity attribute management**
+- **Department-based security groups**
+- **Group membership administration**
+- **Least privilege**
+- **Access remediation**
+- **Post-provisioning validation**
 
 ---
 
 ## Key Takeaway
 
-An acquisition is not simply a request to **create seven user accounts**.
+Bulk onboarding is not complete when the accounts have been created.
 
-IAM needs to translate an incoming workforce population into the organization's existing identity structure: where employees belong, how their identities should be represented, what attributes should describe them, what access they require, and how the completed work will be validated.
+IAM must ensure that the resulting identities contain accurate business data, receive appropriate access, and do not retain access that their roles do not justify.
 
-This lab demonstrates how Vandelay Health can combine **Active Directory organizational design, structured identity data, security groups, CSV-based administration, and PowerShell automation** to integrate an acquired workforce consistently.
-
-The result is a repeatable IAM workflow:
-
-**Business event → Workforce data → Identity provisioning → Organizational placement → Access assignment → Validation**
+In this lab, Vandelay Health moved an acquired workforce from **structured employee data to provisioned Active Directory identities, department-based access, validation, remediation, and final verification**.
