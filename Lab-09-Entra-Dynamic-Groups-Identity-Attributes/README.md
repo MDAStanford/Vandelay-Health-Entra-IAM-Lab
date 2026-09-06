@@ -1,92 +1,104 @@
-# Lab 09 — Identity Attributes & Dynamic Groups
+# Lab 09 — Automating Access with Identity Attributes and Dynamic Groups
 
-## Overview
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
 
-This lab demonstrates attribute-driven identity administration in Microsoft Entra ID. Identity records were standardized through bulk operations across the Vandelay Health tenant, establishing location attributes for Santa Monica and Toronto users. Dynamic security groups were then configured using city-based membership rules, allowing Entra ID to calculate group membership automatically from authoritative user attributes rather than relying on manual member assignment.
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
-## Objectives
+---
 
-- Standardize identity attributes across the tenant using bulk administration
-- Validate location attributes at the individual-user level
-- Create dynamic security groups driven by identity attributes
-- Validate positive and negative dynamic membership conditions
-- Demonstrate automated group membership based on authoritative identity data
+## Business Scenario
 
-## Environment
+Vandelay Health's identity environment was originally centered on its Santa Monica headquarters, where manually maintained group membership was manageable.
 
-| Component | Configuration |
-|---|---|
-| Platform | Microsoft Entra ID |
-| Organization | Vandelay Health / Vandelay Worldwide (fictional) |
-| Total workforce identities | 50 |
-| Santa Monica identities | 42 |
-| Toronto identities | 8 |
-| Group type | Security |
-| Membership type | Dynamic User |
+The expansion of the Toronto Innovation Center changed that.
 
-## 1. Bulk Identity Attribute Standardization
+Vandelay now has **50 workforce identities across two locations**:
 
-Location attributes were standardized across the tenant using Microsoft Entra bulk administration. The Santa Monica population and Toronto population were updated as separate identity sets.
+- **42 employees in Santa Monica**
+- **8 employees in Toronto**
 
-The completed operations confirmed successful updates for 42 Santa Monica users and 8 Toronto users.
+As the company grows, IAM does not want location-based group membership to depend on an administrator remembering to add and remove individual employees from the correct groups every time someone is hired, transferred, or changes location.
+
+The goal is to make **identity data itself drive group membership**.
+
+Before automating that process, however, IAM needs confidence that the underlying location attributes are accurate and consistently populated. A dynamic rule will faithfully act on whatever data it receives — including bad data.
+
+This is particularly important following the data-quality issues identified during Vandelay's access-certification work. Automating access from incomplete or inaccurate identity attributes could turn a single data error into an incorrect group assignment.
+
+IAM therefore establishes a two-stage control:
+
+1. **Standardize and validate the workforce identity data.**
+2. **Use validated attributes to automate location-based group membership.**
+
+The resulting model is:
+
+**Business event → Identity attribute → Dynamic membership rule → Automatic group membership**
+
+Under this model, a newly created or updated identity can qualify automatically for the appropriate location group based on its authoritative `city` attribute rather than requiring a separate manual group-assignment step.
+
+---
+
+## IAM Requirements
+
+To implement attribute-driven group administration, IAM needed to:
+
+- Standardize location attributes across the existing workforce.
+- Update multiple identities efficiently through bulk administration.
+- Maintain accurate Santa Monica and Toronto identity populations.
+- Validate the resulting attributes at the individual-user level.
+- Create dynamic security groups using authoritative identity attributes.
+- Test dynamic membership rules before relying on them.
+- Validate both matching and non-matching identities.
+- Automatically populate groups without manually assigning individual members.
+- Confirm that calculated membership matched the expected workforce populations.
+- Establish a scalable model in which future identity changes can automatically affect group membership.
+
+---
+
+## Implementation
+
+### 1. Standardize Workforce Identity Attributes
+
+Location attributes were standardized across the Vandelay Health tenant using Microsoft Entra bulk administration.
+
+The Santa Monica and Toronto populations were processed as separate identity sets.
+
+The completed operations confirmed successful updates for:
+
+- **42 Santa Monica identities**
+- **8 Toronto identities**
+- **50 total workforce identities**
+
+This established consistent location data that could subsequently be used for automated membership decisions.
 
 ![Bulk Identity Attribute Update Success](screenshots/01-bulk-identity-attribute-update-success.png)
 
-## 2. Validate Toronto Identity Attributes
+---
 
-An individual Toronto identity was reviewed after the bulk operation to verify that the expected attributes were present. The record shows Toronto as the city and office location, Ontario as the province, Canada as the country/region, Vandelay Health as the company, and Innovation Center as the department.
+### 2. Validate the Updated Identity Data
+
+After the bulk operation, an individual Toronto identity was reviewed to confirm that the expected organizational and geographic information had been populated correctly.
+
+The identity showed:
+
+- **City:** Toronto
+- **Office location:** Toronto
+- **State/Province:** Ontario
+- **Country/Region:** Canada
+- **Company:** Vandelay Health
+- **Department:** Innovation Center
+
+This validation step is important because a dynamic group can only make reliable membership decisions when the identity attributes driving its rule are accurate.
+
+The bulk operation established consistency across the workforce, while the individual inspection provided evidence that the resulting identity data was populated as intended.
 
 ![Toronto Identity Attributes Validated](screenshots/02-toronto-identity-attributes-validated.png)
 
-## 3. Configure and Validate Dynamic Membership
+---
 
-A dynamic security-group rule was created using the `city` user attribute:
+### 3. Create the Santa Monica Dynamic Membership Rule
+
+A dynamic security-group rule was created using the Microsoft Entra `city` user attribute:
 
 ```text
 (user.city -eq "Santa Monica")
-```
-
-The rule was tested against identities from both locations. A Santa Monica identity evaluated as **In group**, while a Toronto identity evaluated as **Not in group**, confirming both the positive and negative membership conditions before deployment.
-
-![Dynamic City Rule Validation](screenshots/03-dynamic-city-rule-validation.png)
-
-## 4. Verify Automated Group Membership
-
-The dynamic security group `SG-SM-Users-Dynamic` automatically populated with 42 members after the rule was deployed. No manual member assignment was required.
-
-![Santa Monica Dynamic Group Members](screenshots/04-santa-monica-dynamic-group-members.png)
-
-A corresponding Toronto dynamic security group was also created and validated using:
-
-```text
-(user.city -eq "Toronto")
-```
-
-The Toronto rule successfully matched all 8 Toronto identities.
-
-## Results
-
-- Standardized location attributes across all 50 workforce identities
-- Confirmed successful bulk updates for 42 Santa Monica and 8 Toronto identities
-- Validated identity attributes after the bulk operation
-- Created location-driven dynamic security groups
-- Verified positive and negative rule evaluation
-- Automatically populated `SG-SM-Users-Dynamic` with 42 qualifying identities
-- Created and validated a corresponding Toronto dynamic group for 8 identities
-
-## Skills Demonstrated
-
-- Microsoft Entra ID Administration
-- Identity Attribute Management
-- Bulk User Administration
-- Dynamic Security Groups
-- Attribute-Based Group Membership
-- Identity Data Validation
-- Access Automation
-- Identity Governance
-- Security Group Administration
-- Policy and Rule Validation
-
-## Key Takeaway
-
-Dynamic groups connect identity data to access administration. By standardizing authoritative user attributes and using those attributes in membership rules, Entra ID can automatically maintain security-group membership as the workforce changes, reducing manual administration and improving consistency.
