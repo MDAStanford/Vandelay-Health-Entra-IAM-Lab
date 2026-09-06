@@ -1,156 +1,162 @@
-# Microsoft Entra ID Enterprise Application & SAML SSO Lab
+# Lab 03 — Securing Access to Vandelay's Expense Management Application
 
-## Overview
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
 
-This lab demonstrates the configuration and management of an enterprise application in Microsoft Entra ID. The objective was to explore how Entra ID can provide centralized application access, SAML-based single sign-on (SSO), identity claims, and group-based access assignment.
-
-The lab uses a fictional enterprise application, **Vandelay Expense Management**, to simulate an organization's expense management system.
-
-## Objectives
-
-* Configure an Enterprise Application in Microsoft Entra ID
-* Require explicit assignment before users can access the application
-* Assign individual users to an enterprise application
-* Configure SAML-based Single Sign-On
-* Configure SAML attributes and claims
-* Map a user's department attribute into a SAML claim
-* Assign application access through a Microsoft Entra group
-* Demonstrate how group membership can support scalable application access management
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
 ---
 
-## 1. Enterprise Application and User Assignment
+## Business Scenario
 
-The **Vandelay Expense Management** enterprise application was configured in Microsoft Entra ID.
+Vandelay Health uses **Vandelay Expense Management**, a fictional enterprise application used by employees to manage business expenses.
 
-A test user was assigned to the application through **Users and groups**, demonstrating direct application access assignment.
+Rather than maintaining separate application credentials and manually granting access inside the expense system, Vandelay wants Microsoft Entra ID to serve as the centralized identity provider. Employees should authenticate using their existing Vandelay identities, and only users with an approved business need should be able to access the application.
+
+Finance employees represent the primary user population. IAM therefore needs an access model that can scale beyond assigning the application to individual employees one at a time.
+
+---
+
+## IAM Requirements
+
+To provide secure and manageable access to Vandelay Expense Management, IAM needed to:
+
+- Integrate the application with Microsoft Entra ID.
+- Require explicit assignment before an identity can access the application.
+- Configure SAML-based Single Sign-On (SSO).
+- Provide required identity information to the application through SAML claims.
+- Map the user's department attribute from Microsoft Entra ID into a SAML claim.
+- Validate the relationship between directory attributes and application claims.
+- Demonstrate direct user assignment.
+- Transition application access to group-based assignment for more scalable administration.
+- Validate that Finance group membership supports the intended application-access model.
+
+---
+
+## Implementation
+
+### 1. Integrate Vandelay Expense Management with Microsoft Entra ID
+
+The **Vandelay Expense Management** enterprise application was configured in Microsoft Entra ID, establishing Entra as the centralized identity platform used to manage authentication and application access.
+
+A test user was initially assigned directly to the application to establish and validate the basic access model.
 
 ![Enterprise Application User Assignment](01-Enterprise-App-User-Assignment.png)
 
-Direct assignment can be useful when access must be granted to a specific identity, although group-based assignment is generally more scalable for larger environments.
-
 ---
 
-## 2. Require Explicit Assignment
+### 2. Require Explicit Application Assignment
 
 The application's **Assignment required?** setting was configured as **Yes**.
 
+This prevents unassigned tenant identities from accessing the application simply because they possess a Vandelay account. Access must instead be explicitly granted through an approved user or group assignment.
+
 ![Assignment Required](02-Assignment-Required.png)
-
-This restricts application access to identities that have been explicitly assigned to the enterprise application rather than allowing any user in the tenant to access it.
-
-From an IAM perspective, this supports controlled access and the principle of least privilege.
 
 ---
 
-## 3. Configure SAML Single Sign-On
+### 3. Configure SAML Single Sign-On
 
-The enterprise application was configured to use **SAML-based Single Sign-On**.
+Vandelay Expense Management was configured to use **SAML-based Single Sign-On**.
 
-The basic SAML configuration included an:
+The SAML configuration included the application's:
 
-* Identifier (Entity ID)
-* Reply URL / Assertion Consumer Service (ACS) URL
-* Token signing certificate
+- Identifier (Entity ID)
+- Reply URL / Assertion Consumer Service (ACS) URL
+- Token signing certificate
+
+In this relationship, Microsoft Entra ID acts as the **Identity Provider (IdP)** and provides authentication information to the application through a SAML assertion.
 
 ![SAML Configuration](03-SAML-Configuration.png)
 
-In this configuration, Microsoft Entra ID acts as the **Identity Provider (IdP)** and provides authentication information to the application using SAML assertions.
-
 ---
 
-## 4. Configure SAML Attributes and Claims
+### 4. Configure Identity Claims
 
-SAML claims determine what identity information Entra ID sends to the application after authentication.
+The SAML configuration was set to provide identity information required by the application.
 
-The application was configured with standard identity claims including:
+Standard claims included:
 
-* User Principal Name
-* Email address
-* Given name
-* Surname
+- User Principal Name
+- Email address
+- Given name
+- Surname
 
-A custom **department** claim was also configured and mapped to:
+A custom **department** claim was also mapped to:
 
 `user.department`
 
-![SAML Department Claim](04-SAML-Custom-Department-Claim.png)
+This demonstrates how identity information maintained centrally in Microsoft Entra ID can be supplied to an integrated application during authentication.
 
-This demonstrates how directory attributes can be included in SAML assertions and made available to an application.
+![SAML Department Claim](04-SAML-Custom-Department-Claim.png)
 
 ---
 
-## 5. Validate the User Attribute
+### 5. Validate the Source Identity Attribute
 
-The test user's Entra ID profile contains a populated **Department** attribute.
+The test user's Microsoft Entra profile was reviewed to confirm that the **Department** attribute contained a valid value.
+
+Because the SAML department claim references `user.department`, the value maintained in the identity record can be supplied to Vandelay Expense Management as part of the SAML assertion.
+
+This establishes the relationship between **directory identity data and application claims**.
 
 ![User Department Attribute](05-User-Department-Attribute.png)
 
-Because the SAML department claim references `user.department`, the value stored in the user's Entra ID identity record can be supplied to the application as part of the SAML assertion.
-
-This demonstrates the relationship between **identity attributes stored in the directory and claims delivered to an application**.
-
 ---
 
-## 6. Implement Group-Based Application Assignment
+### 6. Implement Group-Based Application Access
 
-Rather than managing application access exclusively through individual user assignments, the **M365-FIN-Team** group was assigned to Vandelay Expense Management.
+After demonstrating direct user assignment, application access was assigned to the **M365-FIN-Team** group.
+
+This moves Vandelay toward a more scalable access model: IAM can manage the appropriate Finance population through group membership rather than repeatedly assigning and removing individual users at the application level.
 
 ![Group-Based Application Assignment](06-Group-Based-App-Assignment.png)
 
-Group-based assignment provides a more scalable method of managing access because application access can be tied to group membership.
-
-Users who require the application can be managed through the appropriate access group instead of individually at the application level.
-
 ---
 
-## 7. Validate Group Membership
+### 7. Validate the Access Model
 
-The Finance group contains multiple test identities representing members of the organization's Finance team.
+Membership of the Finance group was reviewed to confirm the identities included in the group used for application assignment.
+
+The resulting access path is:
+
+**User Identity → Finance Group Membership → Enterprise Application Assignment**
+
+This creates a centralized and repeatable method of administering access to Vandelay Expense Management.
 
 ![Finance Group Members](07-Finance-Group-Members.png)
 
-This demonstrates the relationship:
+---
 
-**User Identity → Group Membership → Enterprise Application Assignment**
+## Validation
 
-This approach supports centralized access administration and can reduce the administrative overhead associated with managing application assignments individually.
+The completed configuration was reviewed to confirm that:
+
+- Vandelay Expense Management was represented as an enterprise application in Microsoft Entra ID.
+- Explicit assignment was required for application access.
+- SAML-based SSO was configured with Microsoft Entra ID acting as the Identity Provider.
+- Required identity attributes and claims were configured.
+- The custom department claim referenced the user's Microsoft Entra `department` attribute.
+- Direct user assignment was demonstrated.
+- Group-based application assignment was established for the Finance population.
+- Finance group membership could be reviewed to validate the resulting access path.
 
 ---
 
-## IAM Concepts Demonstrated
+## IAM Controls Demonstrated
 
-This lab provided hands-on experience with several core identity and access management concepts:
-
-* Enterprise application management
-* Federated authentication
-* SAML 2.0 Single Sign-On
-* Identity Provider (IdP) configuration
-* SAML assertions and claims
-* Identity attribute mapping
-* User-based application assignment
-* Group-based application assignment
-* Least-privilege access
-* Centralized access management
-
-## Security and Governance Takeaways
-
-The lab demonstrates how authentication and authorization are related but distinct functions.
-
-**SAML SSO** provides a federated mechanism for authenticating a user to an application, while **application assignments and group membership** determine which identities are authorized to access that application.
-
-Using group-based application assignment provides a more scalable access-management model than maintaining large numbers of individual assignments. Identity attributes can also be passed to applications through SAML claims, allowing applications to consume identity information maintained centrally in Entra ID.
-
-Together, these capabilities demonstrate how Microsoft Entra ID can act as a centralized identity provider and access-management layer for enterprise applications.
+- **Federated authentication** — use Microsoft Entra ID as the centralized Identity Provider for an enterprise application.
+- **SAML 2.0 Single Sign-On** — provide application authentication through standards-based federation.
+- **Explicit assignment** — restrict application access to authorized identities rather than the entire tenant.
+- **Identity claims** — provide application-relevant identity information through SAML assertions.
+- **Attribute mapping** — connect centrally maintained directory attributes to application identity data.
+- **Group-based access** — manage application authorization through group membership.
+- **Least privilege** — provide application access only to identities with an approved business need.
+- **Access validation** — verify the relationship between identity, group membership, and application assignment.
 
 ---
 
-## Environment
+## Key Takeaway
 
-* Microsoft Entra ID
-* Microsoft Entra admin center
-* Enterprise Applications
-* SAML 2.0
-* Microsoft Entra users and groups
+Authentication to an application and authorization to use that application are related but distinct IAM responsibilities.
 
-> **Note:** Vandelay Expense Management and the identities shown in this lab are part of a lab environment and are used solely for demonstration purposes.
+This lab demonstrates how Vandelay Health can use **Microsoft Entra ID and SAML SSO to centralize authentication while using explicit and group-based assignments to control who is authorized to access an enterprise application**.
