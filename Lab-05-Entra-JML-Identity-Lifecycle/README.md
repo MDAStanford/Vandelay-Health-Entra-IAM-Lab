@@ -1,212 +1,195 @@
-# Lab 05 – Joiner & Mover Lifecycle Management: Organizational Change and Toronto Expansion
+# Lab 05 — Managing Employee Moves and New-Hire Access
 
-## Objective
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
 
-The objective of this lab was to simulate two common identity lifecycle events in Microsoft Entra ID: an internal organizational move and the onboarding of a new office.
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
-The lab demonstrates how identity attributes, manager relationships, group membership, business ownership, and access validation work together during Joiner-Mover-Leaver (JML) administration.
+---
 
-## Scenario
+## Business Scenario
 
-Vandelay Worldwide underwent two simultaneous business changes.
+Vandelay Health is undergoing two organizational changes at the same time.
 
-First, Travel was separated from Human Resources and established as its own department. Existing employees Tuba Aksoy and Suzi Tarkanian needed to be moved from HR into the new Travel organization, with their identity records, reporting relationships, and access aligned to their new responsibilities.
+At Santa Monica headquarters, the Travel function is being separated from Human Resources and established as an independent department. Tuba Aksoy is promoted from Travel Coordinator to Director - Travel, while Suzi Tarkanian remains a Travel Coordinator and begins reporting to Tuba.
 
-Tuba was promoted from Travel Coordinator to Director - Travel and became the department lead. Suzi remained a Travel Coordinator and moved under Tuba's management.
+Because both employees already work for Vandelay, IAM should not create new identities. Their existing identities must instead follow them through the organizational change, with job information, reporting relationships, and access updated to reflect their new responsibilities.
 
-At the same time, Vandelay opened a new Innovation Center in Toronto, Ontario. Six new workforce identities were onboarded and required consistent organizational attributes, manager relationships, baseline security access, and Microsoft 365 collaboration access.
+At the same time, Vandelay is opening a new **Innovation Center in Toronto, Ontario**, requiring six new employees to be onboarded into the company's Microsoft Entra environment.
 
-The IAM goal was to support both changes while maintaining least privilege, accurate identity data, appropriate business ownership, and traceable access assignments.
+IAM must support both changes while maintaining accurate identity data, appropriate access, clear business ownership, and least privilege.
 
-## Part 1 – Mover Event: Creating the Travel Department
+---
 
-Travel initially operated within Human Resources. The organizational change required existing identities to be updated rather than creating new accounts.
+## IAM Requirements
 
-### Tuba Aksoy
+To support the organizational changes, IAM needed to:
 
-Before the move, Tuba was configured as a Travel Coordinator in Human Resources and reported to the CHRO.
+- Preserve existing identities during employee moves rather than creating replacement accounts.
+- Update job titles, departments, office locations, and manager relationships to reflect current business roles.
+- Reassess access when employees move between organizational functions.
+- Establish dedicated security and collaboration groups for the new Travel department.
+- Provision six new workforce identities for the Toronto Innovation Center.
+- Maintain consistent organizational and geographic attributes for the Toronto workforce.
+- Establish appropriate manager relationships for new employees.
+- Create baseline security and Microsoft 365 collaboration groups for the Innovation Center.
+- Assign business ownership of access groups to appropriate stakeholders.
+- Provision baseline access according to employee role and location.
+- Validate identity attributes and group memberships after provisioning.
 
-After the move, her identity was updated to reflect:
+---
 
-- Job title: `Director - Travel`
-- Department: `Travel`
-- Office location: `Santa Monica`
-- Manager: `Rebecca Lewis (CHRO)`
+## Implementation
 
-This preserved Tuba's existing identity while aligning her attributes with her new business role.
+### 1. Process Tuba Aksoy's Mover Event
 
-### Suzi Tarkanian
+Before the organizational change, Tuba Aksoy was a Travel Coordinator within Human Resources and reported to the CHRO.
 
-Before the move, Suzi was a Travel Coordinator in Human Resources and reported to the HR Manager.
+Following the creation of the independent Travel department, her existing identity was updated to reflect her promotion and new organizational position:
 
-After the move, her identity was updated to reflect:
+- **Job title:** `Director - Travel`
+- **Department:** `Travel`
+- **Office location:** `Santa Monica`
+- **Manager:** `Rebecca Lewis (CHRO)`
 
-- Job title: `Travel Coordinator`
-- Department: `Travel`
-- Office location: `Santa Monica`
-- Manager: `Tuba Aksoy`
+The existing account was retained. IAM changed the identity information associated with Tuba's new role rather than creating a new identity.
 
-The change demonstrates a typical mover workflow in which an employee's identity persists while organizational attributes, reporting relationships, and access requirements change.
+![Tuba Aksoy Before Mover Event](01-tuba-before-mover.png)
 
-### Travel Access Structure
+![Tuba Aksoy After Mover Event](02-tuba-after-mover.png)
 
-New Travel groups were created to support the department:
+---
 
-- `SG-TR-Users` – security and access assignments
-- `M365-TR-Team` – Microsoft 365 collaboration resources
+### 2. Process Suzi Tarkanian's Mover Event
 
-This created a dedicated access structure for the new department rather than continuing to rely on Human Resources groups.
+Suzi Tarkanian also moved from Human Resources into the newly independent Travel department.
 
-The mover lifecycle can be summarized as:
+Her role remained Travel Coordinator, but her department and reporting relationship changed:
 
-**Business change → identity attribute update → manager update → access reassessment → new departmental access**
+- **Job title:** `Travel Coordinator`
+- **Department:** `Travel`
+- **Office location:** `Santa Monica`
+- **Manager:** `Tuba Aksoy`
 
-## Part 2 – Joiner Event: Toronto Innovation Center
+This demonstrates an important lifecycle principle: an employee does not need to change jobs completely for IAM-relevant identity information and access requirements to change.
 
-Vandelay simultaneously opened a new Innovation Center in Toronto, Ontario, Canada.
+![Suzi Tarkanian Before Mover Event](03-suzi-before-mover.png)
 
-Six workforce identities were created for the new location. Each identity was configured with business context such as job title, department, office location, geographic information, manager relationship, and account status.
+![Suzi Tarkanian After Mover Event](04-suzi-after-mover.png)
 
-The Innovation Center workforce included a local leader and additional employees reporting into the new organization.
+---
 
-Creating the identities first established the authoritative business attributes needed to make appropriate access decisions.
+### 3. Establish the Travel Access Structure
 
-## Part 3 – Toronto Access Groups
+The new department required its own access and collaboration structure rather than continuing to rely on Human Resources groups.
 
-Two baseline groups were created for Innovation Center employees.
+IAM created:
 
-### SG-IC-Users
+- `SG-TR-Users` — security and access assignments
+- `M365-TR-Team` — Microsoft 365 collaboration
 
-`SG-IC-Users` is a Microsoft Entra Security group.
+This separates Travel from its former HR access structure and provides reusable groups for future Travel employees.
 
-**Purpose:** All Innovation Center employees. Used for Innovation Center application access and department-based security assignments.
+**Business change → identity update → reporting change → access reassessment → new departmental access**
 
-The group provides a reusable authorization boundary for security and application access associated with the Innovation Center.
+![Travel Groups Created](05-travel-groups-created.png)
 
-### M365-IC-Team
+---
 
-`M365-IC-Team` is a Microsoft 365 group.
+### 4. Onboard the Toronto Innovation Center
 
-**Purpose:** All Innovation Center employees. Used for Innovation Center collaboration, shared resources, and Microsoft 365 services.
+Vandelay Health simultaneously opened a new Innovation Center in Toronto, Ontario.
 
-The group supports collaboration resources separately from security authorization.
+Six new workforce identities were created for the location. Each identity was established with business and organizational information including job title, department, office location, geographic information, manager relationship, and account status.
 
-Using separate group types reinforces an important design principle:
+A local leadership structure was also established so the identities reflected how the new organization actually operates rather than existing as disconnected user accounts.
 
-**Security groups manage authorization; Microsoft 365 groups support collaboration.**
+![Toronto Operations Manager Created](06-toronto-operations-manager-created.png)
 
-Appropriate business owners were assigned to the groups rather than retaining unnecessary standing ownership with the IAM administrator.
+![Toronto Innovation Center Users Created](07-toronto-innovation-center-users-created.png)
 
-## Part 4 – Joiner Provisioning and Validation
+---
 
-The Toronto employees were provisioned into the Innovation Center baseline access structure.
+### 5. Establish Toronto Baseline Access
 
-For a standard Innovation Center employee, the baseline assignment was:
+Two groups were created to provide the Innovation Center workforce with baseline access:
 
-**Innovation Center employee → `SG-IC-Users` + `M365-IC-Team`**
+- `SG-IC-Users` — security and application access
+- `M365-IC-Team` — collaboration and Microsoft 365 resources
+
+The two group types serve different purposes:
+
+**Security Groups manage authorization; Microsoft 365 Groups support collaboration.**
+
+Appropriate business owners were assigned rather than leaving unnecessary standing ownership with the IAM administrator.
+
+![Innovation Center Security Group](08-sg-ic-users-security-group.png)
+
+![Innovation Center Microsoft 365 Group](09-m365-ic-team-group.png)
+
+---
+
+### 6. Validate a Toronto Joiner
 
 Jay Martin, Senior Innovation Designer, was selected as the representative joiner for post-provisioning validation.
 
-His identity record was reviewed to confirm that the business attributes reflected his role and location, including:
+His identity was reviewed to confirm:
 
-- Job title: `Senior Innovation Designer`
-- Department: `Innovation Center`
-- Office location: `Toronto`
-- Employee type: `Employee`
-- Manager: `Lori Van Meter`
-- Account enabled: `Yes`
+- **Job title:** `Senior Innovation Designer`
+- **Department:** `Innovation Center`
+- **Office location:** `Toronto`
+- **Employee type:** `Employee`
+- **Manager:** `Lori Van Meter`
+- **Account enabled:** `Yes`
 
-Jay's group memberships were then reviewed independently. His account showed membership in:
+![Toronto Joiner Identity Validation](10-toronto-joiner-jay-martin-properties.png)
+
+Jay's group memberships were then independently reviewed. His account contained the expected baseline memberships:
 
 - `SG-IC-Users`
 - `M365-IC-Team`
 
 No unrelated group memberships were present.
 
-This connected the employee's business identity to the access actually provisioned and demonstrated that access changes should be verified rather than assumed successful.
+![Toronto Joiner Group Membership Validation](11-toronto-joiner-jay-martin-group-memberships.png)
 
-The joiner lifecycle can be summarized as:
+The resulting joiner process can be summarized as:
 
 **Joiner request → identity creation → attribute assignment → manager relationship → baseline access provisioning → access validation**
 
-## Governance and IAM Takeaways
+---
 
-This lab demonstrates that JML administration is more than creating or editing user accounts. Effective lifecycle management requires maintaining the relationship between identity data, business role, access, ownership, and validation.
+## Validation
 
-The Travel restructuring illustrates why mover events require access reassessment. Without this control, employees can accumulate permissions from previous roles and create access sprawl over time.
+The completed lifecycle changes were reviewed to confirm that:
 
-The Toronto expansion illustrates how a repeatable joiner process can establish consistent identity attributes and baseline access for a new workforce population.
-
-Key principles demonstrated include:
-
-- **Least privilege** – users receive access appropriate to their current responsibilities.
-- **Lifecycle governance** – access and identity attributes change when the business role changes.
-- **Business ownership** – access structures are owned by appropriate business stakeholders.
-- **Separation of purpose** – Security groups and Microsoft 365 groups serve different functions.
-- **Identity data quality** – accurate attributes and manager relationships support reliable access decisions.
-- **Access validation** – resulting assignments are reviewed after provisioning.
-
-## Skills Demonstrated
-
-- Microsoft Entra ID administration
-- Joiner-Mover-Leaver (JML) lifecycle management
-- User provisioning and identity maintenance
-- Organizational attribute management
-- Manager hierarchy configuration
-- Security group administration
-- Microsoft 365 group administration
-- Access provisioning
-- Access validation
-- Least privilege
-- Identity governance
-- Business ownership and accountability
-
-## Screenshots
-
-### 1. Tuba Aksoy – Before Mover Event
-
-![Tuba Aksoy before mover event](01-tuba-before-mover.png)
-
-### 2. Tuba Aksoy – After Mover Event
-
-![Tuba Aksoy after mover event](02-tuba-after-mover.png)
-
-### 3. Suzi Tarkanian – Before Mover Event
-
-![Suzi Tarkanian before mover event](03-suzi-before-mover.png)
-
-### 4. Suzi Tarkanian – After Mover Event
-
-![Suzi Tarkanian after mover event](04-suzi-after-mover.png)
-
-### 5. Travel Groups Created
-
-![Travel groups created](05-travel-groups-created.png)
-
-### 6. Toronto Operations Manager Created
-
-![Toronto operations manager created](06-toronto-operations-manager-created.png)
-
-### 7. Toronto Innovation Center Users Created
-
-![Toronto Innovation Center users created](07-toronto-innovation-center-users-created.png)
-
-### 8. Innovation Center Security Group
-
-![SG-IC-Users security group](08-sg-ic-users-security-group.png)
-
-### 9. Innovation Center Microsoft 365 Group
-
-![M365-IC-Team group](09-m365-ic-team-group.png)
-
-### 10. Toronto Joiner Identity Validation
-
-![Jay Martin properties](10-toronto-joiner-jay-martin-properties.png)
-
-### 11. Toronto Joiner Group Membership Validation
-
-![Jay Martin group memberships](11-toronto-joiner-jay-martin-group-memberships.png)
+- Tuba and Suzi retained their existing identities during the organizational move.
+- Their identity attributes and reporting relationships reflected their new business positions.
+- A dedicated access structure existed for the new Travel department.
+- Six Toronto workforce identities were provisioned.
+- Toronto identities contained appropriate organizational and location information.
+- Security and Microsoft 365 groups were established for the Innovation Center.
+- Appropriate business ownership was assigned to the access groups.
+- Jay Martin's identity contained the expected business attributes.
+- Jay received the expected baseline access without unrelated group memberships.
 
 ---
 
-> **Lab Environment Notice:** Vandelay Worldwide, Vandelay Health, and all employees, organizational structures, employee data, access assignments, and business scenarios represented in this lab are fictional and were created solely for hands-on IAM training and portfolio demonstration.
+## IAM Controls Demonstrated
+
+- **Joiner-Mover-Leaver (JML) lifecycle management** — align identities and access with changes in the employment lifecycle.
+- **Mover administration** — preserve an employee's identity while updating organizational context and access.
+- **Joiner provisioning** — establish new workforce identities with consistent business attributes and baseline access.
+- **Identity data quality** — maintain accurate titles, departments, locations, employee types, and manager relationships.
+- **Access reassessment** — reconsider existing access when an employee's organizational role changes.
+- **Group-based access** — provide repeatable departmental access through security and Microsoft 365 groups.
+- **Business ownership** — assign responsibility for access structures to appropriate business stakeholders.
+- **Least privilege** — provide access appropriate to current responsibilities rather than allowing historical access to accumulate.
+- **Post-provisioning validation** — independently verify identity attributes and resulting group memberships.
+
+---
+
+## Key Takeaway
+
+Identity lifecycle management is not simply creating and disabling accounts. **An identity must continue to reflect the person's current relationship with the business.**
+
+This lab demonstrates how Vandelay Health can manage both sides of organizational change: **existing employees moving into new roles and new employees joining a growing organization**, while keeping identity data, reporting relationships, access, and business ownership aligned.
