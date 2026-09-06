@@ -1,71 +1,51 @@
-# Lab 12 — Microsoft Entra External Identity Governance
+# Lab 12 — Governing External Consultant Access
 
-## Technologies
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
 
-- Microsoft Entra ID
-- Microsoft Entra B2B Collaboration
-- Microsoft Entra Identity Governance
-- Microsoft Entra Access Reviews
-- Microsoft 365
-- Entra Security Groups
-
-## IAM / Security Concepts
-
-- External identity lifecycle
-- B2B guest access
-- Least privilege
-- Group-based authorization
-- Resource ownership
-- Access certification
-- Recurring access reviews
-- Automated access remediation
-- Separation of authentication and authorization
-
----
-
-## Project Overview
-
-This lab simulates the onboarding and governance of an external consultant who requires access to a sensitive product-development project at Vandelay Health.
-
-Vandelay Health is developing the **Ninja Sleeper II**, the next generation of its lightweight, ultra-quiet CPAP device designed for frequent travelers. The new product is intended to be twice as quiet as the original Ninja Sleeper.
-
-The project is being developed by Vandelay Health's Toronto Innovation Center (IC), with participation from selected company leadership.
-
-To support the project, Vandelay Health engaged **Dr. Jameela Jamil**, an external medical industrial designer based in Edmonton, Alberta. Because Dr. Jamil is a consultant rather than a Vandelay Health employee, IAM needed to provide the collaboration access required for the engagement without creating an internal employee identity or granting broad access to Vandelay resources.
-
-The resulting workflow demonstrates:
-
-**External identity → B2B authentication → scoped authorization → access certification → lifecycle governance**
-
-> **Note:** Vandelay Health, Ninja Sleeper, Jamil Industrial Design, the employees, and the business scenario used in this project are fictional. The environment was created solely as a hands-on identity and access management lab.
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
 ---
 
 ## Business Scenario
 
-Dr. Jamil was retained by Vandelay Health to collaborate with the Toronto Innovation Center on the Ninja Sleeper II development project.
+Vandelay Health is developing the **Ninja Sleeper II**, the next generation of its proprietary CPAP platform. The new product is being developed by the Toronto Innovation Center with participation from selected company leadership.
 
-Her engagement created several IAM requirements:
+To support the project, Vandelay retained **Dr. Jameela Jamil**, an external medical industrial designer based in Edmonton, Alberta.
 
-- She must remain an external identity rather than receive a Vandelay employee account.
-- She must be able to authenticate to Vandelay's Microsoft 365 environment.
-- Successful authentication must not automatically provide access to company resources.
-- Project access must be explicitly authorized.
-- She must not inherit general Toronto Innovation Center access merely because she works with that team.
-- An internal business owner must remain accountable for her continued access.
-- Her access must be periodically reviewed and removable when the engagement no longer requires it.
+Dr. Jamil needs to collaborate with the project team, but she is **not a Vandelay employee**. IAM therefore needs to provide the access required for her engagement without creating an internal employee identity or giving her the broader access associated with Vandelay's workforce.
 
-The design therefore separates **identity establishment** from **resource authorization**.
+Her access must also have an accountable business owner and be periodically reviewed so that project access does not remain indefinitely after the business need ends.
+
+The resulting lifecycle is:
+
+**External identity → B2B authentication → Scoped authorization → Business ownership → Access certification → Retain or remove access**
 
 ---
 
-## External Identity Onboarding
+## IAM Requirements
 
-Dr. Jamil was invited to the Vandelay tenant using Microsoft Entra B2B collaboration.
+IAM needed to:
 
-Her Entra identity was configured as an external **Guest** rather than an internal Member account.
+- Maintain Dr. Jamil as an external identity rather than an internal employee.
+- Allow her to authenticate using Microsoft Entra B2B collaboration.
+- Provide no project access merely because authentication succeeds.
+- Grant access specifically to the Ninja Sleeper II project.
+- Avoid placing her in broader Toronto Innovation Center employee access.
+- Assign an internal business owner responsible for her access.
+- Periodically certify whether the external access remains necessary.
+- Support removal of project access when it is no longer justified.
 
-Relevant identity attributes included:
+---
+
+## Implementation
+
+### 1. Invite the External Consultant
+
+Dr. Jamil was invited to the Vandelay tenant through **Microsoft Entra B2B collaboration**.
+
+Her identity was configured as an external **Guest** rather than an internal Member account.
+
+Relevant identity information included:
 
 - **Name:** Dr. Jameela Jamil
 - **Company:** Jamil Industrial Design
@@ -76,77 +56,83 @@ Relevant identity attributes included:
 - **Sponsor:** Lori Van Meter
 - **User Type:** Guest
 
-Lori Van Meter serves as the internal sponsor responsible for the business relationship and the consultant's continued need for access.
+Lori Van Meter serves as the internal sponsor responsible for the business relationship and continued need for access.
 
 ![External B2B invitation](01-jamil-b2b-invitation.png)
 
 ---
 
-## B2B Invitation Redemption
+### 2. Redeem the B2B Invitation
 
-Dr. Jamil received and redeemed the external collaboration invitation using her existing external identity.
+Dr. Jamil redeemed the invitation using her existing external identity.
 
 During redemption, Microsoft presented the organizational consent requirements associated with accessing the Vandelay tenant.
 
 ![External user consent](02-jamil-b2b-consent.png)
 
-After successful authentication and invitation redemption, Dr. Jamil reached the Microsoft 365 My Apps environment.
+After successful authentication, Dr. Jamil reached the Microsoft 365 My Apps environment.
 
-Importantly, no applications or resources were automatically available to her.
+No Vandelay applications or project resources were automatically available to her.
 
 ![Guest redemption completed](03-jamil-guest-redemption-complete.png)
 
-This demonstrates an important IAM principle:
+This demonstrates an important IAM distinction:
 
-> **Authentication does not equal authorization.**
+**Authentication does not equal authorization.**
 
-Dr. Jamil had successfully established a trusted external identity with Vandelay, but she still had no project access until that access was explicitly granted.
+Dr. Jamil had established a trusted external identity with Vandelay, but she still required explicit authorization before receiving access to the Ninja Sleeper II project.
 
 ---
 
-## Least-Privilege Project Access
+### 3. Grant Least-Privilege Project Access
 
-Rather than adding Dr. Jamil to the existing Toronto Innovation Center employee group, a dedicated security group was created for Ninja Sleeper II:
+Rather than adding Dr. Jamil to an existing Toronto Innovation Center employee group, IAM created a dedicated security group:
 
-**SG-NS2-Project**
+**`SG-NS2-Project`**
 
-The group was configured with assigned membership and no Entra administrative roles.
-
-Its purpose is to provide an explicit authorization boundary for employees and approved external collaborators who require access to Ninja Sleeper II resources.
+The group provides an explicit authorization boundary for employees and approved external collaborators working on Ninja Sleeper II.
 
 ![NS2 project security group](04-ns2-project-security-group.png)
 
-The completed group contained 11 authorized project participants and one resource owner.
+The completed group contained **11 authorized project participants** and a designated resource owner.
 
 ![NS2 project group overview](05-ns2-project-group-overview.png)
 
-Membership included the Toronto Innovation Center project team, selected Vandelay leadership, and Dr. Jamil.
+Membership included the Toronto project team, selected Vandelay leadership, and Dr. Jamil.
 
-Dr. Jamil appears as a **Guest**, while Vandelay employees appear as **Members**.
+Vandelay employees appear as **Members**, while Dr. Jamil remains clearly identifiable as a **Guest**.
 
 ![NS2 project membership](06-ns2-project-membership.png)
 
-This structure avoids granting the consultant broad organizational or Toronto IC access solely because she collaborates with that team.
+The access model is therefore:
 
-Instead:
+**Project need → Explicit project-group membership**
 
-**Access is based on project need.**
+rather than:
+
+**Works with Toronto IC → Receives general Toronto IC access**
 
 ---
 
-## External Access Governance
+### 4. Establish Business Ownership
 
-Providing access was only the first part of the control.
+External access should not become solely an IAM responsibility once it has been provisioned.
 
-Because Dr. Jamil is an external consultant, Vandelay also needs a mechanism to periodically verify that the business relationship remains active and that continued access is justified.
+Lori Van Meter owns the Ninja Sleeper II project group and serves as the internal business owner responsible for determining whether Dr. Jamil continues to require project access.
 
-A Microsoft Entra Access Review was therefore created:
+This keeps the access decision with the person responsible for the underlying business relationship.
 
-**Ninja Sleeper II External Access Review**
+---
 
-The review targets:
+### 5. Create a Recurring External Access Review
 
-- **Resource:** SG-NS2-Project
+A Microsoft Entra Access Review was created:
+
+**`Ninja Sleeper II External Access Review`**
+
+The review was configured with:
+
+- **Resource:** `SG-NS2-Project`
 - **Scope:** Guest users only
 - **Reviewer:** Resource owner
 - **Recurrence:** Quarterly
@@ -156,83 +142,79 @@ The review targets:
 
 ![External access review created](07-ns2-external-access-review-created.png)
 
-Because Lori Van Meter owns the NS2 project group, the resource-owner model assigns responsibility for external access certification to the business owner rather than permanently tying the review to an IAM administrator.
+Because the review targets **Guest users only**, Vandelay can specifically govern external project access without requiring the internal project team to be recertified through this particular review.
 
-The active review identified one guest identity requiring certification.
+The active review identified one external identity requiring certification.
 
 ![Active external access review](08-ns2-access-review-active.png)
 
 ---
 
-## Access Certification and Remediation
+### 6. Certify or Remove External Access
 
-The Access Review evaluates whether Dr. Jamil should continue to retain membership in the Ninja Sleeper II project group.
-
-Entra provides the reviewer with decision-support information, but the business owner remains responsible for determining whether a legitimate business requirement still exists.
-
-The active review identified Dr. Jamil as the external identity awaiting certification and generated a recommended action for the reviewer.
+The active review presented Dr. Jamil's access to the resource owner for certification.
 
 ![Jamil access review pending](09-ns2-jamil-review-pending.png)
 
-The review was also configured so that a denied access decision can remove the guest user's membership from the project group.
+Entra can provide decision-support information, but the business owner remains responsible for determining whether a legitimate business requirement still exists.
 
-This creates a governance lifecycle in which external access is not simply granted and forgotten.
+The review was also configured so that a denied decision can remove the guest user's membership from the project group.
 
-Instead, access can be:
+This creates a continuing governance cycle:
 
-**Granted → reviewed → justified → retained or removed**
+**Grant → Review → Justify → Retain or remove**
 
----
-
-## Security Design
-
-The lab demonstrates several controls that reduce the risk associated with external collaboration.
-
-### External identity instead of employee identity
-
-The consultant authenticates using an external identity through Entra B2B rather than receiving an internal Vandelay employee account.
-
-### No access by default
-
-Successful B2B authentication does not automatically provide access to Vandelay applications or project resources.
-
-### Project-based authorization
-
-Access is granted through the dedicated `SG-NS2-Project` security group rather than through broad Toronto IC membership.
-
-### Business ownership
-
-Lori Van Meter serves as the resource owner and is accountable for determining whether external access remains appropriate.
-
-### Recurring certification
-
-Guest membership is reviewed quarterly rather than remaining indefinitely without validation.
-
-### Remediation capability
-
-A denied review decision can remove the guest's project-group membership, allowing the access certification process to affect the actual authorization state.
+External access therefore does not have to remain indefinitely simply because it was appropriate when the consultant was first onboarded.
 
 ---
 
-## IAM Workflow
+## Validation
 
-```text
-External Consultant
-        ↓
-Entra B2B Invitation
-        ↓
-External Identity Verification
-        ↓
-Guest Identity Created / Redeemed
-        ↓
-Microsoft 365 Authentication
-        ↓
-No Default Resource Access
-        ↓
-SG-NS2-Project Authorization
-        ↓
-Guest-Only Access Review
-        ↓
-Resource Owner Certification
-        ↓
-Retain or Remove Access
+The completed implementation confirmed that:
+
+- Dr. Jamil was represented as an external **Guest** identity.
+- She authenticated using her external identity through Entra B2B.
+- Successful authentication did not automatically provide project access.
+- Ninja Sleeper II access was separated into a dedicated security group.
+- Dr. Jamil received project-specific access rather than general Toronto IC access.
+- An internal business owner was accountable for the resource.
+- A quarterly Access Review targeted external guests.
+- The active review identified Dr. Jamil for certification.
+- Review decisions could affect her actual project-group membership.
+
+The end-to-end control is:
+
+**External consultant → B2B invitation → Guest authentication → No default access → Project authorization → Business-owner review → Retain or remove**
+
+---
+
+## IAM Controls Demonstrated
+
+- **Microsoft Entra B2B collaboration**
+- **External identity lifecycle management**
+- **Guest identity administration**
+- **Authentication and authorization separation**
+- **Least privilege**
+- **Project-based authorization**
+- **Security-group administration**
+- **Business sponsorship**
+- **Resource ownership**
+- **Microsoft Entra Access Reviews**
+- **Guest-only access certification**
+- **Recurring access reviews**
+- **Access remediation**
+- **External identity governance**
+
+---
+
+## Key Takeaway
+
+External collaboration requires more than creating a guest account.
+
+IAM must determine **how the external user authenticates, what the user is authorized to access, who owns that access, how long the business need remains valid, and what happens when the access is no longer justified**.
+
+In this lab, Dr. Jamil remained an external identity, received only Ninja Sleeper II project access, and was placed under recurring business-owner certification with the ability to remove that authorization when it is no longer required.
+
+The result is a governed external-access lifecycle:
+
+**Establish identity → Grant least-privilege access → Assign accountability → Periodically certify → Retain or remove**
