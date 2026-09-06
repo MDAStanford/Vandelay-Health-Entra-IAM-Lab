@@ -2,7 +2,9 @@
 
 ## Overview
 
-This lab establishes the baseline Microsoft Entra ID environment for the Vandelay World Wide / Vandelay Health IAM portfolio. The objective is to build and document a realistic tenant structure before introducing authentication, Conditional Access, lifecycle management, governance, and access-certification controls in later labs.
+Vandelay Health is a fictional healthcare company I created to make my IAM labs feel like real work rather than isolated technical exercises. Each lab starts with a business problem—onboarding employees, managing a transfer, providing access to an external consultant, reviewing access, or protecting privileged roles—and then uses Microsoft Entra ID or Active Directory to solve it.
+
+The goal is to show not only how the technology is configured, but why a particular identity or access decision makes sense for the business. Each project documents the scenario, implementation, security considerations, and validation of the finished solution.
 
 The environment includes organizational users, departmental security groups, Microsoft 365 collaboration groups, privileged administration, and a dedicated emergency access account.
 
