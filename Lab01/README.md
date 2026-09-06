@@ -1,4 +1,4 @@
-# Lab 01 — Microsoft Entra ID Tenant & Identity Foundation
+# Lab-01-Entra-User-Administration
 
 ## Overview
 
