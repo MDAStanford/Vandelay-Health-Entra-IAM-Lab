@@ -57,6 +57,15 @@ Addresses the security implications of a C-level external consultant working int
 ### Lab 12 — External Identity Governance
 Extends Vandelay's IAM program to external identities, addressing how contractors, consultants, partners, or other non-employees receive appropriate access without being treated as members of the internal workforce.
 
+### Lab 13 — Entitlement Management
+Uses Microsoft Entra entitlement management to govern time-bound external access through access packages, approval, expiration, and periodic review.
+
+### Lab 14 — Hybrid Identity with Microsoft Entra Connect Sync
+Connects Vandelay's on-premises Active Directory environment to Microsoft Entra ID using Entra Connect Sync and Password Hash Synchronization, then validates synchronized identities and delta synchronization.
+
+### Lab 15 — Ticket-Driven Identity Lifecycle Operations
+Works two HR-driven IAM tickets end to end: onboarding Joe Cantoni with standard Toronto IC access and offboarding Paul Merson by disabling his account, removing access, synchronizing changes, and validating the results in Entra ID.
+
 ---
 
 ## Technical Skills Demonstrated
@@ -80,6 +89,9 @@ Extends Vandelay's IAM program to external identities, addressing how contractor
 - CSV-based bulk identity administration
 - PowerShell automation
 - Access validation and governance documentation
+- Hybrid identity and Entra Connect synchronization
+- Password Hash Synchronization
+- Ticket-driven IAM operations
 
 ---
 
