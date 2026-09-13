@@ -2,180 +2,138 @@
 
 ## Project Overview
 
-Vandelay Health is a fictional medical-device company headquartered in Santa Monica, California. Its flagship product, the **Ninja Sleeper**, originated from a federal government contract requiring an exceptionally quiet sleeping solution for military personnel operating in the field. Vandelay later adapted as much of the proprietary technology as possible for the commercial market, creating a lightweight and quiet consumer sleep-therapy platform.
+Vandelay Health uses both on-premises Active Directory and Microsoft Entra ID. This lab connects the two environments using **Microsoft Entra Connect Sync** so selected Active Directory identities can synchronize to Entra ID.
 
-As Vandelay Health expands its operations, the company is moving from separate on-premises and cloud identity environments toward a **hybrid identity architecture**. Employees working in the recently established Toronto Innovation Center already have accounts in the company's `vandelay.local` Active Directory domain, while Vandelay also uses Microsoft Entra ID for cloud identity and access management.
+The goal was to establish a working hybrid identity path:
 
-This lab implements **Microsoft Entra Connect Sync** to integrate those environments and establish synchronized hybrid identities.
+**Active Directory (`vandelay.local`) → Microsoft Entra Connect Sync → Microsoft Entra ID**
 
 ---
 
 ## Business Scenario
 
-Vandelay Health's Toronto Innovation Center was previously established as an on-premises Active Directory environment. Seven Toronto employees were provisioned into a dedicated organizational structure with standardized identity attributes and department-based access.
+The Toronto Innovation Center already had users in the `vandelay.local` Active Directory domain.
 
-The next requirement was to connect those identities to Vandelay Health's Microsoft Entra ID tenant.
+Vandelay needed those identities to participate in its Microsoft Entra environment without maintaining completely separate accounts.
 
-Rather than independently administering separate Active Directory and Entra identities for the same employees, Vandelay needed an identity architecture in which the on-premises directory could act as an authoritative identity source while selected identity information synchronized to Microsoft Entra ID.
+The work included:
 
-The implementation needed to:
-
-- Prepare the existing Toronto Active Directory identities for synchronization.
-- Align user principal names with the Microsoft Entra ID tenant.
-- Install and configure Microsoft Entra Connect Sync.
-- Enable Password Hash Synchronization.
-- Establish synchronization between `vandelay.local` and the Vandelay Health Entra tenant.
-- Validate that Entra recognized synchronized users as originating from on-premises Active Directory.
-- Confirm the relationship between an Entra identity and its corresponding Active Directory object.
-- Validate the synchronization scheduler.
-- Perform and verify an administrator-initiated delta synchronization.
+- Preparing Toronto Active Directory users for synchronization.
+- Validating user principal names.
+- Installing and configuring Microsoft Entra Connect Sync.
+- Enabling Password Hash Synchronization.
+- Verifying synchronized identities in Microsoft Entra ID.
+- Validating synchronization details.
+- Running and confirming a manual delta synchronization.
 
 ---
 
-## Environment
+## 1. Validate the Existing Toronto Identities
 
-### On-Premises
+The Toronto Active Directory users were reviewed before synchronization.
 
-- Windows Server 2022
-- Active Directory Domain Services
-- Domain: `vandelay.local`
-- Domain Controller: `Vandelay-DC01`
-- Toronto organizational units
-- Active Directory Users and Computers
-- Active Directory PowerShell module
+![Toronto Active Directory users before hybrid synchronization](01-toronto-ad-users-before-hybrid-sync.png)
 
-### Cloud
-
-- Microsoft Entra ID
-- Vandelay Health Microsoft Entra tenant
-- Microsoft Entra Connect Sync
-
-### Synchronization
-
-- Microsoft Entra Connect Sync
-- Password Hash Synchronization
-- Scheduled delta synchronization
-- Administrator-initiated delta synchronization
-
----
-
-## Hybrid Identity Architecture
-
-The resulting identity flow is:
-
-**Active Directory (`vandelay.local`) → Microsoft Entra Connect Sync → Microsoft Entra ID**
-
-This creates a hybrid identity model in which the on-premises Active Directory object and Microsoft Entra ID identity are connected rather than managed as unrelated accounts.
-
----
-
-## 1. Validate Existing Toronto Identities
-
-Before configuring synchronization, the existing Toronto Active Directory environment was reviewed.
-
-Seven users were already provisioned under the Toronto Users OU:
-
-- Eric Lund
-- Erik Wallace
-- Jay Martin
-- Lisa Brock
-- Lori Van Meter
-- Paul Merson
-- Shawn Rudey
-
-![Toronto Active Directory users before hybrid synchronization](images/01-toronto-ad-users-before-hybrid-sync.png)
-
-This established the on-premises identity population that would participate in the hybrid identity implementation.
+This established the on-premises identities that would be used for the hybrid identity test.
 
 ---
 
 ## 2. Validate User Principal Names
 
-Eric Lund was selected as the primary validation identity for the synchronization process.
+PowerShell was used to confirm that the Toronto users had UPNs aligned with the Vandelay Microsoft Entra tenant.
 
-His Active Directory account was reviewed to verify the User Principal Name configuration before synchronization.
+![Toronto Active Directory UPN validation](04-toronto-ad-upn-validation-before-sync.png)
 
-![Eric Lund Active Directory UPN before synchronization](images/02-eric-lund-ad-upn-before-sync.png)
-
-The corresponding Microsoft Entra identity was also reviewed before synchronization.
-
-![Eric Lund Entra identity before synchronization](images/03-eric-lund-entra-upn-before-sync.png)
-
-PowerShell was then used to validate the UPN configuration across the Toronto user population.
-
-![Toronto Active Directory UPN validation](images/04-toronto-ad-upn-validation-before-sync.png)
-
-This step helped ensure that identity attributes were prepared consistently before establishing synchronization.
+This reduced the chance of mismatched identities during synchronization.
 
 ---
 
 ## 3. Configure Microsoft Entra Connect Sync
 
-Microsoft Entra Connect Sync was installed on `Vandelay-DC01` and configured to connect the on-premises `vandelay.local` Active Directory forest with the Vandelay Health Microsoft Entra tenant.
+Microsoft Entra Connect Sync was installed on `Vandelay-DC01` and configured to connect `vandelay.local` with the Vandelay Microsoft Entra tenant.
 
-The configuration included:
+Password Hash Synchronization was enabled.
 
-- Active Directory forest connectivity
-- Microsoft Entra tenant connectivity
-- Source anchor configuration
-- Password Hash Synchronization
-- Synchronization services
-- Microsoft Entra ID export deletion protection
+![Microsoft Entra Connect configuration complete](14-entra-connect-configuration-complete.png)
 
-After configuration, Microsoft Entra Connect reported that configuration had completed successfully and that the synchronization process had been initiated.
-
-![Microsoft Entra Connect configuration complete](images/14-entra-connect-configuration-complete.png)
+The configuration completed successfully and synchronization was initiated.
 
 ---
 
-## 4. Validate Synchronized Identities in Microsoft Entra ID
+## 4. Validate Synchronized Users in Microsoft Entra ID
 
-After synchronization, the Microsoft Entra admin center was used to review the user population.
+After synchronization, the Microsoft Entra admin center showed synchronized users with **On-premises sync = Yes**.
 
-The synchronized Toronto identities displayed an **On-premises sync** status of **Yes**, confirming that Microsoft Entra recognized the accounts as synchronized identities.
+![Microsoft Entra ID synchronized users](15-entra-id-synchronized-users.png)
 
-![Microsoft Entra ID synchronized users](images/15-entra-id-synchronized-users.png)
-
-This represented the transition from independently maintained cloud identities to identities associated with the on-premises Active Directory environment.
+This confirmed that the cloud identities were now linked to the on-premises Active Directory environment.
 
 ---
 
 ## 5. Validate the Hybrid Identity Relationship
 
-Eric Lund's Entra identity was examined in greater detail to validate the relationship with his Active Directory account.
+Eric Lund was used as the primary validation identity.
 
-Microsoft Entra reported:
+Microsoft Entra showed:
 
 - **On-premises sync enabled:** Yes
-- **On-premises distinguished name:** Toronto Users OU
-- **On-premises immutable ID:** populated
+- **On-premises distinguished name:** populated
 - **On-premises SAM account name:** `Eric.Lund`
-- **On-premises security identifier:** populated
 - **On-premises domain name:** `vandelay.local`
+- **On-premises immutable ID:** populated
+- **On-premises security identifier:** populated
 
-![Hybrid identity on-premises synchronization details](images/16-hybrid-identity-on-premises-sync-details.png)
+![Hybrid identity on-premises synchronization details](16-hybrid-identity-on-premises-sync-details.png)
 
-These attributes provide direct evidence that the Entra identity is associated with an object originating from Vandelay Health's on-premises Active Directory environment.
-
----
-
-## 6. Validate the Active Directory Source Identity
-
-The same identity was then reviewed from the Active Directory side.
-
-Using **Active Directory Users and Computers → Attribute Editor**, Eric Lund's `userPrincipalName` attribute was validated against the identity appearing in Microsoft Entra ID.
-
-![Microsoft Entra Connect Active Directory UPN validation](images/17-entra-connect-ad-upn-validation.png)
-
-This provides validation from both sides of the hybrid identity relationship:
-
-**Active Directory identity → Entra Connect → Microsoft Entra identity**
+This provided direct evidence that Eric's Microsoft Entra identity was synchronized from Vandelay's on-premises Active Directory.
 
 ---
 
-## 7. Validate the Synchronization Scheduler
+## 6. Run a Manual Delta Synchronization
 
-Microsoft Entra Connect's synchronization scheduler was inspected using PowerShell:
+A manual delta synchronization was started with PowerShell:
 
 ```powershell
-Get-ADSyncScheduler
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+The command returned:
+
+```text
+Result
+------
+Success
+```
+
+![Microsoft Entra Connect manual delta synchronization](19-entra-connect-manual-delta-sync-success.png)
+
+This confirmed that the synchronization engine was operational and could process changes without waiting for the next scheduled cycle.
+
+---
+
+## Result
+
+Vandelay successfully established a working hybrid identity connection between Active Directory and Microsoft Entra ID.
+
+The completed workflow was:
+
+**Prepare identities → configure Entra Connect → synchronize → validate in Entra → confirm hybrid attributes → run delta sync**
+
+---
+
+## What I Practiced
+
+- Active Directory identity administration
+- Microsoft Entra ID
+- Microsoft Entra Connect Sync
+- Hybrid identity
+- Password Hash Synchronization
+- UPN validation
+- PowerShell
+- Delta synchronization
+- Post-change validation
+- Troubleshooting DNS and synchronization issues
+
+---
+
+*Vandelay Health and the business scenario in this project are fictional and were created for hands-on IAM training.*
