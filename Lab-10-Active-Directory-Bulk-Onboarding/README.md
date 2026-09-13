@@ -51,7 +51,7 @@ Seven acquired employees were provisioned into the Toronto Users OU:
 - Paul Merson
 - Shawn Rudey
 
-![Toronto Bulk Users](screenshots/01-Toronto-Bulk-Users-ADUC.png)
+![Toronto Bulk Users](01-Toronto-Bulk-Users-ADUC.png)
 
 ---
 
@@ -63,13 +63,13 @@ PowerShell imported the data and updated the corresponding Active Directory user
 
 The resulting attributes were then queried to verify that the bulk operation succeeded.
 
-![Bulk AD Attribute Update and PowerShell Verification](screenshots/02-Bulk-AD-Attribute-Update-PowerShell-Verification.png)
+![Bulk AD Attribute Update and PowerShell Verification](02-Bulk-AD-Attribute-Update-PowerShell-Verification.png)
 
 The same information was independently reviewed in Active Directory Users and Computers.
 
 For example, Eric Lund was configured as a **Systems Analyst** in **Information Technology**.
 
-![ADUC Attribute Verification](screenshots/03-ADUC-Attribute-Verification.png)
+![ADUC Attribute Verification](03-ADUC-Attribute-Verification.png)
 
 ---
 
@@ -82,7 +82,7 @@ Global Security Groups were created in the Toronto Groups OU for the departments
 - `SG-TOR-IT`
 - `SG-TOR-Operations`
 
-![Toronto Security Groups](screenshots/04-Toronto-Security-Groups-ADUC.png)
+![Toronto Security Groups](04-Toronto-Security-Groups-ADUC.png)
 
 This separates the employee's directory location from the access structure associated with the employee's business function.
 
@@ -94,11 +94,11 @@ PowerShell was used to assign Toronto employees to security groups according to 
 
 The resulting memberships were queried to verify the initial access state.
 
-![Toronto Group Membership Verification](screenshots/05-Toronto-Group-Membership-Verification.png)
+![Toronto Group Membership Verification](05-Toronto-Group-Membership-Verification.png)
 
 The Toronto user population was also reviewed in ADUC to confirm that all seven acquired identities remained present within the expected organizational structure.
 
-![Toronto Users OU](screenshots/06-toronto-users-ou.png)
+![Toronto Users OU](06-toronto-users-ou.png)
 
 ---
 
@@ -116,7 +116,7 @@ Jay Martin and Paul Merson did not require Operations membership and were remove
 
 The group was then queried again, confirming that only Shawn Rudey remained.
 
-![Toronto Operations Membership Validation](screenshots/08-toronto-operations-membership-validation.png)
+![Toronto Operations Membership Validation](08-toronto-operations-membership-validation.png)
 
 This demonstrates an important part of bulk onboarding: **automation must still be validated**. A successful script execution does not necessarily mean that every resulting access assignment is correct.
 
@@ -128,11 +128,11 @@ Final membership was reviewed directly in Active Directory Users and Computers.
 
 The Innovation Center access population contained the six expected employees:
 
-![Innovation Center Group Membership](screenshots/09-sg-tor-ic-users-membership.png)
+![Innovation Center Group Membership](09-sg-tor-ic-users-membership.png)
 
 Toronto Operations contained only Shawn Rudey:
 
-![Operations Group Membership](screenshots/10-sg-tor-operations-membership.png)
+![Operations Group Membership](10-sg-tor-operations-membership.png)
 
 The final validation confirmed that inappropriate Operations access had been removed while legitimate access remained intact.
 
