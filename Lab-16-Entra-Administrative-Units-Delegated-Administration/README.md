@@ -251,13 +251,19 @@ Shows the completed AU-Toronto Administrative Unit and its eight member identiti
 
 This establishes the population that falls within the delegated administrative boundary.
 
+![AU-Toronto Membership](Lab16_01_AU-Toronto_Membership.png)
+
 ### Screenshot 02 — Administrative Role Configuration
 
 Shows the User Administrator role being used for delegated administration within the Microsoft Entra environment.
 
+![AU-Toronto Scoped User Administrator](Lab16_02_AU-Toronto_Scoped-User-Administrator.png)
+
 ### Screenshot 03 — Scoped User Administrator Assignment
 
 Shows Shawn Rudey with an active User Administrator assignment scoped specifically to AU-Toronto rather than the entire tenant.
+
+![AU-Toronto Scoped Administration - Eric Lund](Lab16_03_AU-Toronto_Scoped-Administration_Eric-Lund.png)
 
 ### Screenshot 04 — Delegated Administration Positive Test
 
@@ -267,11 +273,15 @@ Because Eric belongs to AU-Toronto, administrative user-management controls are 
 
 The screenshot also captures the password-writeback limitation associated with Eric's synchronized Active Directory identity.
 
+![AU-Toronto Delegated Admin Positive Test](Lab16_04_AU-Toronto-Delegated-Admin-Positive-Test.png)
+
 ### Screenshot 05 — Out-of-Scope Negative Test
 
 Shows EX - Jarvis Miller while authenticated as Shawn Rudey.
 
 Jarvis is not a member of AU-Toronto. Administrative controls including Edit properties, Delete, Reset password, and Revoke sessions are disabled, demonstrating enforcement of the delegated administrative boundary.
+
+![AU-Toronto Out-of-Scope Negative Test](Lab16_05-AU-Toronto-Out-of-Scope-Negative-Test.png)
 
 ---
 
