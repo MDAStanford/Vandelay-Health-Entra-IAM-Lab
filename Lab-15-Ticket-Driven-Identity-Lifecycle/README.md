@@ -1,5 +1,11 @@
 # Lab 15 — Ticket-Driven Identity Lifecycle Operations
 
+**Vandelay Health** is a fictional healthcare technology company headquartered in Santa Monica, California and the company behind the **Ninja Sleeper** — an ultra-light, compact and virtually noiseless CPAP system designed for travelers who need to sleep comfortably in flight without disturbing fellow passengers.
+
+The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
+
+---
+
 ## Overview
 
 This lab simulates two HR-driven identity lifecycle tickets at Vandelay Health: onboarding a new employee and terminating access for a departing employee.
