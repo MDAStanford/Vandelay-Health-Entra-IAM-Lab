@@ -35,6 +35,7 @@ I then:
 
 ### Validation
 
+
 ![Joe Cantoni AD Account Validation](Lab15-01-Joe-Cantoni-AD-Account-Validation.png)
 
 The new Active Directory account was validated before access was assigned.
@@ -43,7 +44,7 @@ The new Active Directory account was validated before access was assigned.
 
 Joe's membership in `SG-TOR-IC-Users` confirmed that the approved IC access had been assigned.
 
-![Joe Cantoni Entra ID Validation](Lab15-03-Joe-Cantoni-Entra-ID-Validation.png)
+![Joe Cantoni Delta Sync Success](Lab15-03-Joe-Cantoni-Delta-Sync-Success.png)
 
 After synchronization, Joe's identity was confirmed in Microsoft Entra ID.
 
