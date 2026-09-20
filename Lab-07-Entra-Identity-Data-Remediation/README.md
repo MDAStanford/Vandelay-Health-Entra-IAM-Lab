@@ -105,10 +105,10 @@ His identity confirms:
 
 - **Job title:** Financial Analyst
 - **Department:** Finance
-- **Office location:** Toronto
+- **Office location:** Santa Monica
 - **Manager:** James Patel (CFO)
 
-The fact that Daniel works in Toronto does not by itself justify membership in an Innovation Center security group.
+Daniel is based in Santa Monica, not the Toronto Innovation Center. His location and Finance role provide no documented business basis for membership in an Innovation Center security group.
 
 His identity information provides no documented business basis for the additional entitlement.
 
