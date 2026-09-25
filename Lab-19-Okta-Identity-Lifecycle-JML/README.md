@@ -107,12 +107,41 @@ This models a clean voluntary-separation workflow while preserving identity hist
 
 ## Evidence
 
-1. **01-Joiner-Group-Membership-VJ-Praheet** — VJ added to the Shipping & Receiving business-role group.
-2. **02-Joiner-Portal-Access-Via-Group** — 3PL Warehouse Operations Portal inherited through the Shipping & Receiving group.
-3. **03-Mover-Warehouse-Management-Group** — VJ's new Warehouse Management group membership.
-4. **04-Mover-Management-Group-Bob-and-VJ** — Bob Gillespie and VJ validated in the same Warehouse Management group.
-5. **05-Mover-Portal-Access-Via-Management-Group** — Portal assignment source updated to the Warehouse Management group.
-6. **06-Leaver-Deactivated-Application-Access-Removed** — VJ deactivated and application access removed.
+### 01 — Joiner: Shipping & Receiving Group Membership
+
+VJ added to the Shipping & Receiving business-role group.
+
+![Joiner group membership](01-Joiner-Group-Membership-VJ-Praheet.png)
+
+### 02 — Joiner: Portal Access via Group
+
+3PL Warehouse Operations Portal inherited through the Shipping & Receiving group.
+
+![Joiner portal access via group](02-Joiner-Portal-Access-Via-Group.png)
+
+### 03 — Mover: Warehouse Management Group
+
+VJ's new Warehouse Management group membership.
+
+![Mover warehouse management group](03-Mover-Warehouse-Management-Group.png)
+
+### 04 — Mover: Bob and VJ in Management Group
+
+Bob Gillespie and VJ validated in the same Warehouse Management group.
+
+![Bob and VJ management group](04-Mover-Management-Group-Bob-and-VJ.png)
+
+### 05 — Mover: Portal Access via Management Group
+
+Portal assignment source updated to the Warehouse Management group.
+
+![Mover portal access via management group](05-Mover-Portal-Access-Via-Management-Group.png)
+
+### 06 — Leaver: Deactivation and Access Removal
+
+VJ deactivated and application access removed.
+
+![Leaver deactivated and application access removed](06-Leaver-Deactivated-Application-Access-Removed.png)
 
 No passwords, recovery secrets, authentication secrets, or enrollment codes are included in the repository evidence.
 
