@@ -66,6 +66,9 @@ Connects Vandelay's on-premises Active Directory environment to Microsoft Entra 
 ### Lab 15 — Ticket-Driven Identity Lifecycle Operations
 Works two HR-driven IAM tickets end to end: onboarding Joe Cantoni with standard Toronto IC access and offboarding Paul Merson by disabling his account, removing access, synchronizing changes, and validating the results in Entra ID.
 
+### Lab 20 — Entra Identity Security Posture Assessment
+Assesses the current-state Microsoft Entra ID identity security architecture across lifecycle management, privileged access, Conditional Access, entitlement governance, and external identities; documents four evidence-supported findings, identifies effective controls, and defines target-state architecture recommendations without modifying the assessed environment.
+
 ---
 
 ## Technical Skills Demonstrated
