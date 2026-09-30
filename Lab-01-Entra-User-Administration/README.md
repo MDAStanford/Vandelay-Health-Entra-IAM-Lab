@@ -74,11 +74,11 @@ Keeping the two separate makes it easier for me to understand **why someone belo
 
 ---
 
-### 5. Separate Executive Access from Administrative Privilege
+### 5. Keep Executive Access Separate from Admin Access
 
-Vandelay Health's CEO, Sarah Mitchell, requires broad business access as the company's senior executive, but her position does not create a business need for administrative control of the identity environment.
+Sarah Mitchell is Vandelay Health's CEO, so she needs broad access to company resources—but being CEO doesn't mean she needs administrative control over our identity environment.
 
-Her identity is assigned to the appropriate Executive security and Microsoft 365 groups without receiving an administrative role. This establishes a basic least-privilege principle: **organizational authority does not automatically justify technical privilege**.
+I added Sarah to the appropriate **Executive security and Microsoft 365 groups**, but I did not assign her an Entra administrative role. This is a straightforward example of **least privilege: give someone the access they need to do their job, but no more than they need.**
 
 ![CEO User Profile](06-CEO-User-Profile.png)
 
