@@ -46,9 +46,9 @@ I'm starting with **39 user identities and 15 groups**. The tenant has Microsoft
 
 ### 2. Build the Workforce Identity Population
 
-Vandelay employees were created as individual workforce identities representing executive leadership and functional teams across IT, Finance, Human Resources, Information Security, Legal/Compliance, and Supply Chain.
+I created Entra identities for Vandelay Health employees across our major business teams, including IT, Finance, Human Resources, Information Security, Legal/Compliance, and Supply Chain.
 
-User profiles include organizational information that provides business context for each identity and supports later access, lifecycle, and governance decisions.
+For each employee, I added organizational information such as their department, job title, location, and manager. These details aren't just descriptive—they'll help me make decisions about **who should have access to what**, automate identity changes, and review access as the environment grows.
 
 ![All Users](02-All-Users.png)
 
