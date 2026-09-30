@@ -50,9 +50,7 @@ I created Entra identities for Vandelay Health employees across our major busine
 
 For each employee, I added organizational information such as their department, job title, location, and manager. These details aren't just descriptive—they'll help me make decisions about **who should have access to what**, automate identity changes, and review access as the environment grows.
 
-![All Users](02-All-Users.png)
-
-![User Properties](03-User-Properties.png)
+![Workforce Identities](02-All-Users.png)
 
 ---
 
