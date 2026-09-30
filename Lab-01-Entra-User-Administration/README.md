@@ -16,21 +16,21 @@ This lab establishes the **identity foundation** that later Vandelay Health IAM 
 
 ---
 
-## IAM Requirements
+## My IAM Requirements
 
-To establish Vandelay Health's initial identity environment, IAM needed to:
+Before I can start implementing more advanced IAM controls, I need to establish the basic Vandelay Health identity environment in Microsoft Entra ID. My initial requirements are to:
 
-- Establish a realistic workforce identity population.
-- Organize employees according to their business functions and reporting relationships.
-- Create departmental security groups for access management.
-- Establish separate Microsoft 365 groups for collaboration.
-- Maintain accurate identity attributes for future lifecycle and governance decisions.
-- Ensure executive identities do not receive administrative privilege simply because of organizational seniority.
-- Separate day-to-day administrative access from emergency tenant access.
-- Establish a dedicated Break Glass identity for tenant recovery.
-- Document and validate the baseline environment for future IAM controls.
+- Create the Vandelay Health workforce identities and make sure each user has accurate organizational information.
+- Organize employees by department and business function.
+- Create security groups that I can use to manage access by department rather than user by user.
+- Create separate Microsoft 365 groups for collaboration.
+- Maintain identity attributes that I can use later for lifecycle management, dynamic groups, and access governance.
+- Keep executive business access separate from administrative privilege.
+- Use a dedicated administrative account for privileged IAM work rather than my normal user account.
+- Create a separate Break Glass account for emergency tenant access.
+- Validate the environment so I know the identity foundation is working before I build additional controls on top of it.
 
-- ---
+----
 
 ## Implementation
 
