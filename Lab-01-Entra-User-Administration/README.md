@@ -66,9 +66,9 @@ I created security groups for **Executive, Finance, Human Resources, IT, Legal/C
 
 ### 4. Separate Collaboration from Security Access
 
-Microsoft 365 groups were established separately from the departmental security-group structure.
+I kept Microsoft 365 groups separate from my security groups because they serve different purposes. I use the security groups to manage access, while the Microsoft 365 groups give employees access to collaboration resources for their teams.
 
-This allows Vandelay to distinguish **collaboration membership** from **authorization-oriented security membership**, providing a clearer foundation for managing different types of access as the organization grows.
+Keeping the two separate makes it easier for me to understand **why someone belongs to a group** and prevents collaboration membership from becoming mixed up with security access.
 
 ![Microsoft 365 Groups](05-Microsoft-365-Groups.png)
 
