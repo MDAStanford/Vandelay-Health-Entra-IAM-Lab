@@ -34,11 +34,11 @@ Before I can start implementing more advanced IAM controls, I need to establish 
 
 ## Implementation
 
-### 1. Establish the Microsoft Entra ID Tenant
+### 1. Set Up the Microsoft Entra ID Tenant
 
-The Vandelay Health Microsoft Entra ID tenant was established as the company's cloud identity environment. The tenant provides the foundation for workforce identities, group-based access, Microsoft 365 collaboration, administrative roles, and the governance controls introduced in later labs.
+I started by setting up Microsoft Entra ID as Vandelay Health's cloud identity environment. This is where I'll manage our users, groups, administrative roles, and the identity controls we'll introduce as the environment grows.
 
-The baseline environment contains **39 user identities and 15 groups**, with Microsoft Entra ID P2 licensing available for advanced identity governance and privileged-access capabilities.
+I'm starting with **39 user identities and 15 groups**. The tenant has Microsoft Entra ID P2 licensing, which gives me access to the identity governance and privileged-access features I'll use in later labs.
 
 ![Tenant Overview](01-Tenant-Overview.png)
 
