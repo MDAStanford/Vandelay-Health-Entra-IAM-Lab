@@ -54,11 +54,11 @@ For each employee, I added organizational information such as their department, 
 
 ---
 
-### 3. Establish Department-Based Access Groups
+### 3. Organize Access with Security Groups
 
-Departmental security groups were created to organize access according to business function rather than assigning permissions independently to individual employees.
+Rather than managing access one employee at a time, I created security groups based on Vandelay Health's departments. This gives me a simpler way to manage access: when someone joins, changes roles, or leaves, I can update their group membership instead of managing every permission individually.
 
-The group structure includes dedicated security groups for Executive, Finance, Human Resources, IT, Legal/Compliance, Supply Chain, and Information Security.
+I created security groups for **Executive, Finance, Human Resources, IT, Legal/Compliance, Supply Chain, and Information Security**.
 
 ![Security Groups](04-Security-Groups.png)
 
