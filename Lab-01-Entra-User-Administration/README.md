@@ -8,11 +8,11 @@ The technology behind the Ninja Sleeper began as a **federal government contract
 
 ## Business Scenario
 
-As Vandelay Health expands the commercial business surrounding the Ninja Sleeper, the company needs a structured workforce identity environment capable of supporting employees across multiple departments while protecting access to sensitive company resources and proprietary product information.
+As Vandelay Health expands the commercial business surrounding the Ninja Sleeper, the company needs to establish its workforce identity environment in Microsoft Entra ID.
 
-Before more advanced IAM controls can be introduced, Vandelay must establish a reliable identity baseline: employees need accurate organizational identities, departments need appropriate security and collaboration groups, executives must receive business access without unnecessary administrative privilege, and IAM must maintain separate administrative and emergency-access identities.
+The first step is creating and organizing employee identities. Users need accurate account information, departments need appropriate security and Microsoft 365 groups, executives need business access without unnecessary administrative privileges, and IAM administrators need separate accounts for administrative and emergency access.
 
-This lab establishes that foundation in Microsoft Entra ID and creates the identity structure used by subsequent Vandelay Health IAM scenarios.
+This lab establishes the **identity foundation** that later Vandelay Health IAM scenarios will build upon.
 
 ---
 
