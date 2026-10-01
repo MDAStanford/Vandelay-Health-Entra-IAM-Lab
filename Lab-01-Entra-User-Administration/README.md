@@ -84,11 +84,11 @@ I added Sarah to the appropriate **Executive security and Microsoft 365 groups**
 
 ---
 
-### 6. Establish a Dedicated IAM Administrative Identity
+### 6. Use a Separate Account for IAM Administration
 
-Administrative responsibilities are performed through a separate IAM administrative identity rather than through an executive or ordinary workforce account.
+For my day-to-day work, I use my regular Vandelay Health account. When I need to perform administrative work in Entra, I use a **separate IAM administrator account** instead.
 
-The IAM administrative identity holds the Global Administrator role and provides the privileged access required to configure and manage the Vandelay Health Microsoft Entra environment.
+I assigned the administrative account the **Global Administrator** role so I could configure and manage the Vandelay Health Entra environment. Keeping my normal account separate from my privileged account reduces the amount of time I'm operating with elevated permissions and helps protect administrative access.
 
 ![IAM Admin Profile](07-IAM-Admin-Profile.png)
 
