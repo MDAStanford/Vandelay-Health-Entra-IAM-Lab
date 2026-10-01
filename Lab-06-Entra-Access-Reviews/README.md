@@ -80,13 +80,11 @@ This demonstrated why a fallback reviewer matters: without one, an unavailable r
 
 ### 4. Review the Access Population
 
-The five members of `SG-IC-Users` were presented individually for certification through Microsoft My Access.
+I reviewed all five members of `SG-IC-Users` through Microsoft My Access.
 
-Microsoft Entra also displayed sign-in activity as a decision helper. Because the lab identities lacked recent sign-in activity, Entra recommended **Deny** based on inactivity.
+Microsoft Entra displayed sign-in activity as a decision helper and recommended **Deny** for all five users because the lab identities lacked recent sign-in activity.
 
-Those recommendations were treated as **decision-support signals rather than automatic decisions**.
-
-Business context remained the determining factor in whether each employee should retain access.
+I did not automatically accept those recommendations. I used the inactivity data as supporting evidence and evaluated each user's actual business need for Toronto access before making the final decision.
 
 ![Pending Access Decisions](07-access-review-pending-decisions-CLEAN.png)
 
