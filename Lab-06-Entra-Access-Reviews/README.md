@@ -196,6 +196,6 @@ The completed control flow was:
 
 Access that was appropriate when it was granted may not remain appropriate indefinitely.
 
-This lab demonstrates how Vandelay Health can use **Microsoft Entra Access Reviews to periodically recertify access, require accountable business decisions, remediate unnecessary entitlements, and retain evidence that the governance control actually worked**.
+In this lab, I used **Microsoft Entra Access Reviews** to recertify existing access, require accountable review decisions, remediate an unnecessary entitlement, and verify that the access change was completed.
 
-Lisa Brock's case also demonstrates an important distinction: **identity lifecycle and entitlement lifecycle are related, but they are not the same thing**. Her employment relationship with Vandelay has not ended, but her current need for Toronto access has changed.
+Lisa Brock's case also demonstrated an important distinction: **identity lifecycle and entitlement lifecycle are related, but they are not the same thing**. Her employment had not ended, but her current need for Toronto access had changed.
