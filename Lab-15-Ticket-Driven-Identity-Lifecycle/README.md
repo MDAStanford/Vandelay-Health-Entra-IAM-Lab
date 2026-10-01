@@ -8,9 +8,11 @@ The technology behind the Ninja Sleeper began as a **federal government contract
 
 ## Overview
 
-This lab simulates two HR-driven identity lifecycle tickets at Vandelay Health: onboarding a new employee and terminating access for a departing employee.
+In this lab, I worked two HR-driven identity lifecycle tickets for Vandelay Health: onboarding a new employee and terminating access for a departing employee.
 
-The work is performed across on-premises Active Directory and Microsoft Entra ID using the hybrid identity environment established in Lab 14.
+I performed the identity changes in **Active Directory**, synchronized them to **Microsoft Entra ID through Entra Connect**, and validated the resulting account and access changes before closing each ticket.
+
+This uses the hybrid identity environment I established in Lab 14.
 
 ---
 
