@@ -58,20 +58,11 @@ The reviewer was responsible for determining whether each employee still had a l
 
 ---
 
-### 2. Establish the Initial Certification State
+### 2. Establish the Initial Review Population
 
-Microsoft Entra identified five identities within the scope of the review.
+The access review identified **five members of `SG-IC-Users`** who required recertification.
 
-The initial state was:
-
-- **5 users requiring review**
-- **0 approved**
-- **0 denied**
-- **5 not reviewed**
-
-This established the starting point against which completion and remediation could later be validated.
-
-![Initial Access Review State](02-access-review-initial-state.png)
+All five began the review without a decision, giving me the population I needed to evaluate for continued Toronto access.
 
 ---
 
