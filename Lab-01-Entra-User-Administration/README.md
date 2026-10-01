@@ -94,11 +94,11 @@ I assigned the administrative account the **Global Administrator** role so I cou
 
 ---
 
-### 7. Establish Emergency Administrative Access
+### 7. Create an Emergency Access Account
 
-A dedicated `BREAK GLASS` identity was created to provide emergency Global Administrator access if normal administrative access becomes unavailable.
+I created a separate **Break Glass account** for situations where my normal administrative access isn't available. This account gives me an emergency way to regain administrative control of the Vandelay Health tenant.
 
-The account is separated from routine workforce and administrative identities and placed in the dedicated `SG-BreakGlass` security group. Its purpose is tenant recovery rather than normal administration.
+I assigned the account the **Global Administrator** role and placed it in the dedicated `SG-BreakGlass` security group. I don't use this account for normal administrative work—it's there specifically for emergency access and tenant recovery.
 
 ![Break Glass Account](08-Break-Glass-Account.png)
 
