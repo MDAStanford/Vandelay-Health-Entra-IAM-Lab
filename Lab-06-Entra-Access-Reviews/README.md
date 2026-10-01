@@ -132,17 +132,11 @@ This confirmed that the review was complete and no certification decisions remai
 
 ### 7. Review the Audit Evidence
 
-Microsoft Entra audit logs were reviewed to confirm that the access-review activity was recorded by the identity governance platform.
+I reviewed the **Microsoft Entra audit logs** to verify that the access-review activity was recorded.
 
-The audit trail provides traceability for:
+The audit trail captured the review workflow, including the review creation, reviewer decisions, and completion of the certification.
 
-- Reviewer accountability
-- Control validation
-- Compliance review
-- Investigation of access changes
-- Internal and external audit evidence
-
-This provides evidence that the certification occurred through Vandelay's formal identity governance process rather than through an undocumented manual access change.
+This gave me evidence that the access decisions were made through the formal **Access Review process**, rather than through undocumented manual changes.
 
 ![Access Review Audit Log](10-access-review-audit-log-CLEAN.png)
 
