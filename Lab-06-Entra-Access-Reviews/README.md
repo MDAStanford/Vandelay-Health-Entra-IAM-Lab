@@ -19,19 +19,16 @@ Rather than removing her access as a one-off administrative change, I used **Mic
 
 ## IAM Requirements
 
-To perform the Toronto access recertification, IAM needed to:
+For the Toronto access recertification, I needed to:
 
-- Review membership in `SG-IC-Users`.
-- Establish accountable reviewers for access certification.
-- Provide a fallback reviewer if the resource owner is unavailable.
-- Evaluate each user's continued business need for access.
-- Use sign-in activity as decision support without allowing telemetry to replace business judgment.
-- Require reviewer justification for certification decisions.
-- Retain access for employees with a continuing business requirement.
-- Remove Lisa Brock's Toronto entitlement while retaining her underlying workforce identity.
-- Apply certification results to the governed resource.
+- Review membership in `SG-IC-Users` and determine whether each user still had a legitimate business need for access.
+- Establish an accountable reviewer and a fallback reviewer so the certification could proceed if the resource owner was unavailable.
+- Use sign-in activity as **decision support**, while keeping the final access decision based on business context.
+- Require justification for review decisions and retain evidence of the certification process.
+- Preserve access for employees with a continuing business need while removing Lisa Brock's Toronto entitlement without disabling her workforce identity.
+- Apply the completed review decisions to the governed resource.
 - Verify that denied access was actually removed.
-- Preserve audit evidence of the review and remediation process.
+
 
 ---
 
