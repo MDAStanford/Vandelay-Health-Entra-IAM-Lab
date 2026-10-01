@@ -68,13 +68,11 @@ All five began the review without a decision, giving me the population I needed 
 
 ### 3. Establish Reviewer Accountability
 
-The review was designed around **resource-owner accountability**, with the owner of the governed access responsible for determining whether membership remained appropriate.
+I configured the review so the **resource owner** was responsible for deciding whether each user's access remained appropriate.
 
-During implementation, an available resource owner was not present to perform the review.
+When the resource owner wasn't available to perform the review, I used the configured **fallback reviewer** to keep the certification process moving through Microsoft My Access.
 
-Rather than abandoning the governance model or allowing the review to stall, the configured fallback reviewer was used to continue the certification process through Microsoft My Access.
-
-This exposed an important operational issue: access governance depends not only on technology, but also on clearly established ownership and escalation paths.
+This demonstrated why a fallback reviewer matters: without one, an unavailable resource owner can delay or stall an access review.
 
 ![Assigned Access Review](06-myaccess-access-review-assigned-CLEAN.png)
 
