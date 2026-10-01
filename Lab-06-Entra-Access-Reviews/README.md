@@ -36,15 +36,15 @@ For the Toronto access recertification, I needed to:
 
 ### 1. Configure the Access Review
 
-A resource-based Microsoft Entra Access Review was created to recertify membership in `SG-IC-Users`.
+I created a **Microsoft Entra Access Review** to recertify membership in `SG-IC-Users`.
 
-The review was configured with:
+I configured the review with:
 
 - **Review scope:** All users
-- **Reviewer model:** Resource owner
+- **Reviewer:** Resource owner
 - **Fallback reviewer:** Configured
-- **Review duration:** 3 days
-- **Review recurrence:** One time
+- **Duration:** 3 days
+- **Recurrence:** One time
 - **Auto-apply results:** Enabled
 - **No reviewer response:** No change
 - **30-day sign-in inactivity decision helper:** Enabled
@@ -52,7 +52,7 @@ The review was configured with:
 - **Email notifications:** Enabled
 - **Reminders:** Enabled
 
-The reviewer was instructed to evaluate each employee's continued business requirement for Toronto access.
+The reviewer was responsible for determining whether each employee still had a legitimate business need for Toronto access.
 
 ![Access Review Settings](01-access-review-settings-CLEAN.png)
 
