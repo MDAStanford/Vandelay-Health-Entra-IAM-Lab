@@ -58,7 +58,7 @@ The review was configured with:
 
 The reviewer was instructed to evaluate each employee's continued business requirement for Toronto access.
 
-![Access Review Settings](01-access-review-settings.png)
+![Access Review Settings](01-access-review-settings-CLEAN.png)
 
 ---
 
@@ -89,7 +89,7 @@ Rather than abandoning the governance model or allowing the review to stall, the
 
 This exposed an important operational issue: access governance depends not only on technology, but also on clearly established ownership and escalation paths.
 
-![Assigned Access Review](06-myaccess-access-review-assigned.png)
+![Assigned Access Review](06-myaccess-access-review-assigned-CLEAN.png)
 
 ---
 
@@ -103,7 +103,7 @@ Those recommendations were treated as **decision-support signals rather than aut
 
 Business context remained the determining factor in whether each employee should retain access.
 
-![Pending Access Decisions](07-access-review-pending-decisions.png)
+![Pending Access Decisions](07-access-review-pending-decisions-CLEAN.png)
 
 ---
 
@@ -147,7 +147,7 @@ Final results:
 
 This confirmed that no certification decisions remained outstanding.
 
-![Completed Access Review](09-access-review-completed-decisions.png)
+![Completed Access Review](09-access-review-completed-decisions-CLEAN.png)
 
 ---
 
@@ -165,7 +165,7 @@ The audit trail provides traceability for:
 
 This provides evidence that the certification occurred through Vandelay's formal identity governance process rather than through an undocumented manual access change.
 
-![Access Review Audit Log](10-access-review-audit-log.png)
+![Access Review Audit Log](10-access-review-audit-log-CLEAN.png)
 
 ---
 
@@ -186,7 +186,7 @@ Lisa Brock was no longer a member.
 
 Her underlying Microsoft Entra identity remained intact because she was still associated with Vandelay Health.
 
-![Remediation Verification](12-remediation-verified-group-membership.png)
+![Remediation Verification](12-remediation-verified-group-membership-CLEAN.png)
 
 ---
 
