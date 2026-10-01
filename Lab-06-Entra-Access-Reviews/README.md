@@ -8,13 +8,12 @@ The technology behind the Ninja Sleeper began as a **federal government contract
 
 ## Business Scenario
 
-Following the expansion of Vandelay Health's Toronto Innovation Center, IAM needs to confirm that employees who received Toronto access still have a legitimate business requirement for it.
+Following the expansion of Vandelay Health's Toronto Innovation Center, I needed to verify that employees with Toronto access still had a legitimate business need for it.
 
-During the review, **Lisa Brock is identified as being on an extended leave of absence to provide end-of-life care for an elderly family member**. Her return date is currently undetermined.
+During the review, I identified **Lisa Brock**, who was on an extended leave of absence with no confirmed return date. Lisa remained an employee, so disabling her identity wasn't appropriate, but she no longer had a current need for Toronto Innovation Center access.
 
-Lisa remains a Vandelay Health employee, so disabling or deleting her identity would be inappropriate. However, because she is not actively working, she does not currently require access associated with the Toronto Innovation Center.
+Rather than removing her access as a one-off administrative change, I used **Microsoft Entra Access Reviews** to recertify the entire Toronto access group. This gave me a documented process for reviewing each user's access, recording approval or denial decisions, removing access that was no longer justified, and retaining evidence of the review.
 
-Rather than removing the entitlement through an undocumented administrative change, Vandelay will use **Microsoft Entra Access Reviews** to formally recertify the Toronto access population, document reviewer decisions, remove access that is no longer justified, and retain evidence of the governance process.
 
 ---
 
