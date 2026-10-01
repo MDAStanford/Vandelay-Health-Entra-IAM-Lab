@@ -165,20 +165,17 @@ Her underlying Microsoft Entra identity remained intact because she was still as
 
 ## Validation
 
-The completed governance process confirmed that:
+I validated the completed access review and confirmed that:
 
-- All five identities received a certification decision.
-- Four employees retained access based on continuing business need.
-- Lisa Brock's Toronto entitlement was denied.
-- Lisa's underlying workforce identity was retained.
-- Automated inactivity recommendations did not override documented business context.
-- Reviewer justification was captured.
-- No certification decisions remained outstanding.
-- The denied entitlement was automatically remediated.
-- Lisa was independently confirmed as removed from `SG-IC-Users`.
-- Microsoft Entra retained audit evidence of the governance activity.
+- All **five users** received a certification decision.
+- **Four users retained access** based on continuing business need.
+- **Lisa Brock's Toronto access was denied** while her workforce identity remained active.
+- Entra's inactivity recommendations were used as decision support rather than automatically determining access.
+- Reviewer justification and audit evidence were retained.
+- The denied entitlement was automatically applied, removing Lisa from `SG-IC-Users`.
+- I independently verified that Lisa was no longer a member of the group.
 
-The end-to-end control can be summarized as:
+The completed control flow was:
 
 **Identify access → Assign accountability → Review business need → Certify access → Document decisions → Remediate unnecessary access → Verify the outcome**
 
