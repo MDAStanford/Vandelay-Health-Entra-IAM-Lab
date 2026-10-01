@@ -114,7 +114,7 @@ I also recorded reviewer justification so the certification retained the busines
 
 ### 6. Validate the Completed Review
 
-The Microsoft Entra administrative view was reviewed after certification to confirm that the entire population had been evaluated.
+After completing the certification, I checked the Microsoft Entra administrative view to verify that all five users had been reviewed.
 
 Final results:
 
@@ -124,7 +124,7 @@ Final results:
 - **0 not reviewed**
 - **0 don't know**
 
-This confirmed that no certification decisions remained outstanding.
+This confirmed that the review was complete and no certification decisions remained outstanding.
 
 ![Completed Access Review](09-access-review-completed-decisions-CLEAN.png)
 
