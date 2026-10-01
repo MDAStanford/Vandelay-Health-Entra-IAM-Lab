@@ -116,17 +116,19 @@ This gives me a simple validation step: **the right people are in the group, the
 
 ## Validation
 
-The completed environment was reviewed to confirm that:
+Before moving on, I reviewed the environment to make sure the identity foundation I built was working the way I intended.
 
-- Workforce identities were present and associated with appropriate organizational information.
-- Departmental security groups reflected Vandelay's functional structure.
-- Microsoft 365 collaboration groups were maintained separately from security groups.
-- Executive identities received appropriate business access without unnecessary administrative privilege.
-- Administrative privilege was assigned to the dedicated IAM administrative identity.
-- Emergency Global Administrator access was maintained through the separate Break Glass identity.
-- Group ownership and membership could be verified in Microsoft Entra ID.
+I confirmed that:
 
-The resulting tenant provides a documented identity and access baseline for the more advanced lifecycle, authentication, governance, and privileged-access controls introduced in later Vandelay Health labs.
+- Employees had the correct identity and organizational information.
+- Security groups matched Vandelay Health's departments.
+- Microsoft 365 collaboration groups were separate from security groups.
+- Sarah Mitchell had the business access she needed without an administrative role.
+- My IAM administrator account had the required administrative access.
+- The Break Glass account was available for emergency administrative access.
+- Security groups had the expected owners and members.
+
+With those checks complete, I had a working identity foundation that I could build on in later labs with **Conditional Access, SSO, access reviews, PIM, lifecycle management, and identity governance**.
 
 ---
 
