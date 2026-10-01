@@ -183,17 +183,12 @@ The completed control flow was:
 
 ## IAM Controls Demonstrated
 
-- **Access Reviews** — periodically evaluate whether existing access remains appropriate.
-- **Access recertification** — require an accountable reviewer to approve or deny continued access.
-- **Entitlement lifecycle management** — remove access without unnecessarily terminating the underlying identity.
-- **Reviewer accountability** — associate access decisions with responsible business reviewers.
-- **Fallback review** — maintain the certification process when the primary resource owner is unavailable.
-- **Decision support** — use identity telemetry to inform rather than replace business judgment.
-- **Reviewer justification** — document the business rationale supporting access decisions.
-- **Automated remediation** — apply denied certification results to the governed resource.
-- **Least privilege** — remove access when a current business requirement no longer exists.
-- **Audit evidence** — retain traceable records of governance activity.
-- **Post-remediation validation** — verify that a governance decision produced the intended access change.
+- **Access reviews and recertification** — evaluated whether existing Toronto access remained justified and recorded approval or denial decisions.
+- **Reviewer accountability** — assigned responsibility for access decisions and used a fallback reviewer when the primary reviewer was unavailable.
+- **Decision support** — used Entra sign-in activity to inform decisions without allowing inactivity recommendations to replace business judgment.
+- **Least privilege** — removed access when a current business requirement no longer existed without terminating the employee's identity.
+- **Automated remediation** — applied the denied review decision to remove Lisa Brock from `SG-IC-Users`.
+- **Audit and validation** — retained evidence of the review and verified that the denied entitlement was actually removed.
 
 ---
 
