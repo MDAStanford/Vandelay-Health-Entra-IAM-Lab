@@ -134,14 +134,14 @@ With those checks complete, I had a working identity foundation that I could bui
 
 ## IAM Controls Demonstrated
 
-- **Identity administration** — establish and maintain a defined workforce identity population.
-- **Identity attributes** — associate identities with organizational and business context.
-- **Group-based access** — manage access through security groups rather than relying on individual assignments.
-- **Collaboration separation** — distinguish Microsoft 365 collaboration membership from security-oriented access.
-- **Least privilege** — grant technical privilege according to job requirements rather than organizational seniority.
-- **Privileged account separation** — distinguish ordinary workforce identities from administrative identities.
-- **Emergency access** — maintain a dedicated Break Glass identity for tenant recovery.
-- **Access validation** — verify identity, group, ownership, and privilege assignments after implementation.
+- **Identity administration** — created and maintained a defined workforce identity population in Microsoft Entra ID.
+- **Identity attributes** — populated department, job title, location, and manager attributes to support access and lifecycle decisions.
+- **Group-based access control** — organized access through departmental security groups instead of individual user assignments.
+- **Collaboration and security separation** — maintained Microsoft 365 collaboration groups separately from security groups.
+- **Least privilege** — provided business access based on job requirements without unnecessary administrative privilege.
+- **Privileged account separation** — separated my standard workforce identity from the account used for Entra administration.
+- **Emergency access** — maintained a dedicated Break Glass identity for tenant recovery.
+- **Access validation** — verified identities, group ownership and membership, and administrative role assignments after configuration.
 
 ---
 
