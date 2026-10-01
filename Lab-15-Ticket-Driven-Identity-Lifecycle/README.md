@@ -38,15 +38,15 @@ I then:
 ### Validation
 
 
-![Joe Cantoni AD Account Validation](Lab15-01-Joe-Cantoni-AD-Account-Validation.png)
+![Joe Cantoni AD Account Validation](Lab15-01-Joe-Cantoni-AD-Account-Validation-EDITED.png)
 
 The new Active Directory account was validated before access was assigned.
 
-![Joe Cantoni Group Membership Validation](Lab15-02-Joe-Cantoni-Group-Membership-Validation.png)
+![Joe Cantoni Group Membership Validation](Lab15-02-Joe-Cantoni-Group-Membership-Validation-EDITED.png)
 
 Joe's membership in `SG-TOR-IC-Users` confirmed that the approved IC access had been assigned.
 
-![Joe Cantoni Delta Sync Success](Lab15-03-Joe-Cantoni-Delta-Sync-Success.png)
+![Joe Cantoni Delta Sync Success](Lab15-03-Joe-Cantoni-Delta-Sync-Success-EDITED.png)
 
 After synchronization, Joe's identity was confirmed in Microsoft Entra ID.
 
@@ -81,11 +81,11 @@ I then:
 
 ### Validation
 
-![Paul Merson Pre-Termination Access](Lab15-04-Paul-Merson-Pre-Termination-Access.png)
+![Paul Merson Pre-Termination Access](Lab15-04-Paul-Merson-Pre-Termination-Access-EDITED.png)
 
 The pre-termination review confirmed that Paul's account was enabled and had IC group access.
 
-![Paul Merson AD Offboarding Validation](Lab15-05-Paul-Merson-AD-Offboarding-Validation.png)
+![Paul Merson AD Offboarding Validation](Lab15-05-Paul-Merson-AD-Offboarding-Validation-EDITED.png)
 
 The account was disabled and the assigned IC security-group access was removed.
 
