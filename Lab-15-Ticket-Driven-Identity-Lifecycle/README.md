@@ -23,17 +23,17 @@ This uses the hybrid identity environment I established in Lab 14.
 **Department:** Innovation Center  
 **Request:** Provision a corporate identity and standard IC access.
 
-Before creating the account, I reviewed an existing Toronto IC user to confirm the appropriate organizational unit, identity attributes, and standard security-group access.
+Before creating Joe's account, I reviewed an existing Toronto Innovation Center user to confirm the correct **OU, identity attributes, and standard security-group access** for his role.
 
 I then:
 
-- Created Joe Cantoni in Active Directory.
+- Created Joe's account in **Active Directory**.
 - Configured his UPN and employee attributes.
-- Placed the account in the Toronto Users OU.
-- Assigned the standard `SG-TOR-IC-Users` security group.
-- Validated the account and group membership.
-- Ran an Entra Connect delta synchronization.
-- Confirmed that Joe appeared in Microsoft Entra ID.
+- Placed his account in the Toronto Users OU.
+- Added him to `SG-TOR-IC-Users` for standard Innovation Center access.
+- Verified the account and group membership in Active Directory.
+- Ran an **Entra Connect delta synchronization**.
+- Confirmed that Joe's identity synchronized to **Microsoft Entra ID**.
 
 ### Validation
 
