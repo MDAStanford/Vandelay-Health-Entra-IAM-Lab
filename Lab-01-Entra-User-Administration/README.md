@@ -104,11 +104,11 @@ I assigned the account the **Global Administrator** role and placed it in the de
 
 ---
 
-### 8. Validate Departmental Group Membership
+### 8. Check My Security Group Membership
 
-The Information Security security group was reviewed to confirm that departmental access was structured correctly, including group ownership and membership.
+After creating the departmental groups, I checked `SG-SEC-Users` to make sure the Information Security team was set up correctly. I reviewed both the **group owner and its members** rather than assuming the group was correct just because I had created it.
 
-`SG-SEC-Users` contains the designated Information Security identities and demonstrates how Vandelay can manage department-based access through groups rather than maintaining individual access assignments.
+This gives me a simple validation step: **the right people are in the group, the group has an owner, and I know who is responsible for it.**
 
 ![Information Security Group](09-Information-Security-Group.png)
 
