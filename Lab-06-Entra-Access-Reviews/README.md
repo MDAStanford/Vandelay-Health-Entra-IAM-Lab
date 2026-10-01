@@ -92,27 +92,23 @@ I did not automatically accept those recommendations. I used the inactivity data
 
 ### 5. Record Certification Decisions
 
-After reviewing the five identities, the following decisions were recorded:
+After reviewing the five identities, I recorded the following decisions:
 
-| User | Decision |
-| --- | --- |
+| **User** | **Decision** |
+|---|---|
 | Jay Martin | Approved |
 | Lisa Brock | **Denied** |
 | Lori Van Meter | Approved |
 | Paul Merson | Approved |
 | Sandra Melancon | Approved |
 
-The four employees with an ongoing business requirement were approved despite the inactivity recommendation.
+I approved the four employees who still had a business need for Toronto access despite Entra's inactivity recommendation.
 
-Lisa Brock's Toronto access was denied because she is on extended leave providing end-of-life care for an elderly family member and does not currently require the entitlement.
+I denied Lisa Brock's Toronto access because she was on extended leave and did not currently require the entitlement. I left her Microsoft Entra identity intact because she remained a Vandelay Health employee.
 
-Her Microsoft Entra identity remained intact because she remains a Vandelay Health employee.
+This was an **access change, not an identity termination**.
 
-This distinction is fundamental to identity governance: **a temporary change in an employee's circumstances may require an access change without requiring termination of the underlying identity**.
-
-Reviewer justification was recorded as part of the certification process, preserving an auditable business rationale for the access decision.
-
-![Completed Reviewer Decisions](08-access-review-completed-decisions.png)
+I also recorded reviewer justification so the certification retained the business rationale behind each decision.
 
 ---
 
