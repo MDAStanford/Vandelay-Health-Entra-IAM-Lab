@@ -147,7 +147,7 @@ With those checks complete, I had a working identity foundation that I could bui
 
 ## Key Takeaway
 
-Before Vandelay Health can automate employee lifecycle events, govern access to Ninja Sleeper intellectual property, protect privileged roles, or control external access, IAM needs a reliable identity foundation.
+Before I can automate employee lifecycle events, govern access to Ninja Sleeper intellectual property, protect privileged roles, or control external access, I need a reliable identity foundation.
 
 This lab establishes that foundation by defining **who the users are, where they belong, how access is organized, and which identities are authorized to administer the environment**.
 
