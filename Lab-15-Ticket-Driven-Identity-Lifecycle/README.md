@@ -4,7 +4,7 @@
 
 The technology behind the Ninja Sleeper began as a **federal government contract project**, developed to provide military personnel in the field with a quiet and highly portable sleep-apnea solution. Vandelay Health later adapted the technology for the commercial market, incorporating as much of the original proprietary intellectual property as possible into the consumer Ninja Sleeper platform.
 
-![Vandelay Health — Lab 15: Ticket-Driven Identity Lifecycle](Lab15-Cover-Paul-Offboarding.png)
+![Vandelay Health — Lab 15: Ticket-Driven Identity Lifecycle](Lab15-Cover-Paul-Offboarding-v2.png)
 
 ---
 
