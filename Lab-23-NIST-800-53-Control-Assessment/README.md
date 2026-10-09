@@ -14,7 +14,7 @@ Document control effectiveness, evidence limitations, potential deficiencies, re
 
 ## Assessment Report
 
-[Security Assessment Report — Working Draft v0.3](Security-Assessment-Report.md)
+[Security Assessment Report — Working Draft v0.4](Security-Assessment-Report.md)
 
 Updated October 9, 2026 with the October 8 Lab 15 follow-up evidence. The report includes the evidence mapping, assessment limitations, observation statuses, and next activities.
 
@@ -53,11 +53,23 @@ Additional authorization, policy, and entitlement-coverage limitations are detai
 
 These open items are evidence or assessment limitations, not confirmed security control failures. No POA&M items have been opened.
 
+## Control 2 — AC-6: Least Privilege
+
+**Evidence source:** Lab 08 — Privileged Identity Management.
+
+**Assessment method:** Examine documentation and readable screenshots.
+
+Readable group views support Eric's targeted membership change. PIM audit history supports eligibility, activation, and expired-activation removal events. The eligible-role view alone does not prove absence of active privilege.
+
+Five repository images could not be decoded; their downloaded bytes matched the repository blob hashes. Exact activation duration, justification, approval/MFA settings, complete privileges, and narrowest-role rationale remain insufficiently evidenced.
+
+**Assessment determination:** Partially assessed — selected outcomes supported; additional evidence required.
+
+No confirmed unresolved access-control deficiency has been established. Detailed evidence requests and observations appear in the report.
+
 ## Next Assessment
 
-AC-6 — Least Privilege
-
-**Status:** Not yet assessed.
+Authentication and multifactor authentication controls.
 
 ---
 
