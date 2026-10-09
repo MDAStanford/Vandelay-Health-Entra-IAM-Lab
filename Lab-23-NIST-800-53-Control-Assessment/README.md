@@ -12,6 +12,12 @@ Evaluate selected security controls against NIST SP 800-53 Revision 5 using evid
 
 Document control effectiveness, evidence limitations, potential deficiencies, remediation recommendations, and Plans of Action and Milestones (POA&Ms).
 
+## Assessment Report
+
+[Security Assessment Report — Working Draft v0.3](Security-Assessment-Report.md)
+
+Updated October 9, 2026 with the October 8 Lab 15 follow-up evidence. The report includes the evidence mapping, assessment limitations, observation statuses, and next activities.
+
 ## Control 1 — AC-2: Account Management
 
 **Evidence source:** Lab 15 — Ticket-Driven Identity Lifecycle Operations
@@ -29,9 +35,11 @@ Document control effectiveness, evidence limitations, potential deficiencies, re
 
 ### Assessment Results
 
-The available evidence supports execution of selected account provisioning and termination procedures.
+The available evidence supports selected account provisioning and termination outcomes: Joe's enabled AD account, IC group membership, corrected department and synchronized Entra identity; Paul's disabled AD account, specified IC group removal and disabled Entra identity.
 
-However, the existing documentation does not independently establish HR authorization timestamps, termination SLA compliance, or periodic account review effectiveness.
+Follow-up screenshots captured October 8 establish these states at the time of review. The delta synchronization command confirms request acceptance; Joe's updated Entra properties support arrival of the department correction.
+
+However, the reviewed documentation does not independently establish original HR approvals and timestamps, termination SLA compliance, complete entitlement and session termination, documented account-management requirements, or periodic account review effectiveness.
 
 **Assessment determination:** Partially assessed — insufficient evidence to conclude that the complete AC-2 control is satisfied.
 
@@ -41,7 +49,9 @@ However, the existing documentation does not independently establish HR authoriz
 
 **AC2-OBS-002:** Periodic account review effectiveness was not established by the reviewed Lab 15 artifacts.
 
-These are evidence limitations, not confirmed security control failures.
+Additional authorization, policy, and entitlement-coverage limitations are detailed in the report. Joe's initial department discrepancy was corrected and recorded as a resolved lab data observation.
+
+These open items are evidence or assessment limitations, not confirmed security control failures. No POA&M items have been opened.
 
 ## Next Assessment
 
