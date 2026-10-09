@@ -1,12 +1,12 @@
 # VANDELAY HEALTH
 
-## Security Assessment Report (SAR) — Working Draft v0.5
+## Security Assessment Report (SAR) — Scoped Assessment Report v1.0
 
 **Project:** SEC-2026-1023  
 **Prepared by:** Security & Compliance Analyst  
 **Assessment Framework:** NIST SP 800-53 Revision 5  
 **Assessment Procedures:** NIST SP 800-53A Revision 5  
-**Status:** Preliminary — Assessment in Progress  
+**Status:** Scoped evidence examination complete — follow-up evidence open  
 **Assessment Type:** Simulated Internal Security Control Assessment  
 **Updated:** October 9, 2026
 
@@ -20,7 +20,9 @@ The assessment focuses on account management, employee access, authentication, p
 
 The objective is to examine implementation evidence, identify supported security weaknesses, and recommend corrective actions.
 
-The initial AC-2 examination now includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and periodic account reviews remain insufficiently evidenced. The AC-6 examination supports selected PIM lifecycle events and a targeted group-membership change, with limitations concerning unreadable artifacts, complete privilege inventory, activation settings, and least-role rationale. The IA-2 review confirms Authenticator registration and a report-only MFA policy; the captured successful sign-in is single-factor, so MFA enforcement is not demonstrated. No final compliance determination has been made.
+This report completes a limited examination of existing portfolio evidence for AC-2, AC-6, and IA-2. It does not complete every assessment objective within those controls. Systems named in scope but without reviewed artifacts, including Okta, are not assessed.
+
+The initial AC-2 examination includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and a recurring account-review program remain insufficiently evidenced. Lab 06 supports one completed access recertification and a resulting direct-member list without Lisa Brock. The AC-6 examination supports selected PIM lifecycle events and a targeted group-membership change, with limitations concerning unreadable artifacts, complete privilege inventory, activation settings, and least-role rationale. The IA-2 review confirms Authenticator registration and a report-only MFA policy; the captured successful sign-in is single-factor, so MFA enforcement is not demonstrated. All three controls remain partially assessed. No overall compliance determination or confirmed unresolved access-control deficiency is established. This conclusion reflects limited evidence, not assurance that no weaknesses exist.
 
 ### 2. Assessment Scope
 
@@ -200,21 +202,50 @@ No conclusion is made that the complete IA-2 control or its MFA-related enhancem
 
 **POA&M determination:** No confirmed unresolved control deficiency established from the staged lab evidence alone. If required MFA coverage is subsequently confirmed absent, assess the resulting deficiency and open a POA&M item with supported scope and risk.
 
-### 5. Preliminary Findings
+#### 4.4 Supplemental AC-2 Examination — Access Recertification
+
+**Assessment method:** Examine Lab 06 documentation and six screenshots. No independent review execution or interview was performed.
+
+**Evidence source:** [Lab 06 — Access Reviews](../Lab-06-Entra-Access-Reviews/README.md).
+
+| Evidence | Visible result | Assessment use |
+|---|---|---|
+| Lab06-01 — review creation settings | Auto-apply checked; no response means no change; inactivity helper, justification, email and reminders checked | Supports settings selected in the creation wizard; not proof every setting persisted or executed |
+| Lab06-06 — My Access assignment | Toronto review for SG-IC-Users available to the signed-in reviewer | Supports reviewer access to the review |
+| Lab06-07 — initial overview | Five unreviewed users; August 15–18, 2026; recurrence One time; selected reviewers Selected users | Supports initial population, review period, and one-time design |
+| Lab06-09 — decision overview | Four approved, one denied, zero unreviewed; overview still says Active | Supports completion of decisions, not proof the review had ended at that screenshot |
+| Lab06-10 — audit history | Successful creation, four approval decisions, one denial, Access review ended, and decision summaries | Supports recorded review execution and ending |
+| Lab06-12 — final direct members | Four named members; Lisa Brock absent | Confirms Lisa is absent from the captured direct-member list |
+
+**Assessment observations:**
+
+The evidence supports execution of one access recertification and subsequent direct-membership state consistent with one denied entitlement. The audit records establish recorded decisions and review ending, supplementing the decision overview.
+
+The screenshots do not show a per-user results export naming Lisa as the denied subject or the detailed removal event linking automatic application to her membership change. The narrative attributes the denial to Lisa and the removal to auto-apply; these causal details remain incompletely corroborated. Lisa's continued enabled account state is not captured in this set.
+
+The initial overview identifies Selected users as reviewers. The narrative describes resource-owner and fallback arrangements, but those arrangements and the owner's unavailability are not independently visible. Reviewer justification text and business-need records are also not shown.
+
+**AC2-OBS-002 update:** One completed review is now supported. The remaining limitation concerns approved recurring review frequency, repeated execution over time, complete account/resource coverage, detailed decision rationale, and applied-result traceability. A one-time review does not demonstrate a recurring review program.
+
+This evidence also supplements AC-6 by showing direct group membership reduced after a review; it does not establish complete effective access, nested memberships, or removal from all related resources.
+
+**Determination:** Selected one-time recertification outcomes supported; broader periodic-review effectiveness remains partially assessed.
+
+### 5. Findings and Assessment Limitations
 
 Selected AC-2 account-management outcomes are supported by the reviewed evidence.
 
 | Observation | Status | Disposition |
 |---|---|---|
 | AC2-OBS-001 — Original termination timeliness not independently established | Open evidence limitation | Request defined SLA and original ticket/action timestamps |
-| AC2-OBS-002 — Periodic account review effectiveness not established | Open evidence limitation | Request review schedule, completed reviews, and corrective-action evidence |
+| AC2-OBS-002 — Recurring account review effectiveness not established | Partially resolved; follow-up open | One Lab 06 review supported; request recurring schedule, repeated execution, coverage, detailed decisions, and application records |
 | AC2-OBS-003 — Authorization and account-management requirements not independently established | Open evidence limitation | Request approvals, policy, responsibilities, and review requirements |
 | AC2-OBS-004 — Complete entitlement and session termination not assessed | Open assessment limitation | Identify applicable systems, entitlements, sessions, and required validation |
 | AC2-OBS-005 — Joe department differed from scenario requirement | Resolved lab data discrepancy | Corrected to Innovation Center; follow-up AD and Entra evidence retained |
 
 Earlier missing group and cloud-state validation is resolved by Lab15-07, Lab15-08, Lab15-10, and Lab15-12.
 
-No confirmed unresolved security control deficiencies have been established at this stage. Evidence limitations remain separate from verified security weaknesses.
+No confirmed unresolved security control deficiencies have been established within this evidence examination. Evidence limitations remain separate from verified security weaknesses.
 
 AC6-OBS-001: Five Lab 08 image artifacts were unreadable during examination. Obtain readable originals.
 
@@ -236,17 +267,23 @@ Confirmed unresolved deficiencies will be entered into a POA&M with documented r
 
 No POA&M items have been opened at this stage. The resolved department discrepancy remains documented in the observation record.
 
-### 7. Next Assessment Activities
+### 7. Follow-Up Activities
 
 - Complete the evidence request register for the remaining AC-2 limitations.
 - Resolve the AC-6 evidence limitations and review relevant privilege inventory and settings.
 - Review authentication, privileged access, and identity governance controls.
 - Validate observations and identify any confirmed deficiencies.
 - Develop corrective-action recommendations and POA&M items where warranted.
-- Prepare the final assessment report and executive summary.
+- Reassess open objectives when requested evidence is received. Do not close requests merely because this scoped report is complete.
 
 ---
 
-**Document status:** Working Draft v0.5 — Simulated Internal Assessment.
+**Document status:** Scoped Assessment Report v1.0 — existing-evidence examination complete; limitations and follow-up requests remain open.
+
+**Assessment date:** October 9, 2026. Evidence captures span August and October 2026 and do not constitute a current tenant-wide configuration test.
+
+**Assessment boundaries:** Examine only; no independent tests or completed interviews. No federal baseline selection, full control/enhancement coverage, production audit, or authorization decision. The original broad authentication, identity governance, and Okta scope is narrowed to the artifacts explicitly reviewed above.
+
+**Supporting records:** [Evidence Request Register](Evidence-Request-Register.md) and [POA&M disposition](POAM.md).
 
 This report is a portfolio exercise using NIST SP 800-53 and NIST SP 800-53A assessment principles. It does not represent a formal federal security authorization or independent FedRAMP assessment.
