@@ -12,7 +12,7 @@ The technology behind the Ninja Sleeper began as a **federal government contract
 
 In this lab, I worked two HR-driven identity lifecycle tickets for Vandelay Health: onboarding a new employee and terminating access for a departing employee.
 
-I performed the identity changes in **Active Directory**, synchronized them to **Microsoft Entra ID through Entra Connect**, and validated the resulting account and access changes before closing each ticket.
+The retained screenshots demonstrate account administration in **Active Directory (AD)**. The intended hybrid workflow also includes group changes, **Microsoft Entra Connect** synchronization, and **Microsoft Entra ID** validation; the screenshots below distinguish visible results from steps still requiring supporting evidence.
 
 This uses the hybrid identity environment I established in Lab 14.
 
@@ -22,41 +22,42 @@ This uses the hybrid identity environment I established in Lab 14.
 
 **Employee:** Joe Cantoni  
 **Location:** Toronto, Ontario  
-**Department:** Innovation Center  
+**Requested department/access:** Innovation Center  
 **Request:** Provision a corporate identity and standard IC access.
 
 Before creating Joe's account, I reviewed an existing Toronto Innovation Center user to confirm the correct **OU, identity attributes, and standard security-group access** for his role.
 
-I then:
+### Documented actions
 
 - Created Joe's account in **Active Directory**.
 - Configured his UPN and employee attributes.
 - Placed his account in the Toronto Users OU.
-- Added him to `SG-TOR-IC-Users` for standard Innovation Center access.
-- Verified the account and group membership in Active Directory.
-- Ran an **Entra Connect delta synchronization**.
-- Confirmed that Joe's identity synchronized to **Microsoft Entra ID**.
+- Entered a group-assignment command for `SG-TOR-IC-Users` and queried group membership.
+
+### Remaining validation
+
+- Capture the completed group-membership results.
+- Reconcile the requested Innovation Center department with the account's visible `Information Technology` department attribute.
+- Capture synchronization results and Joe's corresponding Entra identity.
 
 ### Validation
 
 
-![Joe Cantoni AD Account Validation](Lab15-01-Joe-Cantoni-AD-Account-Validation-CLEAN.png)
+The account-creation command screenshot has been removed from the current publication because it included a plaintext lab password. The account-validation screenshot below retains evidence of the resulting identity.
 
-The new Active Directory account was validated before access was assigned.
+![Joe Cantoni Active Directory Account Attributes](Lab15-02-Joe-Cantoni-Group-Membership-Validation-CLEAN.png)
 
-![Joe Cantoni Group Membership Validation](Lab15-02-Joe-Cantoni-Group-Membership-Validation-CLEAN.png)
+The output shows Joe Cantoni's account enabled (`Enabled = True`), with Toronto location attributes. The department is `Information Technology`. A group-assignment command is visible, but completed membership validation is not shown.
 
-Joe's membership in `SG-TOR-IC-Users` confirmed that the approved IC access had been assigned.
+![Joe Cantoni Group Membership Query](Lab15-03-Joe-Cantoni-Delta-Sync-Success-CLEAN.png)
 
-![Joe Cantoni Delta Sync Success](Lab15-03-Joe-Cantoni-Delta-Sync-Success-CLEAN.png)
-
-After synchronization, Joe's identity was confirmed in Microsoft Entra ID.
+The image shows `Get-ADPrincipalGroupMembership` and a result heading, but the group names are outside the captured area. Despite the legacy filename, this image does not show a synchronization result.
 
 ### Resolution
 
-Joe Cantoni's Active Directory identity and standard Toronto IC access were provisioned and validated. The account successfully synchronized to Microsoft Entra ID.
+Joe Cantoni's enabled Active Directory identity is demonstrated. Final group membership and cloud synchronization outcomes are not established by the retained screenshots.
 
-**Ticket status: Closed**
+**Documentation status: Account validation captured; remaining outcomes pending evidence.**
 
 ---
 
@@ -76,10 +77,10 @@ Before making changes, I reviewed Paul's account to confirm that it was enabled 
 I then:
 
 - Disabled Paul's Active Directory account.
-- Removed his `SG-TOR-IC-Users` group membership.
-- Validated that the account was disabled and the IC access had been removed.
-- Ran an Entra Connect delta synchronization.
-- Confirmed that Paul's account was disabled in Microsoft Entra ID.
+- Queried and confirmed the disabled Active Directory account state.
+- Entered a command to remove `SG-TOR-IC-Users` membership.
+
+Completed group-removal validation, synchronization results, and explicit Entra account-status evidence remain to be captured.
 
 ### Validation
 
@@ -89,17 +90,19 @@ The pre-termination review confirmed that Paul's account was enabled and had IC 
 
 ![Paul Merson AD Offboarding Validation](Lab15-05-Paul-Merson-AD-Offboarding-Validation-CLEAN.png)
 
-The account was disabled and the assigned IC security-group access was removed.
+The output confirms `Enabled = False` for Paul Merson. A group-removal command is visible, but this image does not show the resulting membership.
 
-After synchronization, Microsoft Entra ID showed Paul's account as disabled.
+![Paul Merson Microsoft Entra ID Account Overview](Lab15-06-Paul-Merson-Entra-Account-Disabled-CLEAN.png)
+
+This overview identifies Paul's Entra account. The visible fields do not establish its enabled/disabled state; the legacy filename is not evidence of disablement.
 
 ### Resolution
 
-Paul Merson's Active Directory account was disabled, his assigned IC access was removed, and the resulting account state was validated in Microsoft Entra ID.
+Paul Merson's Active Directory account disablement is demonstrated by before-and-after output. Final entitlement removal and cloud account disablement require additional evidence.
 
 The identity was retained rather than deleted.
 
-**Ticket status: Closed**
+**Documentation status: Active Directory disablement validated; remaining outcomes pending evidence.**
 
 ---
 
@@ -109,8 +112,7 @@ The identity was retained rather than deleted.
 - Active Directory user administration
 - Security-group access management
 - PowerShell identity administration
-- Entra Connect delta synchronization
-- Microsoft Entra ID validation
+- Hybrid synchronization and cloud-validation workflow requirements
 - HR-driven IAM ticket handling
 - Post-change verification
 
