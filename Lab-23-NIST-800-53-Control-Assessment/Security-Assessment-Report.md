@@ -1,6 +1,6 @@
 # VANDELAY HEALTH
 
-## Security Assessment Report (SAR) — Working Draft v0.3
+## Security Assessment Report (SAR) — Working Draft v0.4
 
 **Project:** SEC-2026-1023  
 **Prepared by:** Security & Compliance Analyst  
@@ -20,7 +20,7 @@ The assessment focuses on account management, employee access, authentication, p
 
 The objective is to examine implementation evidence, identify supported security weaknesses, and recommend corrective actions.
 
-The initial AC-2 examination now includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and periodic account reviews remain insufficiently evidenced. No final compliance determination has been made.
+The initial AC-2 examination now includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and periodic account reviews remain insufficiently evidenced. The AC-6 examination supports selected PIM lifecycle events and a targeted group-membership change, with limitations concerning unreadable artifacts, complete privilege inventory, activation settings, and least-role rationale. No final compliance determination has been made.
 
 ### 2. Assessment Scope
 
@@ -116,7 +116,46 @@ No confirmed unresolved security control deficiency has been established from th
 
 #### 4.2 AC-6 — Least Privilege
 
-**Status:** Not yet assessed. No determination made.
+**Assessment objective:** Examine whether privileged access is limited to operational need and whether the selected incident demonstrates targeted entitlement changes.
+
+**Assessment method:** Examine Lab 08 documentation and readable repository screenshots. No independent activation test or process-owner interview was performed.
+
+**Evidence source:** [Lab 08 — Privileged Identity Management](../Lab-08-Entra-Privileged-Identity-Management/README.md).
+
+| Evidence | Visible result | Assessment use |
+|---|---|---|
+| Lab08-04 — Eric group membership before remediation | Eric's named group view lists SG-IC-Users | Supports the visible pre-change membership |
+| Lab08-07 — Eric group membership after remediation | Eric's named group view lists SG-IC-Users and M365-IC-Team | Supports addition of the identified collaboration membership |
+| Lab08-08 — PIM My roles | User Administrator appears under Eligible assignments | Supports eligibility at capture time; does not alone prove absence from Active assignments or absence of other active roles |
+| Lab08-09 — PIM audit history | Successful eligibility and activation events and a removal event labeled for an expired PIM activation | Supports the recorded eligibility, activation, and expiration-removal lifecycle |
+
+**Evidence reliability limitation:** Repository image files Lab08-01, Lab08-02, Lab08-03, Lab08-05, and Lab08-06 could not be decoded for visual examination. Independently downloaded bytes matched their repository Git blob hashes, so the unreadability was not resolved by downloading again. Those files are not used as visual support for conclusions. Their filenames and README captions are not substitutes for readable evidence.
+
+**Assessment observations:**
+
+The readable evidence supports selected least-privilege practices: PIM eligibility and activation events, removal of an expired activation, and a before-and-after group-membership change addressing a specific collaboration entitlement.
+
+The README describes a one-hour activation and incident-specific justification. The readable artifacts do not independently establish the exact activation duration, the full justification text, required approval, or multifactor authentication settings. These remain documented claims requiring supporting evidence.
+
+The User Administrator role has broader permissions than a single group-membership change. Its temporary use demonstrates time-limited privilege; it does not by itself establish that the narrowest suitable role or scope was chosen. The selected screenshots also do not establish the administrator's complete effective privileges, the business approval for Eric's access, or successful access to the underlying application.
+
+**Remaining evidence requests:**
+
+- Readable original eligibility, activation, and role-settings evidence, including duration, justification, approval, and authentication requirements.
+- Complete active and eligible administrative-role inventory, including inherited or group-based assignments and relevant role scopes.
+- Documented task-to-role rationale and comparison with narrower roles or delegated group ownership.
+- Approved business access baseline and authorization for Eric's collaboration entitlement.
+- Privileged-access review records and evidence of review or removal of unnecessary assignments.
+- Detailed audit records linking the activated administrator to the membership change.
+
+**Assessment determination:**
+
+**Partially assessed — selected PIM lifecycle and targeted membership outcomes supported; additional evidence required to establish complete AC-6 effectiveness.**
+
+No conclusion is made for all AC-6 requirements or enhancements.
+
+**POA&M determination:** No confirmed unresolved access-control deficiency established. Record unreadable artifacts and unverified control settings as evidence limitations. Replace unreadable screenshots with authentic readable evidence before relying on them.
+
 
 ### 5. Preliminary Findings
 
@@ -134,6 +173,14 @@ Earlier missing group and cloud-state validation is resolved by Lab15-07, Lab15-
 
 No confirmed unresolved security control deficiencies have been established at this stage. Evidence limitations remain separate from verified security weaknesses.
 
+AC6-OBS-001: Five Lab 08 image artifacts were unreadable during examination. Obtain readable originals.
+
+AC6-OBS-002: Exact activation duration, justification, approval, and authentication requirements are not independently established by readable evidence.
+
+AC6-OBS-003: Complete effective privilege inventory, narrowest-role rationale, entitlement approval, and privileged-access reviews remain unverified.
+
+These AC-6 observations are evidence limitations, not confirmed access-control failures.
+
 ### 6. Remediation Planning
 
 Confirmed unresolved deficiencies will be entered into a POA&M with documented risk, responsible owner, corrective action, target completion date, and validation requirements.
@@ -143,7 +190,7 @@ No POA&M items have been opened at this stage. The resolved department discrepan
 ### 7. Next Assessment Activities
 
 - Complete the evidence request register for the remaining AC-2 limitations.
-- Assess AC-6 — Least Privilege using relevant portfolio evidence.
+- Resolve the AC-6 evidence limitations and review relevant privilege inventory and settings.
 - Review authentication, privileged access, and identity governance controls.
 - Validate observations and identify any confirmed deficiencies.
 - Develop corrective-action recommendations and POA&M items where warranted.
@@ -151,6 +198,6 @@ No POA&M items have been opened at this stage. The resolved department discrepan
 
 ---
 
-**Document status:** Working Draft v0.3 — Simulated Internal Assessment.
+**Document status:** Working Draft v0.4 — Simulated Internal Assessment.
 
 This report is a portfolio exercise using NIST SP 800-53 and NIST SP 800-53A assessment principles. It does not represent a formal federal security authorization or independent FedRAMP assessment.
