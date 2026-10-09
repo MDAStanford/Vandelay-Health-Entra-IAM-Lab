@@ -1,75 +1,82 @@
 # Lab 23 — Internal Identity Security Assessment
-## Work in Progress — Planning and Initial Evidence Review
+**Work in progress | Project SEC-2026-1023**
 
-Vandelay Health is a fictional healthcare technology company headquartered in Santa Monica, California. Its Ninja Sleeper CPAP technology originated from a federal government project and was subsequently adapted for commercial use.
+Vandelay Health is a fictional healthcare technology company based in Santa Monica, California. Its Ninja Sleeper CPAP technology began as a federal government project and was later adapted for commercial use.
 
-The Ninja Sleeper incorporates highly restricted, proprietary intellectual property. Vandelay Health uses Active Directory (AD), Microsoft Entra ID, and Okta to manage workforce identities and protect access to organizational resources.
+The Ninja Sleeper contains highly restricted, proprietary intellectual property. I use this business scenario throughout my portfolio to explore how Active Directory (AD), Microsoft Entra ID, and Okta can manage employee identities and protect access to company resources.
 
-## Business Request
+## Why I Started This Assessment
 
-In this simulated scenario, executive leadership requested a 30-day internal assessment of identity and access management (IAM) controls. Acting as a Security & Compliance Analyst, I am documenting the project plan, evidence collection, selected control examinations, and follow-up work under **SEC-2026-1023**.
+In this lab’s scenario, I received a ticket from executive leadership asking for a 30-day review of the company’s identity and access management (IAM) controls.
 
-The objective is to evaluate implementation and operation, identify supported deficiencies, and recommend corrective actions. The results are intended to inform leadership about identity security posture and preparation for potential future federal contracting requirements.
+My job as the Security & Compliance Analyst is to answer three practical questions: Are the controls in place? Do they work as intended? Can I show enough evidence to support my answers?
 
-## What I Have Documented So Far
+Leadership wants to understand the company’s identity security posture and prepare for possible future federal contracting requirements. I am using selected National Institute of Standards and Technology (NIST) SP 800-53 Revision 5 controls to organise the review, with SP 800-53A Revision 5 guiding how I examine the evidence.
 
-- A project scope covering AD, Entra ID, hybrid synchronization, and applicable Okta processes for the El Segundo warehouse.
-- Planned stakeholder coordination, evidence response deadlines, and executive reporting milestones.
-- An evidence request register covering account management, least privilege, and authentication.
-- Preliminary examinations of existing evidence from Labs 15, 06, 08, and 02.
-- Supported observations, evidence limitations, and specific follow-up requests.
+## How I Planned the Work
 
-This is an ongoing assessment project. Documented examinations are one part of the work; they do not establish completion of the overall assessment or full control effectiveness.
+I documented the scope before moving into the technical review. It covers AD, Entra ID, their synchronization, and Okta’s support for the El Segundo warehouse.
 
-## Project Blueprint
+I also documented which departments the assessment would need to involve: IAM Administration, IT Infrastructure, Security Engineering, HR Operations, Compliance/GRC, and Warehouse IT. My plan gives department owners five business days to respond to evidence requests. Material delays would go to the Chief Information Security Officer (CISO).
 
-The planned assessment period is 30 calendar days, with a preliminary CISO briefing on Day 14 and final executive presentation on Day 30. These are scenario milestones, not claims that the briefings or final delivery have occurred. Calendar dates remain to be confirmed.
+The scenario calls for a preliminary CISO briefing on Day 14 and a final executive presentation on Day 30. I have included those milestones in the plan. I still need to confirm calendar dates, resource assignments, and appointments for interviews and testing.
 
-The plan identifies IAM Administration, IT Infrastructure, Security Engineering, HR Operations, Compliance/GRC, and Warehouse IT as stakeholders. Evidence responses are expected within five business days, with material delays escalated to the Chief Information Security Officer (CISO).
+This lab is a running project. I will add completed work as I go.
 
-Resource assignments, stakeholder interviews, and independent technical validation remain planned activities. Actual progress will be documented as the lab develops.
+## What I Have Done So Far
 
-## Current Control Reviews
+I have prepared the project scope, created an evidence tracker, and developed a working Security Assessment Report (SAR).
 
-| Request | Control | Current progress |
+I have also documented an initial review of screenshots and records from my earlier labs. I am checking what those records actually show and where I need more information. My tracker records what I requested, which department is responsible, what I received, and what I still need.
+
+I started with three control reviews:
+
+| Evidence request | Control | Question I am working through |
 |---|---|---|
-| EV-001 | AC-2 — Account Management | Selected account and membership outcomes and one access review supported; authorization, timing, full access coverage, and recurring-review evidence remain open |
-| EV-002 | AC-6 — Least Privilege | Selected Privileged Identity Management (PIM) lifecycle and membership evidence examined; readable artifacts, complete privileges, settings, and role rationale remain open |
-| EV-003 | IA-2 — Identification and Authentication | Identity and multifactor authentication (MFA) readiness evidence examined; reviewed policy was report-only and enforcement remains unverified |
+| EV-001 | AC-2 — Account Management | When someone joins, changes roles, or leaves, are their account and access handled appropriately? |
+| EV-002 | AC-6 — Least Privilege | Does someone have only the permissions they need, and is temporary administrator access properly managed? |
+| EV-003 | IA-2 — Identification and Authentication | How does someone prove their identity, and is required multifactor authentication actually enforced? |
 
-All three reviews are partially assessed. Okta evidence has not yet been examined in this report.
+These are three parts of one assessment. Each contributes to the same report.
 
-## How I Am Developing the Assessment
+## What the Evidence Has Shown Me
 
-I compare documented claims with the evidence available, record exactly what each artifact supports, and identify the records needed to answer remaining questions.
+For account management, I used Joe Cantoni’s onboarding and Paul Merson’s offboarding from Lab 15. Follow-up screenshots support Joe’s specified group membership, Paul’s removal from the specified group, and Paul’s disabled account in Entra ID. They also document the correction of Joe’s department.
 
-My next evidence activity is a retrospective review of Lab 15: identify what the original collection captured, what follow-up already resolved, and what specific evidence is still needed. New captures will be dated and labeled as follow-up validation. They will not be presented as historical proof.
+That gives me evidence of particular account states and changes. I still need the original approvals and timestamps to establish who authorised the work and whether it was completed within the required timeframe. I also need to check the full range of access that should have been removed.
 
-## Working Documents
+Lab 06 gives me an example of a completed access review. I still need more detail linking individual decisions to the resulting access changes, and records showing how reviews would operate on a recurring basis.
 
-- [Project Scope and Assessment Plan](Project-Scope.md)
-- [Security Assessment Report — working report](Security-Assessment-Report.md)
-- [Evidence Request Register](Evidence-Request-Register.md)
-- [Plan of Action and Milestones (POA&M) disposition](POAM.md)
+For least privilege, Lab 08 contains readable Privileged Identity Management (PIM) records showing eligibility, activation, and removal of an expired activation. Some images were unreadable during the documented review. I need readable evidence and more detail about role settings, approvals, and why the chosen role was appropriate for the task.
 
-The Google Docs report and Google Sheets tracker are maintained separately. Repository copies document this published checkpoint.
+For authentication, Lab 02 shows Microsoft Authenticator registration and a Conditional Access policy requiring multifactor authentication (MFA). The policy was in report-only mode, and the captured successful sign-in used single-factor authentication. Those records do not demonstrate MFA enforcement. My next task is to establish what enforcement was required and examine the relevant settings and sign-in details.
 
-## Remaining Work
+I have not yet examined Okta evidence for this assessment.
 
-- Review the existing evidence and conclusions together.
-- Obtain outstanding authorization, timing, access-review, privilege, and authentication records.
-- Collect applicable Okta evidence.
-- Confirm assessment dates and resource availability.
-- Conduct stakeholder interviews and technical validation where feasible.
-- Record confirmed deficiencies and corrective actions only when supported.
-- Prepare preliminary and final executive deliverables.
+## What I Am Doing Next
 
-## Assessment Boundaries
+I will start by reviewing Lab 15’s evidence collection. I want to identify what I captured originally, what the October follow-up already resolved, and which questions still need a specific record or screenshot.
 
-I have documented examination of existing portfolio evidence. No completed stakeholder interviews or independent assessor tests are documented. Historical captures do not establish current tenant-wide effectiveness.
+If I take new screenshots, I will record the actual date and explain what they demonstrate. A screenshot taken today can show today’s account state; it cannot establish when an earlier termination was completed.
 
-Missing evidence is an assessment limitation; it is not automatically a control failure. No confirmed unresolved deficiency has been established from the examined evidence, and no active POA&M items have been opened. This does not establish that the environment is free of weaknesses.
+I will then work through the remaining privilege and authentication evidence, collect applicable Okta records, and develop the planned interviews and technical checks.
 
-*This is a fictional portfolio training exercise using selected NIST SP 800-53 Revision 5 controls and an approach informed by NIST SP 800-53A Revision 5. It is not an independent compliance audit, federal authorization, or FedRAMP assessment.*
+## My Working Documents
 
-**Checkpoint:** October 9, 2026 — work in progress.
+I keep the project’s purpose and scope in the [Project Scope and Assessment Plan](Project-Scope.md).
+
+I record my observations and the limits of the evidence in the [Security Assessment Report](Security-Assessment-Report.md).
+
+I track requests and follow-up in the [Evidence Request Register](Evidence-Request-Register.md). I also maintain the working report in Google Docs and the tracker in Google Sheets; these repository copies show the published checkpoint.
+
+I have prepared a [Plan of Action and Milestones (POA&M) disposition](POAM.md). If the assessment establishes an unresolved security deficiency, I will use the POA&M to document the corrective action, owner, deadline, and evidence needed to confirm the fix.
+
+## Where the Project Stands
+
+The assessment is still in progress. So far, I have documented planning and examination of existing evidence. I have not completed stakeholder interviews or independent assessment tests.
+
+I have not established a confirmed unresolved security deficiency from the evidence reviewed so far. Several questions remain open. When a record is missing, I document the gap and request what I need before reaching a conclusion.
+
+This is a simulated portfolio assessment. It does not establish company-wide compliance or represent a federal authorization or FedRAMP assessment.
+
+**Last updated: October 9, 2026**
