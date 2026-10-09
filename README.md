@@ -64,7 +64,7 @@ Uses Microsoft Entra entitlement management to govern time-bound external access
 Connects Vandelay's on-premises Active Directory environment to Microsoft Entra ID using Entra Connect Sync and Password Hash Synchronization, then validates synchronized identities and delta synchronization.
 
 ### Lab 15 — Ticket-Driven Identity Lifecycle Operations
-Works two HR-driven IAM tickets end to end: onboarding Joe Cantoni with standard Toronto IC access and offboarding Paul Merson by disabling his account, removing access, synchronizing changes, and validating the results in Entra ID.
+Documents simulated HR-driven onboarding and offboarding, with screenshots validating Joe Cantoni's Active Directory identity and Paul Merson's account disablement. Group and hybrid-cloud outcome evidence is being completed.
 
 
 ---
