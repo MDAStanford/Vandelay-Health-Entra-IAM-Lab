@@ -1,6 +1,6 @@
 # VANDELAY HEALTH
 
-## Security Assessment Report (SAR) — Working Draft v0.4
+## Security Assessment Report (SAR) — Working Draft v0.5
 
 **Project:** SEC-2026-1023  
 **Prepared by:** Security & Compliance Analyst  
@@ -20,7 +20,7 @@ The assessment focuses on account management, employee access, authentication, p
 
 The objective is to examine implementation evidence, identify supported security weaknesses, and recommend corrective actions.
 
-The initial AC-2 examination now includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and periodic account reviews remain insufficiently evidenced. The AC-6 examination supports selected PIM lifecycle events and a targeted group-membership change, with limitations concerning unreadable artifacts, complete privilege inventory, activation settings, and least-role rationale. No final compliance determination has been made.
+The initial AC-2 examination now includes October 8 follow-up evidence from Lab 15. This supports selected provisioning, group-management, identity-attribute correction, account disablement, and cloud-validation outcomes. Authorization, termination timeliness, complete entitlement coverage, and periodic account reviews remain insufficiently evidenced. The AC-6 examination supports selected PIM lifecycle events and a targeted group-membership change, with limitations concerning unreadable artifacts, complete privilege inventory, activation settings, and least-role rationale. The IA-2 review confirms Authenticator registration and a report-only MFA policy; the captured successful sign-in is single-factor, so MFA enforcement is not demonstrated. No final compliance determination has been made.
 
 ### 2. Assessment Scope
 
@@ -157,6 +157,49 @@ No conclusion is made for all AC-6 requirements or enhancements.
 **POA&M determination:** No confirmed unresolved access-control deficiency established. Record unreadable artifacts and unverified control settings as evidence limitations. Replace unreadable screenshots with authentic readable evidence before relying on them.
 
 
+#### 4.3 IA-2 — Identification and Authentication
+
+**Assessment objective:** Examine identification and authentication evidence, with a limited focus on workforce MFA configuration and demonstrated enforcement. Applicable IA-2 enhancements and organization-defined requirements have not yet been selected or fully assessed.
+
+**Assessment method:** Examine Lab 02 documentation and all five repository screenshots. No independent sign-in test was performed.
+
+**Evidence source:** [Lab 02 — Conditional Access and MFA](../Lab-02-Entra-Conditional-Access/README.md).
+
+| Evidence | Visible result | Assessment use |
+|---|---|---|
+| Lab02-01 — tenant overview | Tenant display name Vandelay World Wide; Microsoft Entra ID P2 license | Establishes the lab tenant context; fictional business narrative uses Vandelay Health |
+| Lab02-02 — John Smith overview | Named member identity, enabled account, MFA-capable status | Supports account identification and authentication capability, not MFA enforcement |
+| Lab02-03 — authentication methods | Microsoft Authenticator listed as usable; notification default method | Confirms registered method for the test identity |
+| Lab02-04 — Conditional Access policy | Report-only; all users; all resources; two users excluded; Require multifactor authentication; one client-app category included | Confirms proposed MFA configuration and non-enforcing state at capture time |
+| Lab02-05 — named sign-in details | John Smith; Success; Single-factor authentication; August 7, 2026 | Confirms successful sign-in; does not establish MFA completion or policy enforcement |
+
+**Assessment observations:**
+
+The evidence demonstrates a named workforce identity, Authenticator registration, and a Conditional Access policy configured with an MFA requirement in report-only mode. The policy screenshot explicitly states that it is evaluated but not enforced.
+
+The successful sign-in is marked single-factor authentication. It cannot be used as evidence that this sign-in completed MFA or that the report-only policy enforced an MFA requirement. The Authentication Details, Conditional Access, and Report-only tabs are visible but their contents are not captured.
+
+The policy summary identifies two excluded users but does not name them. Lab 02 describes these as a break-glass identity and a designated administrator; their identities, approvals, and compensating protections require additional evidence. The included client-app category is not identified in the summary.
+
+Report-only deployment is consistent with Lab 02's documented staged evaluation objective. This is not, by itself, a confirmed control failure. Whether enforcement is required at the assessed stage must be established from the selected control requirements, approved rollout plan, and other applicable authentication controls. The August screenshots do not establish current tenant configuration.
+
+**Remaining evidence requests:**
+
+- Current full policy export or detailed screenshots covering state, users, exclusions, resources, conditions, client apps, and grant controls.
+- Named excluded identities, exception authorization, and emergency-access protection and monitoring requirements.
+- Authentication Details and policy-evaluation results for representative sign-ins.
+- If enforcement is required, an enabled MFA policy and representative sign-in results demonstrating MFA satisfaction and handling of attempts that do not satisfy the requirement.
+- Approved rollout plan, enforcement criteria and target date, authentication requirements, applicable IA-2 enhancements, and coverage of privileged and non-privileged users.
+- Inventory of other controls that could enforce MFA, and evidence of their actual scope and operation.
+
+**Assessment determination:**
+
+**Partially assessed — identity and MFA readiness configuration supported; MFA enforcement not demonstrated by the reviewed evidence.**
+
+No conclusion is made that the complete IA-2 control or its MFA-related enhancements are satisfied.
+
+**POA&M determination:** No confirmed unresolved control deficiency established from the staged lab evidence alone. If required MFA coverage is subsequently confirmed absent, assess the resulting deficiency and open a POA&M item with supported scope and risk.
+
 ### 5. Preliminary Findings
 
 Selected AC-2 account-management outcomes are supported by the reviewed evidence.
@@ -181,6 +224,12 @@ AC6-OBS-003: Complete effective privilege inventory, narrowest-role rationale, e
 
 These AC-6 observations are evidence limitations, not confirmed access-control failures.
 
+IA2-OBS-001: MFA readiness is documented, but the reviewed policy is report-only and the captured sign-in is single-factor. Establish required enforcement state and examine current policies and detailed sign-in results.
+
+IA2-OBS-002: Excluded identities, exception approvals, client-app scope, and complete authentication coverage are not established by the policy summary.
+
+These IA-2 observations require additional evidence and are not, on their own, confirmed control failures.
+
 ### 6. Remediation Planning
 
 Confirmed unresolved deficiencies will be entered into a POA&M with documented risk, responsible owner, corrective action, target completion date, and validation requirements.
@@ -198,6 +247,6 @@ No POA&M items have been opened at this stage. The resolved department discrepan
 
 ---
 
-**Document status:** Working Draft v0.4 — Simulated Internal Assessment.
+**Document status:** Working Draft v0.5 — Simulated Internal Assessment.
 
 This report is a portfolio exercise using NIST SP 800-53 and NIST SP 800-53A assessment principles. It does not represent a formal federal security authorization or independent FedRAMP assessment.
