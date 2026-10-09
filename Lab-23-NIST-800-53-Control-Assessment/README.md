@@ -14,7 +14,7 @@ Document control effectiveness, evidence limitations, potential deficiencies, re
 
 ## Assessment Report
 
-[Security Assessment Report — Working Draft v0.4](Security-Assessment-Report.md)
+[Security Assessment Report — Working Draft v0.5](Security-Assessment-Report.md)
 
 Updated October 9, 2026 with the October 8 Lab 15 follow-up evidence. The report includes the evidence mapping, assessment limitations, observation statuses, and next activities.
 
@@ -67,9 +67,21 @@ Five repository images could not be decoded; their downloaded bytes matched the 
 
 No confirmed unresolved access-control deficiency has been established. Detailed evidence requests and observations appear in the report.
 
-## Next Assessment
+## Control 3 — IA-2: Identification and Authentication
 
-Authentication and multifactor authentication controls.
+**Evidence source:** Lab 02 — Conditional Access and MFA.
+
+**Assessment method:** Examine five screenshots and lab documentation.
+
+The evidence confirms John Smith's identity, Microsoft Authenticator registration, and an MFA policy in report-only mode. The captured successful sign-in is marked Single-factor authentication. It does not demonstrate MFA enforcement.
+
+**Assessment determination:** Partially assessed — readiness configuration supported; enforcement not demonstrated.
+
+The documented staged evaluation is not by itself a confirmed failure. Obtain current policy configuration, detailed sign-in results, named exclusions, and approved enforcement requirements.
+
+## Next Assessment Activities
+
+Review periodic access-review evidence and reconcile outstanding evidence requests before finalizing the scoped assessment.
 
 ---
 
