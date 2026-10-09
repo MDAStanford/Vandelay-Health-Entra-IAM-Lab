@@ -8,81 +8,47 @@ The Ninja Sleeper incorporates highly restricted, proprietary intellectual prope
 
 ## Assessment Objective
 
-Evaluate selected security controls against NIST SP 800-53 Revision 5 using evidence collected from the Vandelay Health identity environment.
+Examine existing IAM portfolio evidence against selected NIST SP 800-53 Revision 5 control objectives, using an examination approach informed by NIST SP 800-53A Revision 5.
 
-Document control effectiveness, evidence limitations, potential deficiencies, remediation recommendations, and Plans of Action and Milestones (POA&Ms).
+## Status
 
-## Assessment Report
+**Scoped evidence examination complete — October 9, 2026.**
 
-[Security Assessment Report — Working Draft v0.5](Security-Assessment-Report.md)
+The report examines selected AC-2, AC-6, and IA-2 objectives using Labs 15, 08, 02, and 06. All three controls remain **partially assessed**. Follow-up evidence is open; no overall compliance determination is made.
 
-Updated October 9, 2026 with the October 8 Lab 15 follow-up evidence. The report includes the evidence mapping, assessment limitations, observation statuses, and next activities.
+## Deliverables
 
-## Control 1 — AC-2: Account Management
+- [Scoped Security Assessment Report v1.0](Security-Assessment-Report.md)
+- [Evidence Request Register and consolidated collection list](Evidence-Request-Register.md)
+- [POA&M disposition](POAM.md)
 
-**Evidence source:** Lab 15 — Ticket-Driven Identity Lifecycle Operations
+## Assessment Results
 
-**Assessment method:** Examine existing documentation and screenshots.
+| Control | Supported evidence | Remaining limitations |
+|---|---|---|
+| AC-2 — Account Management | Selected AD/group/Entra outcomes; corrected department; one access review with decisions, audit records and final membership | Authorization, original timing, complete access coverage, recurring review operation, detailed review-result traceability |
+| AC-6 — Least Privilege | PIM activation/removal audit events; targeted membership changes | Five unreadable Lab 08 images, exact settings, effective privilege inventory, approval and narrowest-role rationale |
+| IA-2 — Identification and Authentication | Named user, registered Authenticator, report-only MFA configuration | MFA enforcement not demonstrated; sign-in shown is single-factor; exclusions and full coverage not independently established |
 
-### Evidence Reviewed
+## Assessment Boundaries
 
-- New employee account creation and validation
-- Role-based security group assignment
-- Employee account disablement
-- Security group access removal
-- Entra Connect synchronization
-- Microsoft Entra ID account validation
+- Examined existing screenshots and documentation; performed no independent tests or completed interviews.
+- Distinguished configuration, observed outcomes, narrative claims, and evidence limitations.
+- Historical captures do not establish current tenant-wide configuration.
+- Okta and other unexamined objectives remain outside this completed examination.
+- No federal baseline or complete set of control enhancements was assessed.
+- No confirmed unresolved access-control deficiency was established; therefore no active POA&M items were created.
 
-### Assessment Results
+## What I Practiced
 
-The available evidence supports selected account provisioning and termination outcomes: Joe's enabled AD account, IC group membership, corrected department and synchronized Entra identity; Paul's disabled AD account, specified IC group removal and disabled Entra identity.
-
-Follow-up screenshots captured October 8 establish these states at the time of review. The delta synchronization command confirms request acceptance; Joe's updated Entra properties support arrival of the department correction.
-
-However, the reviewed documentation does not independently establish original HR approvals and timestamps, termination SLA compliance, complete entitlement and session termination, documented account-management requirements, or periodic account review effectiveness.
-
-**Assessment determination:** Partially assessed — insufficient evidence to conclude that the complete AC-2 control is satisfied.
-
-### Observations
-
-**AC2-OBS-001:** Termination timeliness cannot be independently verified from the available evidence.
-
-**AC2-OBS-002:** Periodic account review effectiveness was not established by the reviewed Lab 15 artifacts.
-
-Additional authorization, policy, and entitlement-coverage limitations are detailed in the report. Joe's initial department discrepancy was corrected and recorded as a resolved lab data observation.
-
-These open items are evidence or assessment limitations, not confirmed security control failures. No POA&M items have been opened.
-
-## Control 2 — AC-6: Least Privilege
-
-**Evidence source:** Lab 08 — Privileged Identity Management.
-
-**Assessment method:** Examine documentation and readable screenshots.
-
-Readable group views support Eric's targeted membership change. PIM audit history supports eligibility, activation, and expired-activation removal events. The eligible-role view alone does not prove absence of active privilege.
-
-Five repository images could not be decoded; their downloaded bytes matched the repository blob hashes. Exact activation duration, justification, approval/MFA settings, complete privileges, and narrowest-role rationale remain insufficiently evidenced.
-
-**Assessment determination:** Partially assessed — selected outcomes supported; additional evidence required.
-
-No confirmed unresolved access-control deficiency has been established. Detailed evidence requests and observations appear in the report.
-
-## Control 3 — IA-2: Identification and Authentication
-
-**Evidence source:** Lab 02 — Conditional Access and MFA.
-
-**Assessment method:** Examine five screenshots and lab documentation.
-
-The evidence confirms John Smith's identity, Microsoft Authenticator registration, and an MFA policy in report-only mode. The captured successful sign-in is marked Single-factor authentication. It does not demonstrate MFA enforcement.
-
-**Assessment determination:** Partially assessed — readiness configuration supported; enforcement not demonstrated.
-
-The documented staged evaluation is not by itself a confirmed failure. Obtain current policy configuration, detailed sign-in results, named exclusions, and approved enforcement requirements.
-
-## Next Assessment Activities
-
-Review periodic access-review evidence and reconcile outstanding evidence requests before finalizing the scoped assessment.
+- Control-to-evidence mapping
+- Screenshot and documentation examination
+- Evidence reliability and completeness evaluation
+- Scoped assessment determinations
+- Separation of evidence gaps from confirmed deficiencies
+- Follow-up request tracking and POA&M disposition
+- Assessment reporting with explicit limits
 
 ---
 
-*This project is a portfolio-based security control assessment performed in a fictional training environment. It is not an independent compliance audit or formal authorization assessment.*
+*This is a fictional portfolio training exercise, not an independent compliance audit, federal authorization, or FedRAMP assessment.*
