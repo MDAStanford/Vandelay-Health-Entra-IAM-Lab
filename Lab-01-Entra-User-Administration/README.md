@@ -8,7 +8,7 @@ Vandelay Health needed a Microsoft Entra ID identity foundation to support workf
 
 ## Implementation
 
-I established the Entra ID environment with 39 user identities and 15 groups.
+I established the Entra ID environment with 39 user identities and 15 groups, organizing access by department and separating security permissions from Microsoft 365 collaboration.
 
 ![Tenant Overview](01-Tenant-Overview.png)
 
