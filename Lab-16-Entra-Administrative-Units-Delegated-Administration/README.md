@@ -4,8 +4,6 @@
 
 ## Project Overview
 
-Vandelay Health is a fictional consumer medical-device company headquartered in Santa Monica, California. The company's flagship product, the Ninja Sleeper, originated from a federal government contract requiring a silent sleeping solution for military personnel operating in the field. Vandelay Health subsequently adapted the technology for the commercial market while retaining as much of the original proprietary design and intellectual property as possible.
-
 As Vandelay Health expands its operations, protecting that proprietary technology requires more than controlling access to applications and data. Administrative privileges must also follow least-privilege principles. Administrators responsible for one location should not automatically receive authority over identities throughout the entire organization.
 
 This lab addresses that requirement by implementing scoped administrative delegation in Microsoft Entra ID using an Administrative Unit.
@@ -33,23 +31,6 @@ This creates a practical least-privilege model in which administrative authority
 
 ---
 
-## Environment
-
-The lab uses Vandelay Health's existing hybrid identity environment:
-
-- Microsoft Entra ID
-- Microsoft Entra administrative roles
-- Microsoft Entra Administrative Units
-- Windows Server Active Directory
-- Microsoft Entra Connect
-- Password Hash Synchronization
-- Vandelay World Wide Entra tenant
-- `vandelay.local` Active Directory domain
-
-Toronto contains a combination of synchronized Active Directory identities and cloud-managed identities.
-
----
-
 ## Administrative Unit Design
 
 A new Administrative Unit was created:
@@ -68,6 +49,8 @@ The following eight identities were added to AU-Toronto:
 - Lori Van Meter
 - Paul Merson
 - Shawn Rudey
+
+![AU-Toronto Membership](Lab16_01_AU-Toronto_Membership.png)
 
 Administrative Units do not replace security groups or Microsoft 365 groups. Instead, they provide a mechanism for scoping administrative authority to a defined subset of directory objects.
 
@@ -103,6 +86,10 @@ The resulting authorization model was:
 
 **Shawn Rudey → User Administrator → AU-Toronto**
 
+![AU-Toronto Scoped Administration - Eric Lund](Lab16_03_AU-Toronto_Scoped-Administration_Eric-Lund.png)
+
+![AU-Toronto Scoped User Administrator](Lab16_02_AU-Toronto_Scoped-User-Administrator.png)
+
 This is significantly different from assigning User Administrator at the tenant level.
 
 A tenant-wide assignment would allow administrative actions against users throughout Vandelay Health. The Administrative Unit assignment limits Shawn's delegated authority to identities contained within the Toronto administrative boundary.
@@ -133,6 +120,8 @@ Administrative controls were available to Shawn, including user-management actio
 This confirmed that Shawn received delegated administrative authority over an identity inside his assigned Administrative Unit.
 
 The account was not deleted; the availability of the administrative control was used to validate authorization.
+
+![AU-Toronto Delegated Admin Positive Test](Lab16_04_AU-Toronto-Delegated-Admin-Positive-Test.png)
 
 ---
 
@@ -184,6 +173,8 @@ The controls appeared disabled in the Entra portal.
 This demonstrated that Shawn's User Administrator role did not provide equivalent administrative authority over an identity outside AU-Toronto.
 
 The comparison provided direct evidence that the Administrative Unit was functioning as an administrative scope boundary.
+
+![AU-Toronto Out-of-Scope Negative Test](Lab16_05-AU-Toronto-Out-of-Scope-Negative-Test.png)
 
 ---
 
@@ -245,48 +236,6 @@ The password-reset test demonstrated that authorization and identity-source arch
 
 ---
 
-## Evidence
-
-### Screenshot 01 — AU-Toronto Membership
-
-Shows the completed AU-Toronto Administrative Unit and its eight member identities.
-
-This establishes the population that falls within the delegated administrative boundary.
-
-![AU-Toronto Membership](Lab16_01_AU-Toronto_Membership.png)
-
-### Screenshot 02 — Administrative Role Configuration
-
-Shows the User Administrator role being used for delegated administration within the Microsoft Entra environment.
-
-![AU-Toronto Scoped User Administrator](Lab16_02_AU-Toronto_Scoped-User-Administrator.png)
-
-### Screenshot 03 — Scoped User Administrator Assignment
-
-Shows Shawn Rudey with an active User Administrator assignment scoped specifically to AU-Toronto rather than the entire tenant.
-
-![AU-Toronto Scoped Administration - Eric Lund](Lab16_03_AU-Toronto_Scoped-Administration_Eric-Lund.png)
-
-### Screenshot 04 — Delegated Administration Positive Test
-
-Shows Eric Lund while authenticated as Shawn Rudey.
-
-Because Eric belongs to AU-Toronto, administrative user-management controls are available.
-
-The screenshot also captures the password-writeback limitation associated with Eric's synchronized Active Directory identity.
-
-![AU-Toronto Delegated Admin Positive Test](Lab16_04_AU-Toronto-Delegated-Admin-Positive-Test.png)
-
-### Screenshot 05 — Out-of-Scope Negative Test
-
-Shows EX - Jarvis Miller while authenticated as Shawn Rudey.
-
-Jarvis is not a member of AU-Toronto. Administrative controls including Edit properties, Delete, Reset password, and Revoke sessions are disabled, demonstrating enforcement of the delegated administrative boundary.
-
-![AU-Toronto Out-of-Scope Negative Test](Lab16_05-AU-Toronto-Out-of-Scope-Negative-Test.png)
-
----
-
 ## Outcome
 
 Vandelay Health successfully implemented location-scoped delegated administration for its Toronto operation.
@@ -303,7 +252,28 @@ The resulting design reduces unnecessary administrative privilege while allowing
 
 ---
 
-## Skills Demonstrated
+---
+
+## Technical reference
+
+### Environment
+
+The lab uses Vandelay Health's existing hybrid identity environment:
+
+- Microsoft Entra ID
+- Microsoft Entra administrative roles
+- Microsoft Entra Administrative Units
+- Windows Server Active Directory
+- Microsoft Entra Connect
+- Password Hash Synchronization
+- Vandelay World Wide Entra tenant
+- `vandelay.local` Active Directory domain
+
+Toronto contains a combination of synchronized Active Directory identities and cloud-managed identities.
+
+---
+
+### Skills Demonstrated
 
 - Microsoft Entra ID
 - Administrative Units
