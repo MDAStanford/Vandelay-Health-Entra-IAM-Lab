@@ -4,6 +4,8 @@
 
 ## Business Requirement
 
+**Simulated project ticket:** [IAM-2026-001 — Entra ID Identity Foundation](IAM-2026-001-Simulated-Ticket.md)
+
 Vandelay Health needed a Microsoft Entra ID identity foundation to support workforce access, departmental organization, and future identity governance controls.
 
 ## Implementation
