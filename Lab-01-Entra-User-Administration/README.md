@@ -30,6 +30,8 @@ I separated executive access from administrative privileges, configured a dedica
 
 ![IAM Admin Profile](07-IAM-Admin-Profile.png)
 
+I created a dedicated emergency-access (Break Glass) account to maintain administrative access to the Entra tenant if normal authentication or administrative access becomes unavailable.
+
 ![Break Glass Account](08-Break-Glass-Account.png)
 
 I reviewed Information Security group membership and ownership as part of the configuration validation.
