@@ -1,4 +1,6 @@
 Lab 17 — Microsoft Graph PowerShell: Identity Investigation & Access Remediation
+
+<mark>**FICTIONAL COMPANY — Vandelay Health is a fictional healthcare technology company that produces the Ninja Sleeper, a commercialized version of technology originally developed for the U.S. military to address sleep apnea in field environments.**</mark>
 Scenario
 
 Vandelay Health's IAM team needed to investigate the status and access footprint of an Innovation Center user as part of an identity lifecycle review supporting the Ninja Sleeper program.
