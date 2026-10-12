@@ -6,7 +6,9 @@
 
 ---
 
-## Overview
+## Business Requests
+
+**Simulated HR tickets:** [IAM-2026-015A — Joe Cantoni onboarding](IAM-2026-015A-Joe-Onboarding-Ticket.md) · [IAM-2026-015B — Paul Merson offboarding](IAM-2026-015B-Paul-Offboarding-Ticket.md)
 
 This lab simulates two HR-driven identity lifecycle tickets: onboarding Joe Cantoni and terminating Paul Merson's access across **Active Directory (AD)** and **Microsoft Entra ID**, using the hybrid environment established in Lab 14.
 
@@ -49,7 +51,7 @@ Joe's Entra properties show **Account enabled: Yes**, **On-premises sync enabled
 
 Joe's enabled AD identity, assigned IC group membership, corrected department attribute, and synchronized Entra identity are supported by the captured evidence.
 
-**Simulated ticket status: Closed after follow-up validation.**
+**Implementation outcome:** Validated in follow-up review; formal ticket closure not independently evidenced.
 
 ---
 
@@ -98,25 +100,6 @@ The account-creation screenshot containing a plaintext lab password was removed 
 
 ---
 
-## What I Practiced
-
-- Joiner and leaver identity lifecycle operations
-- Active Directory user and security-group administration
-- PowerShell identity administration
-- Identity attribute correction
-- Microsoft Entra Connect delta synchronization
-- Microsoft Entra ID account-state validation
-- HR-driven IAM ticket handling and post-change verification
-
----
-
-## Environment
-
-- Windows Server Active Directory
-- Microsoft Entra ID
-- Microsoft Entra Connect
-- PowerShell
-
----
+**Technical environment:** Windows Server Active Directory, Microsoft Entra ID, Microsoft Entra Connect, PowerShell.
 
 *Vandelay Health, Newman GmbH, and the scenarios in this project are fictional and were created for hands-on IAM training.*
