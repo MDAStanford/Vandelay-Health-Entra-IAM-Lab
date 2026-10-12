@@ -1,156 +1,77 @@
-# Vandelay Health — Lab 19: Okta Identity Lifecycle Management — Joiner, Mover & Leaver
+# Lab 19 — Okta Identity Lifecycle: Joiner, Mover & Leaver
 
-## Project Overview
+## The business problem
 
-Vandelay Health is a fictional healthcare technology company whose flagship product, the Ninja Sleeper, originated from a federal government contract requiring a silent sleeping solution for military personnel operating in the field. Vandelay Health subsequently adapted the technology for commercial use while retaining as much of the original proprietary design and intellectual property as possible.
+Vandelay Health acquired a third-party logistics provider (3PL) whose warehouse workforce uses Okta. As employees join, change responsibilities, or leave, their application access needs to follow those changes.
 
-Following Vandelay Health's acquisition of its third-party logistics provider (3PL), the IAM team must manage workforce identity lifecycle events in the inherited Okta environment. This lab extends the Okta foundation established in Lab 18 by demonstrating Joiner, Mover, and Leaver (JML) administration using business-role groups and group-based application access.
+I used **VJ Praheet's** employment lifecycle to demonstrate how business-role groups can manage access to the **3PL Warehouse Operations Portal** without assigning the application directly to an individual.
+
+## 1. Joiner — Shipping & Receiving
+
+VJ joined the 3PL's Shipping & Receiving team. I created his Okta workforce identity and added him to `3PL-Shipping-Receiving`.
+
+![VJ's Shipping & Receiving group membership](01-Joiner-Group-Membership-VJ-Praheet.png)
+
+The Warehouse Operations Portal was already assigned to that group. I checked VJ's application assignment to confirm he inherited access through **Shipping & Receiving**, rather than through a direct user assignment.
+
+![Portal assignment inherited from the Shipping & Receiving group](02-Joiner-Portal-Access-Via-Group.png)
+
+**Access path:** VJ Praheet → `3PL-Shipping-Receiving` → 3PL Warehouse Operations Portal.
+
+## 2. Mover — Warehouse Management
+
+VJ later transferred to Warehouse Management as executive assistant to warehouse manager **Bob Gillespie**. His responsibilities changed, so his access needed to reflect his new role—not accumulate permissions from his previous one.
+
+I removed VJ from `3PL-Shipping-Receiving` and added him to `3PL-Warehouse-Management`.
+
+![VJ's new Warehouse Management group membership](03-Mover-Warehouse-Management-Group.png)
+
+I verified that VJ and Bob were members of the Warehouse Management group.
+
+![Bob Gillespie and VJ in the Warehouse Management group](04-Mover-Management-Group-Bob-and-VJ.png)
+
+VJ still had access to the Warehouse Operations Portal, but **the source of that assignment had changed**. I checked the application assignment and confirmed that access now came through `3PL-Warehouse-Management`.
+
+![Portal assignment now sourced from the Warehouse Management group](05-Mover-Portal-Access-Via-Management-Group.png)
+
+**Updated access path:** VJ Praheet → `3PL-Warehouse-Management` → 3PL Warehouse Operations Portal.
+
+This is the critical mover validation: retaining access to the same application is not enough by itself. I needed to verify that VJ's access followed his **current business role**, rather than an obsolete group membership.
+
+## 3. Leaver — Voluntary separation
+
+VJ eventually resigned in good standing to attend the **Bagpipe Institute in Charlottetown, Prince Edward Island**.
+
+I deactivated his Okta identity rather than deleting it. I then verified that his account showed **Deactivated**, no applications remained assigned, and the active-user count fell from **10 to 9**.
+
+![VJ's deactivated account and removed application assignments](06-Leaver-Deactivated-Application-Access-Removed.png)
+
+Keeping the deactivated identity allows for a possible future rehire without treating his previous permissions as automatically approved. Any return would require a new assessment of his current role and access needs.
+
+## Outcome and lessons
+
+I completed a Joiner–Mover–Leaver (JML) workflow in Okta and validated the resulting group memberships and application assignments at each stage.
+
+The main lesson is that **access should reflect current business responsibilities**. Group-based assignment makes that relationship visible, but administrators still need to validate changes and remove outdated entitlements.
+
+The screenshots establish the configured Okta state and application assignment sources; they do not establish successful interactive portal sign-ins or long-term audit-log retention.
 
 ---
 
-## Business Scenario
+## Technical reference
 
-VJ Praheet joins the acquired 3PL in Shipping & Receiving. During his time with the organization, VJ transfers into Warehouse Management to become executive assistant to Warehouse Manager Bob Gillespie. VJ later resigns in good standing after receiving a once-in-a-lifetime opportunity to train at the Bagpipe Institute in Charlottetown, Prince Edward Island.
-
-The IAM team must ensure that access follows each business lifecycle event:
-
-- Provision the new workforce identity.
-- Grant access through the appropriate business-role group.
-- Validate inherited application access.
-- Update group membership when the employee changes roles.
-- Confirm application access follows the new role rather than relying on direct assignment.
-- Deactivate the identity at separation and verify application access is removed.
-- Retain the deactivated identity rather than deleting it, preserving the possibility of future rehire.
-
----
-
-## Environment
-
-- Okta Workforce Identity
-- Okta Integrator Free Plan
-- Okta Universal Directory
-- Okta Groups
+**Environment**
+- Okta Workforce Identity — Integrator Free Plan
+- Okta Universal Directory and Okta Groups
 - Group-based application assignment
 - 3PL Warehouse Operations Portal
 
----
+**Groups used**
+- `3PL-Shipping-Receiving`
+- `3PL-Warehouse-Management`
 
-## Joiner — VJ Praheet
+**Scope:** Workforce identity creation, manual role-group membership changes, group-based application assignment verification, and account deactivation. This lab does not demonstrate automated Okta Group Rules.
 
-A new Okta workforce identity was created for **VJ Praheet**.
+**Evidence handling:** The six screenshots are included inline with the corresponding workflow steps. No passwords, recovery secrets, authentication secrets, or enrollment codes are included in the repository evidence.
 
-VJ joined the 3PL's Shipping & Receiving team and was added to:
-
-`3PL-Shipping-Receiving`
-
-The 3PL Warehouse Operations Portal was already assigned to this business-role group. As a result, VJ inherited application access through group membership rather than through a direct user assignment.
-
-The Applications view was reviewed to validate both the portal assignment and its group-based assignment source.
-
-**Access path:**
-
-**VJ Praheet → 3PL-Shipping-Receiving → 3PL Warehouse Operations Portal**
-
----
-
-## Mover — Warehouse Management
-
-VJ subsequently transferred from Shipping & Receiving to Warehouse Management to become executive assistant to Warehouse Manager **Bob Gillespie**.
-
-His old role membership was removed and his new business-role membership was established through:
-
-`3PL-Warehouse-Management`
-
-Group membership was validated by confirming VJ and Bob Gillespie in the same Warehouse Management group.
-
-The 3PL Warehouse Operations Portal remained available to VJ, but the assignment source changed automatically from the Shipping & Receiving group to the Warehouse Management group.
-
-This demonstrated that access followed VJ's business role without requiring a direct application assignment.
-
-**Updated access path:**
-
-**VJ Praheet → 3PL-Warehouse-Management → 3PL Warehouse Operations Portal**
-
----
-
-## Leaver — Voluntary Separation
-
-VJ later resigned in good standing to pursue training at the Bagpipe Institute in Charlottetown, Prince Edward Island.
-
-His Okta identity was **deactivated rather than deleted**.
-
-Post-deactivation validation confirmed:
-
-- VJ's status changed to **Deactivated**.
-- No applications remained assigned to the user.
-- The active-user count decreased from 10 to 9.
-- The identity record remained available for potential future reactivation.
-
-This models a clean voluntary-separation workflow while preserving identity history and the possibility of rehire.
-
----
-
-## IAM Concepts Demonstrated
-
-- Joiner, Mover, Leaver (JML) lifecycle administration
-- Workforce identity provisioning
-- Business-role group membership
-- Group-based application assignment
-- Role-change access administration
-- Validation of application assignment source
-- Deprovisioning through identity deactivation
-- Application-access removal
-- Identity retention for possible rehire
-- Least-privilege and role-based access principles
-
----
-
-## Evidence
-
-### 01 — Joiner: Shipping & Receiving Group Membership
-
-VJ added to the Shipping & Receiving business-role group.
-
-![Joiner group membership](01-Joiner-Group-Membership-VJ-Praheet.png)
-
-### 02 — Joiner: Portal Access via Group
-
-3PL Warehouse Operations Portal inherited through the Shipping & Receiving group.
-
-![Joiner portal access via group](02-Joiner-Portal-Access-Via-Group.png)
-
-### 03 — Mover: Warehouse Management Group
-
-VJ's new Warehouse Management group membership.
-
-![Mover warehouse management group](03-Mover-Warehouse-Management-Group.png)
-
-### 04 — Mover: Bob and VJ in Management Group
-
-Bob Gillespie and VJ validated in the same Warehouse Management group.
-
-![Bob and VJ management group](04-Mover-Management-Group-Bob-and-VJ.png)
-
-### 05 — Mover: Portal Access via Management Group
-
-Portal assignment source updated to the Warehouse Management group.
-
-![Mover portal access via management group](05-Mover-Portal-Access-Via-Management-Group.png)
-
-### 06 — Leaver: Deactivation and Access Removal
-
-VJ deactivated and application access removed.
-
-![Leaver deactivated and application access removed](06-Leaver-Deactivated-Application-Access-Removed.png)
-
-No passwords, recovery secrets, authentication secrets, or enrollment codes are included in the repository evidence.
-
----
-
-## Outcome
-
-Vandelay Health completed a full Okta workforce identity lifecycle for VJ Praheet.
-
-The Joiner event demonstrated provisioning and group-based application access. The Mover event demonstrated role-driven access change as VJ transferred from Shipping & Receiving into Warehouse Management. The Leaver event demonstrated identity deactivation and removal of application access while retaining the identity record for potential future rehire.
-
-The lab demonstrates practical Okta JML administration and shows how business-role groups can keep application access aligned with workforce lifecycle changes without relying on direct per-user application assignments.
+**Context:** This lab builds on the Okta foundation established in Lab 18. Vandelay Health is a fictional healthcare technology company whose Ninja Sleeper product originated in a government contract and was later adapted for commercial use.
