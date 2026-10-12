@@ -1,5 +1,7 @@
 # Lab 19 — Okta Identity Lifecycle: Joiner, Mover & Leaver
 
+<mark>**FICTIONAL COMPANY — Vandelay Health is a fictional healthcare technology company that produces the Ninja Sleeper, a commercialized version of technology originally developed for the U.S. military to address sleep apnea in field environments.**</mark>
+
 ## The business problem
 
 Vandelay Health acquired a third-party logistics provider (3PL) whose warehouse workforce uses Okta. As employees join, change responsibilities, or leave, their application access needs to follow those changes.
