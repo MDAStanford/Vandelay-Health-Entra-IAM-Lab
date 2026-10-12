@@ -54,6 +54,8 @@ For each employee, I added organizational information such as their department, 
 
 ![Workforce Identities](02-All-Users.png)
 
+![User Properties](03-User-Properties.png)
+
 ---
 
 ### 3. Organize Access with Security Groups
