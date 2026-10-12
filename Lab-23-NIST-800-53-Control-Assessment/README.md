@@ -1,4 +1,6 @@
 # Lab 23 — Internal Identity Security Assessment
+
+<mark>**FICTIONAL COMPANY — Vandelay Health is a fictional healthcare technology company that produces the Ninja Sleeper, a commercialized version of technology originally developed for the U.S. military to address sleep apnea in field environments.**</mark>
 **Work in progress | Project SEC-2026-1023**
 
 Vandelay Health is a fictional healthcare technology company based in Santa Monica, California. Its Ninja Sleeper CPAP technology began as a federal government project and was later adapted for commercial use.
