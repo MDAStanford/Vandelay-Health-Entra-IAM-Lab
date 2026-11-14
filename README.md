@@ -67,6 +67,21 @@ Connects Vandelay's on-premises Active Directory environment to Microsoft Entra 
 Documents simulated HR-driven onboarding and offboarding, with validated Active Directory group membership, account disablement, identity attribute correction, and Microsoft Entra ID outcomes. Includes follow-up evidence captured October 8, 2026.
 
 
+### Lab 16 — Administrative Units & Delegated Administration
+Created a Toronto Administrative Unit, scoped eight identities, delegated User Administrator permissions, and validated that administration worked within the assigned scope but not outside it.
+
+### Lab 17 — Microsoft Graph PowerShell: Identity Investigation & Access Remediation
+Used Microsoft Graph PowerShell and Entra audit data to investigate identity and group access, remove an inappropriate project-group membership, and validate remediation with audit evidence.
+
+### Lab 18 — Okta Workforce Identity: SSO, MFA & Group-Based Access
+Configured Okta identities and business-role groups for an acquired logistics workforce, integrated a warehouse application using SAML 2.0, enforced MFA with Okta Verify, and validated access through the System Log.
+
+### Lab 19 — Okta Identity Lifecycle Management
+Demonstrated Okta joiner-mover-leaver operations through onboarding, access changes, deprovisioning, and validation of identity lifecycle controls.
+
+### Lab 20 — Entra Identity Security Posture Assessment
+Assessed Microsoft Entra ID security and governance controls, documented access and configuration findings, prioritized remediation, and validated corrective actions with technical evidence.
+
 ---
 
 ## Technical Skills Demonstrated
@@ -93,6 +108,10 @@ Documents simulated HR-driven onboarding and offboarding, with validated Active 
 - Hybrid identity and Entra Connect synchronization
 - Password Hash Synchronization
 - Ticket-driven IAM operations
+- Administrative Units and delegated administration
+- Microsoft Graph PowerShell investigation and remediation
+- Okta workforce identity, SAML SSO, MFA, and lifecycle management
+- Identity security posture assessment and remediation validation
 
 ---
 
